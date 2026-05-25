@@ -8,12 +8,15 @@ export function Detail() {
   const { id } = useParams();
   const data = VIDEOS[id as keyof typeof VIDEOS] || VIDEOS["openclaw-ai-agents"];
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
   const { isInWatchlist, toggleWatchlist } = useWatchlist();
   const isSaved = isInWatchlist(data.id);
 
+  const activePrompt = data.prompts ? data.prompts[activeTab].prompt : data.prompt;
+
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(data.prompt);
+      await navigator.clipboard.writeText(activePrompt);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -69,7 +72,7 @@ export function Detail() {
             <h3 className="font-headline text-2xl text-primary uppercase border-b-4 border-black pb-2 mb-4">
               System Overview
             </h3>
-            <p className="font-body text-lg text-on-surface-variant">
+            <p className="font-body text-lg text-on-surface-variant font-medium leading-relaxed">
               {data.synopsis}
             </p>
           </div>
@@ -79,14 +82,38 @@ export function Detail() {
               <Code className="text-on-primary-container w-8 h-8" strokeWidth={2.5} />
             </div>
             <div className="p-4 lg:p-6">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4 pr-14">
                 <h3 className="font-headline text-2xl text-inverse-primary uppercase font-black italic">
                   System Prompt Guide
                 </h3>
+                {data.prompts && (
+                  <div className="flex bg-black border-2 border-black p-1 gap-1">
+                    {data.prompts.map((p: any, idx: number) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveTab(idx)}
+                        className={`px-3 py-1 font-headline text-xs uppercase transition-all duration-100 ${
+                          activeTab === idx
+                            ? "bg-primary text-black font-black"
+                            : "bg-surface-container text-white hover:bg-surface-container-high"
+                        }`}
+                      >
+                        Method {idx + 1}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              {data.prompts && (
+                <div className="bg-white/5 border-l-4 border-primary p-3 mb-4 text-sm font-body text-inverse-on-surface/80">
+                  <strong className="text-primary">{data.prompts[activeTab].title}</strong> — {data.prompts[activeTab].desc}
+                </div>
+              )}
+
               <div className="bg-white border-4 border-black relative group shadow-[inset_4px_4px_0px_0px_rgba(0,0,0,0.1)]">
-                <div className="p-4 lg:p-6 font-mono text-sm lg:text-base text-black whitespace-pre-wrap leading-relaxed">
-                  {data.prompt}
+                <div className="p-4 lg:p-6 font-mono text-xs lg:text-sm text-black whitespace-pre-wrap leading-relaxed max-h-[480px] overflow-y-auto">
+                  {activePrompt}
                 </div>
                 <button
                   onClick={handleCopy}
@@ -96,9 +123,9 @@ export function Detail() {
                   {copied ? <Check className="w-5 h-5 text-green-700" /> : <Copy className="w-5 h-5" />}
                 </button>
               </div>
-              <div className="mt-4 flex items-center justify-between text-xs font-bold text-on-surface-variant uppercase tracking-widest">
+              <div className="mt-4 flex items-center justify-between text-xs font-bold text-inverse-on-surface/60 uppercase tracking-widest">
                 <span>Status: Ready</span>
-                {copied && <span className="text-primary">Copied to clipboard!</span>}
+                {copied && <span className="text-primary font-bold">Copied active prompt!</span>}
               </div>
             </div>
           </div>
