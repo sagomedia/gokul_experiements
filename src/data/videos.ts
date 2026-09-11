@@ -1,4 +1,46 @@
 export const VIDEOS = {
+  "home-server-stop-paying-ott": {
+    id: "home-server-stop-paying-ott",
+    title: "I Stopped Paying for Netflix & Google Cloud! (Here is How I Built My Server)",
+    shortDesc: "Turn any old laptop into a 24/7 private home cloud and streaming server. Replace Netflix with Jellyfin (+ Live Tamil TV), Google Photos with Immich, and Google Drive with FileBrowser for Rs 0.",
+    synopsis: `Google Cloud, Google One, Netflix, Prime... Masa masam subscription katti evlo panam waste aaguthu nu yosichu paathurukkeengala? Athu mattumillaama naama Google Photos-la store panra namma personal photos-ah avanga AI models train panna namma anumathi illama use panranga!
+
+Veetla summa thoongittu irukkira pazhaya laptop-ah vachu oru kaasu selavillama sonthama Private 24/7 Home Server build pannitten. Google Photos-ku pathila Immich (AI Face recognition auto-sync), Netflix-ku pathila Jellyfin (4K streaming + Free Live Tamil TV channels), Google Drive-ku pathila FileBrowser. Docker & WSL2 vachu ore click-la run panra setup script koduthurukken. Ungaloda data-va neengale own pannunga!`,
+    prompt: `git clone https://github.com/sagomedia/Setup-server.git
+cd Setup-server/02-Build
+chmod +x setup.sh
+./setup.sh`,
+    tag1: "Self-Hosted",
+    tag2: "Privacy",
+    imgUrl: "/home-server-thumb.png",
+    youtubeId: "PENDING_UPLOAD",
+    runtime: "22:41 MINS",
+    category: "Tech Tutorial",
+    creator: "Gokul Experiments",
+    isTrending: true,
+    steps: [
+      { title: "Intro & Why Build a Home Server?", desc: "0:00" },
+      { title: "Cloud Privacy & AI Training Risks", desc: "0:48" },
+      { title: "Windows vs Ubuntu Linux Comparison", desc: "1:39" },
+      { title: "Windows Power Lid Settings Trick", desc: "1:57" },
+      { title: "Docker Desktop & WSL2 Installation", desc: "2:30" },
+      { title: "1-Click Automated Setup Script", desc: "3:17" },
+      { title: "Dashboard & 3 Core Apps Overview", desc: "4:04" },
+      { title: "Immich Setup: Google Photos Alternative", desc: "4:39" },
+      { title: "FileBrowser: Google Drive Alternative", desc: "5:56" },
+      { title: "Jellyfin: Private Netflix 4K Setup", desc: "7:11" },
+      { title: "Folder Sync & Library Scan", desc: "8:19" },
+      { title: "Adding Movies Directly via Windows", desc: "9:32" },
+      { title: "BONUS: Free Live Tamil TV Channels Setup", desc: "10:08" },
+      { title: "Android Mobile App Setup over Wi-Fi", desc: "11:08" },
+      { title: "Automatic Mobile Photo Backup Test", desc: "12:36" },
+      { title: "Tailscale Setup: Access Anywhere in World", desc: "13:35" },
+      { title: "Remote 4K Streaming over 5G VPN", desc: "15:18" },
+      { title: "Smart TV Jellyfin App Integration", desc: "17:25" },
+      { title: "Ubuntu Linux Superfast 2-Min Setup", desc: "17:44" },
+      { title: "Linux Tailscale & Final Wrap Up", desc: "19:09" }
+    ]
+  },
   "openclaw-ai-agents": {
     id: "openclaw-ai-agents",
     title: "I Found a Hack for UNLIMITED AI Agents (Free OpenClaw)",
