@@ -5,8 +5,14 @@ export function Footer() {
         Gokul Experiments
       </div>
       <nav className="flex flex-wrap justify-center gap-6">
-        <a href="#" className="text-on-surface-variant hover:text-white font-bold text-sm uppercase hover:tracking-widest transition-all">
-          Support
+        <a href="https://instagram.com/gokulakrishnan23092005" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-white font-bold text-sm uppercase hover:tracking-widest transition-all">
+          Instagram
+        </a>
+        <a href="https://x.com/gokula2005" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-white font-bold text-sm uppercase hover:tracking-widest transition-all">
+          X (Twitter)
+        </a>
+        <a href="https://github.com/Gokulakrishnan2005/gokul_experiements" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-white font-bold text-sm uppercase hover:tracking-widest transition-all">
+          GitHub
         </a>
       </nav>
       <div className="text-[#b0c7f1] font-bold text-sm uppercase text-center md:text-right">

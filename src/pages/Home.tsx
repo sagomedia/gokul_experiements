@@ -3,7 +3,7 @@ import { Flame } from "lucide-react";
 import { VIDEOS } from "../data/videos";
 
 export function Home() {
-  const featuredVideo = VIDEOS["ai-thumbnail-generator"];
+  const featuredVideo = VIDEOS["home-server-stop-paying-ott"] || VIDEOS["ai-thumbnail-generator"];
   const otherVideos = Object.values(VIDEOS).filter(v => v.id !== featuredVideo.id);
 
   return (
