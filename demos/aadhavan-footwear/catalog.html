@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>The Product Ledger & Catalog — Aadhavan Handcrafted Chappals</title>
+  <meta name="description" content="Filter and order handcrafted Tamil leather chappals with custom size filters, leather swatches, and live WhatsApp cart checkout."/>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#6f331a",
+            "primary-container": "#8c4a2f",
+            "primary-fixed": "#ffdbce",
+            "on-primary": "#ffffff",
+            "secondary": "#835426",
+            "secondary-container": "#ffbf88",
+            "background": "#fff8f5",
+            "surface": "#fff8f5",
+            "surface-container-low": "#fbf2ed",
+            "surface-container": "#f5ece7",
+            "surface-container-high": "#efe6e2",
+            "surface-container-highest": "#e9e1dc",
+            "on-background": "#1e1b18",
+            "on-surface": "#1e1b18",
+            "on-surface-variant": "#53433d",
+            "outline": "#86736c",
+            "outline-variant": "#d9c2ba"
+          },
+          fontFamily: {
+            serif: ["Libre Caslon Text", "Georgia", "serif"],
+            sans: ["Work Sans", "system-ui", "sans-serif"]
+          },
+          spacing: {
+            "container-max": "1280px",
+            "gutter": "24px",
+            "section-gap": "96px"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    .ledger-border { border: 1px dashed rgba(134, 115, 108, 0.35); }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white">
+
+  <!-- Top Sticky Navigation -->
+  <header class="bg-surface/95 backdrop-blur-md sticky top-0 w-full z-40 border-b border-outline-variant/30">
+    <div class="flex justify-between items-center px-6 md:px-12 max-w-container-max mx-auto h-20">
+      
+      <!-- Monogram & Title -->
+      <a class="flex items-center gap-3 group" href="index.html">
+        <img alt="Aadhavan Monogram Logo" class="h-10 w-auto mix-blend-multiply group-hover:scale-105 transition-transform" src="images/logo.png"/>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl font-bold tracking-tight text-primary">AADHAVAN</span>
+          <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-secondary -mt-1">The Footwear Ledger</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+        <a class="text-primary border-b-2 border-primary pb-1" href="catalog.html">Catalog Ledger</a>
+        <a class="hover:text-primary transition-colors" href="product.html">Classic Kolhapuri</a>
+        <a class="hover:text-primary transition-colors" href="story.html">Artisan Story</a>
+      </nav>
+
+      <!-- Wishlist & Cart Triggers -->
+      <div class="flex items-center gap-5">
+        <button id="wishlist-btn" onclick="toggleWishlistModal()" class="relative text-on-surface hover:text-primary transition-colors p-1" title="Wishlist">
+          <span class="material-symbols-outlined text-2xl">favorite</span>
+          <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">1</span>
+        </button>
+
+        <button onclick="toggleCartDrawer()" class="relative text-on-surface hover:text-primary transition-colors p-1" title="Shopping Cart">
+          <span class="material-symbols-outlined text-2xl">shopping_bag</span>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">1</span>
+        </button>
+
+        <button id="menu-btn" class="md:hidden p-1 text-primary hover:bg-surface-container-low rounded focus:outline-none" aria-label="Toggle Navigation">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant/30 bg-surface-container-low px-6 py-6 space-y-4">
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="index.html">Home Storefront</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-primary" href="catalog.html">Catalog Ledger</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="product.html">Classic Kolhapuri</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="story.html">Artisan Story & Craft</a>
+      <div class="pt-4 border-t border-outline-variant/30">
+        <button onclick="toggleCartDrawer()" class="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-3 rounded text-xs font-semibold uppercase tracking-wider">
+          <span class="material-symbols-outlined text-sm">shopping_bag</span> View Cart Ledger
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Catalog Content -->
+  <main class="max-w-container-max mx-auto px-6 md:px-12 py-10">
+    
+    <!-- Filter & Sort Bar (Stitch Catalog Pattern) -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 pb-5 border-b border-outline-variant/30 gap-4">
+      
+      <!-- Active Chips -->
+      <div class="flex gap-2 items-center flex-wrap text-xs">
+        <span class="font-bold uppercase tracking-wider text-secondary mr-2">ACTIVE FILTERS:</span>
+        <span id="chip-veg" class="bg-surface-container-high text-on-surface px-3 py-1 rounded-full border border-outline-variant/50 flex items-center gap-1">
+          Vegetable-Tanned
+          <button onclick="removeChip('chip-veg')" class="text-on-surface-variant hover:text-primary">✕</button>
+        </span>
+        <span id="chip-stock" class="bg-surface-container-high text-on-surface px-3 py-1 rounded-full border border-outline-variant/50 flex items-center gap-1">
+          In Stock
+          <button onclick="removeChip('chip-stock')" class="text-on-surface-variant hover:text-primary">✕</button>
+        </span>
+        <button onclick="resetFilters()" class="text-primary underline text-xs font-semibold ml-2">Clear All</button>
+      </div>
+
+      <!-- Controls & Sorting -->
+      <div class="flex items-center gap-6 self-end md:self-auto text-xs">
+        <div class="flex items-center gap-2 border-b border-outline-variant pb-1">
+          <span class="font-semibold uppercase tracking-wider text-on-surface-variant">SORT BY:</span>
+          <select id="sort-select" onchange="sortProducts()" class="bg-transparent border-none text-on-surface font-semibold focus:ring-0 p-0 pr-6 cursor-pointer text-xs">
+            <option value="popular">Bestsellers</option>
+            <option value="low-high">Price: Low to High</option>
+            <option value="high-low">Price: High to Low</option>
+          </select>
+        </div>
+
+        <div class="hidden sm:flex gap-1 border border-outline-variant/40 rounded p-0.5 bg-surface-container-low">
+          <button id="grid-view-btn" onclick="setView('grid')" class="p-1.5 rounded bg-primary text-on-primary" title="Grid View">
+            <span class="material-symbols-outlined text-base">grid_view</span>
+          </button>
+          <button id="list-view-btn" onclick="setView('list')" class="p-1.5 rounded text-on-surface-variant hover:text-primary" title="List View">
+            <span class="material-symbols-outlined text-base">view_list</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Two Column Layout: Sidebar + Product Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- Left Sidebar Facets -->
+      <aside class="lg:col-span-3 space-y-8 pr-4 lg:border-r lg:border-outline-variant/30">
+        
+        <!-- Categories -->
+        <div>
+          <h3 class="font-serif text-lg font-bold text-primary mb-4 pb-2 border-b border-outline-variant/30">Archive Category</h3>
+          <ul class="space-y-3 text-xs text-on-surface-variant font-medium">
+            <li class="flex justify-between items-center">
+              <button onclick="filterCategory('all')" class="cat-filter text-primary font-bold hover:underline">All Silhouettes</button>
+              <span class="text-[11px] text-secondary font-semibold">(4)</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <button onclick="filterCategory('kolhapuri')" class="cat-filter hover:text-primary transition-colors">Classic Kolhapuri</button>
+              <span class="text-[11px]">(1)</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <button onclick="filterCategory('slipon')" class="cat-filter hover:text-primary transition-colors">Daily Ergonomic</button>
+              <span class="text-[11px]">(1)</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <button onclick="filterCategory('mojari')" class="cat-filter hover:text-primary transition-colors">Ceremonial Mojaris</button>
+              <span class="text-[11px]">(1)</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <button onclick="filterCategory('orthopedic')" class="cat-filter hover:text-primary transition-colors">Orthopedic Soft-Walk</button>
+              <span class="text-[11px]">(1)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Price Range Slider -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface mb-3">Price Archive</h4>
+          <input id="price-slider" oninput="filterPrice(this.value)" class="w-full accent-primary bg-surface-container-high h-1.5 rounded-full appearance-none cursor-pointer" max="2000" min="900" type="range" value="2000"/>
+          <div class="flex justify-between text-xs text-on-surface-variant font-semibold mt-2">
+            <span>₹900</span>
+            <span>Max: <span id="price-display" class="text-primary font-bold">₹2,000</span></span>
+          </div>
+        </div>
+
+        <!-- Leather Patina Swatches -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface mb-3">Leather Patina</h4>
+          <div class="flex gap-3">
+            <button onclick="filterColor('Saddle Brown')" class="w-7 h-7 rounded-full bg-[#835426] border border-black/20 ring-2 ring-primary ring-offset-2 ring-offset-surface transition-all" title="Saddle Brown"></button>
+            <button onclick="filterColor('Rich Terracotta')" class="w-7 h-7 rounded-full bg-[#6f331a] border border-black/20 hover:ring-2 hover:ring-primary/50 transition-all" title="Rich Terracotta"></button>
+            <button onclick="filterColor('Natural Tan')" class="w-7 h-7 rounded-full bg-[#cfa175] border border-black/20 hover:ring-2 hover:ring-primary/50 transition-all" title="Natural Tan"></button>
+          </div>
+        </div>
+
+        <!-- Last Size Pills -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface mb-3">EU Last Size</h4>
+          <div class="flex flex-wrap gap-2 text-xs font-bold">
+            <button onclick="filterSize('40', this)" class="size-pill px-3 py-1.5 border border-outline-variant/60 rounded text-on-surface-variant hover:border-primary">40</button>
+            <button onclick="filterSize('41', this)" class="size-pill px-3 py-1.5 border border-outline-variant/60 rounded text-on-surface-variant hover:border-primary">41</button>
+            <button onclick="filterSize('42', this)" class="size-pill px-3 py-1.5 border-2 border-primary bg-primary text-on-primary rounded">42</button>
+            <button onclick="filterSize('43', this)" class="size-pill px-3 py-1.5 border border-outline-variant/60 rounded text-on-surface-variant hover:border-primary">43</button>
+            <button onclick="filterSize('44', this)" class="size-pill px-3 py-1.5 border border-outline-variant/60 rounded text-on-surface-variant hover:border-primary">44</button>
+            <button onclick="filterSize('45', this)" class="size-pill px-3 py-1.5 border border-outline-variant/60 rounded text-on-surface-variant hover:border-primary">45</button>
+          </div>
+        </div>
+
+        <!-- Sole Construction -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-on-surface mb-3">Sole Construction</h4>
+          <div class="space-y-2 text-xs text-on-surface-variant">
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input checked="" class="accent-primary rounded" type="checkbox"/>
+              <span>Pressed Leather Sole</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input class="accent-primary rounded" type="checkbox"/>
+              <span>Rubber Traction Grip</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input class="accent-primary rounded" type="checkbox"/>
+              <span>Cushioned High-Density TPR</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Custom Sizing CTA in sidebar -->
+        <div class="p-4 bg-surface-container rounded border border-outline-variant/30 space-y-2">
+          <span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Need custom sizing?</span>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            WhatsApp our Gandhipuram cobbler a photo of your traced foot for a bespoke pair.
+          </p>
+          <a href="https://wa.me/919842215500?text=Hi%20Aadhavan,%20I%20need%20custom%20sizing%20help." target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-primary underline">
+            <span class="material-symbols-outlined text-sm">chat</span> Start Sizing Chat
+          </a>
+        </div>
+
+      </aside>
+
+      <!-- Right Column: Product Card Grid -->
+      <section class="lg:col-span-9">
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-8">
+          
+          <!-- Product Card 1 -->
+          <article data-category="kolhapuri" data-price="1299" class="product-item group relative flex flex-col bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+            <div class="relative aspect-square overflow-hidden bg-surface-container-low border border-outline-variant/20 p-6 flex items-center justify-center rounded">
+              <span class="absolute top-3 left-3 z-10 bg-secondary/15 text-secondary border border-secondary/20 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                Heritage Icon
+              </span>
+              <button onclick="toggleWishlistItem(this, 'Classic Kolhapuri')" class="absolute top-3 right-3 z-10 text-outline hover:text-red-600 transition-colors">
+                <span class="material-symbols-outlined text-xl">favorite</span>
+              </button>
+              <img alt="Classic Kolhapuri Chappals" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/kolhapuri.png"/>
+              
+              <!-- Quick Add overlay -->
+              <div class="absolute bottom-0 left-0 w-full p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button onclick="addToCart('Classic Kolhapuri', 1299, 'images/kolhapuri.png', 'Deep Terracotta / Size 42')" class="w-full bg-primary/95 backdrop-blur text-on-primary py-2.5 rounded text-xs font-bold uppercase tracking-wider hover:bg-primary transition-colors flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">add_shopping_cart</span> Quick Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-4 flex-grow space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-serif text-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                  <a href="product.html">Classic Kolhapuri Chappals</a>
+                </h3>
+                <span class="font-serif text-lg font-bold text-primary">₹1,299</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="text-amber-600 font-bold">★ 4.9</span>
+                <span class="text-outline-variant mx-1">•</span>
+                <span class="text-[11px]">Vegetable-tanned full grain</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-outline-variant/30 flex gap-2">
+              <a href="product.html" class="flex-1 text-center bg-surface-container py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container-high transition-colors">
+                View Ledger
+              </a>
+              <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20Classic%20Kolhapuri%20(₹1,299)." target="_blank" class="px-3 border border-outline py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container flex items-center">
+                <span class="material-symbols-outlined text-sm">chat</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 2 -->
+          <article data-category="slipon" data-price="999" class="product-item group relative flex flex-col bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+            <div class="relative aspect-square overflow-hidden bg-surface-container-low border border-outline-variant/20 p-6 flex items-center justify-center rounded">
+              <span class="absolute top-3 left-3 z-10 bg-surface-variant text-on-surface-variant border border-outline/20 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                Daily Cushion
+              </span>
+              <button onclick="toggleWishlistItem(this, 'Ergonomic Daily Slip-ons')" class="absolute top-3 right-3 z-10 text-outline hover:text-red-600 transition-colors">
+                <span class="material-symbols-outlined text-xl">favorite</span>
+              </button>
+              <img alt="Ergonomic Daily Slip-ons" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/slipons.png"/>
+              
+              <div class="absolute bottom-0 left-0 w-full p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button onclick="addToCart('Ergonomic Daily Slip-ons', 999, 'images/slipons.png', 'Saddle Brown / Size 42')" class="w-full bg-primary/95 backdrop-blur text-on-primary py-2.5 rounded text-xs font-bold uppercase tracking-wider hover:bg-primary transition-colors flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">add_shopping_cart</span> Quick Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-4 flex-grow space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-serif text-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                  Ergonomic Daily Slip-ons
+                </h3>
+                <span class="font-serif text-lg font-bold text-primary">₹999</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="text-amber-600 font-bold">★ 4.8</span>
+                <span class="text-outline-variant mx-1">•</span>
+                <span class="text-[11px]">Plush memory foam bed</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-outline-variant/30 flex gap-2">
+              <button onclick="addToCart('Ergonomic Daily Slip-ons', 999, 'images/slipons.png', 'Saddle Brown / Size 42')" class="flex-1 text-center bg-surface-container py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container-high transition-colors">
+                Add to Cart
+              </button>
+              <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20Ergonomic%20Slip-ons%20(₹999)." target="_blank" class="px-3 border border-outline py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container flex items-center">
+                <span class="material-symbols-outlined text-sm">chat</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 3 -->
+          <article data-category="mojari" data-price="1799" class="product-item group relative flex flex-col bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+            <div class="relative aspect-square overflow-hidden bg-surface-container-low border border-outline-variant/20 p-6 flex items-center justify-center rounded">
+              <span class="absolute top-3 left-3 z-10 bg-[#D4AF37]/15 text-[#8B6508] border border-[#D4AF37]/30 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                Bespoke Brass
+              </span>
+              <button onclick="toggleWishlistItem(this, 'Heritage Wedding Mojaris')" class="absolute top-3 right-3 z-10 text-outline hover:text-red-600 transition-colors">
+                <span class="material-symbols-outlined text-xl">favorite</span>
+              </button>
+              <img alt="Heritage Wedding Mojaris" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/mojaris.png"/>
+              
+              <div class="absolute bottom-0 left-0 w-full p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button onclick="addToCart('Heritage Wedding Mojaris', 1799, 'images/mojaris.png', 'Antique Gold / Size 42')" class="w-full bg-primary/95 backdrop-blur text-on-primary py-2.5 rounded text-xs font-bold uppercase tracking-wider hover:bg-primary transition-colors flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">add_shopping_cart</span> Quick Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-4 flex-grow space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-serif text-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                  Heritage Wedding Mojaris
+                </h3>
+                <span class="font-serif text-lg font-bold text-primary">₹1,799</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="text-amber-600 font-bold">★ 5.0</span>
+                <span class="text-outline-variant mx-1">•</span>
+                <span class="text-[11px]">Solid brass rivets & velvet lining</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-outline-variant/30 flex gap-2">
+              <button onclick="addToCart('Heritage Wedding Mojaris', 1799, 'images/mojaris.png', 'Antique Gold / Size 42')" class="flex-1 text-center bg-surface-container py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container-high transition-colors">
+                Add to Cart
+              </button>
+              <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20Heritage%20Wedding%20Mojaris%20(₹1,799)." target="_blank" class="px-3 border border-outline py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container flex items-center">
+                <span class="material-symbols-outlined text-sm">chat</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Product Card 4 -->
+          <article data-category="orthopedic" data-price="1199" class="product-item group relative flex flex-col bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+            <div class="relative aspect-square overflow-hidden bg-surface-container-low border border-outline-variant/20 p-6 flex items-center justify-center rounded">
+              <span class="absolute top-3 left-3 z-10 bg-surface-variant text-on-surface-variant border border-outline/20 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                Doctor Recommended
+              </span>
+              <button onclick="toggleWishlistItem(this, 'Orthopedic Soft-Walk')" class="absolute top-3 right-3 z-10 text-outline hover:text-red-600 transition-colors">
+                <span class="material-symbols-outlined text-xl">favorite</span>
+              </button>
+              <img alt="Orthopedic Soft-Walk Sandals" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/orthopedic.png"/>
+              
+              <div class="absolute bottom-0 left-0 w-full p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button onclick="addToCart('Orthopedic Soft-Walk Sandals', 1199, 'images/orthopedic.png', 'Natural Tan / Size 42')" class="w-full bg-primary/95 backdrop-blur text-on-primary py-2.5 rounded text-xs font-bold uppercase tracking-wider hover:bg-primary transition-colors flex items-center justify-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">add_shopping_cart</span> Quick Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-4 flex-grow space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-serif text-lg font-bold text-on-surface group-hover:text-primary transition-colors">
+                  Orthopedic Soft-Walk Sandals
+                </h3>
+                <span class="font-serif text-lg font-bold text-primary">₹1,199</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs text-on-surface-variant">
+                <span class="text-amber-600 font-bold">★ 4.9</span>
+                <span class="text-outline-variant mx-1">•</span>
+                <span class="text-[11px]">12mm heel shock pad</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-outline-variant/30 flex gap-2">
+              <button onclick="addToCart('Orthopedic Soft-Walk Sandals', 1199, 'images/orthopedic.png', 'Natural Tan / Size 42')" class="flex-1 text-center bg-surface-container py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container-high transition-colors">
+                Add to Cart
+              </button>
+              <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20Orthopedic%20Soft-Walk%20(₹1,199)." target="_blank" class="px-3 border border-outline py-2 rounded text-xs font-semibold text-primary hover:bg-surface-container flex items-center">
+                <span class="material-symbols-outlined text-sm">chat</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Interactive Sliding Cart Drawer (Stitch Cart Pattern) -->
+  <div id="cart-overlay" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60] hidden opacity-0 transition-opacity duration-300"></div>
+  
+  <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-surface shadow-2xl z-[70] transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col border-l border-outline-variant/30">
+    
+    <!-- Drawer Header -->
+    <div class="px-6 py-5 border-b border-outline-variant/20 flex justify-between items-center bg-surface-container-low">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-xl">receipt_long</span>
+        <h2 class="font-serif text-xl font-bold text-primary">Your Ledger Entry</h2>
+      </div>
+      <button onclick="toggleCartDrawer()" class="text-on-surface hover:text-primary transition-colors p-1">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress -->
+    <div class="bg-surface-container py-3.5 px-6 border-b border-outline-variant/20">
+      <div class="flex items-center gap-2 text-xs text-on-surface-variant font-medium">
+        <span class="material-symbols-outlined text-primary text-base">local_shipping</span>
+        <span>Eligible for <strong class="text-primary">Free Pan-India Delivery</strong></span>
+      </div>
+    </div>
+
+    <!-- Items List -->
+    <div id="cart-items-list" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Drawer Footer / WhatsApp Checkout -->
+    <div class="p-6 bg-surface-container-low border-t border-outline-variant/30 space-y-3">
+      <div class="flex justify-between items-center text-sm">
+        <span class="text-on-surface-variant font-medium">Subtotal</span>
+        <span id="cart-subtotal" class="font-serif text-2xl font-bold text-primary">₹1,299</span>
+      </div>
+      <p class="text-[11px] text-on-surface-variant text-center">Free shipping & all craft taxes included</p>
+      
+      <a id="cart-checkout-btn" href="#" target="_blank" class="w-full bg-primary text-on-primary py-4 rounded text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-all flex items-center justify-center gap-2 shadow-lg">
+        <span>Proceed to WhatsApp Checkout</span>
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+
+      <button onclick="toggleCartDrawer()" class="w-full border border-outline py-2.5 rounded text-xs font-semibold uppercase tracking-wider text-primary hover:bg-surface-container">
+        Continue Browsing
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-high border-t border-outline-variant/30 py-14 mt-20">
+    <div class="max-w-container-max mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8 text-xs text-on-surface-variant">
+      <div class="md:col-span-6 space-y-3">
+        <span class="font-serif text-lg font-bold text-primary">AADHAVAN ATELIER</span>
+        <p class="max-w-sm leading-relaxed">Cross Cut Road, Gandhipuram, Coimbatore, TN 641012. Hours: Mon–Sat 9:30am–8pm.</p>
+        <p class="text-[10px] uppercase text-secondary font-semibold">© 2026 Aadhavan Handcrafted Chappals. All rights reserved.</p>
+      </div>
+      <div class="md:col-span-6 flex md:justify-end items-center gap-6 font-semibold uppercase">
+        <a href="index.html" class="hover:text-primary">Home</a>
+        <a href="product.html" class="hover:text-primary">Classic Kolhapuri</a>
+        <a href="story.html" class="hover:text-primary">Artisan Story</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="catalog.js"></script>
+</body>
+</html>

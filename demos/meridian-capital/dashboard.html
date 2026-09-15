@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sovereign Family Trust | Meridian Capital Portfolio Console</title>
+    <!-- Tailwind CSS with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-dim": "#061422",
+                "on-surface": "#d6e4f7",
+                "background": "#061422",
+                "surface-variant": "#293644",
+                "surface": "#061422",
+                "surface-container-low": "#0f1d2a",
+                "surface-container": "#13212e",
+                "surface-container-high": "#1e2b39",
+                "surface-container-highest": "#293644",
+                "primary": "#f2ca50",
+                "primary-container": "#d4af37",
+                "secondary": "#bbc7e1",
+                "outline": "#99907c",
+                "outline-variant": "#4d4635"
+              },
+              fontFamily: {
+                "display": ["Playfair Display", "serif"],
+                "body": ["Inter", "sans-serif"]
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        .premium-card-bg {
+            background: linear-gradient(135deg, #0d1f38 0%, #071326 100%);
+        }
+        .spotlight-bg {
+            background: radial-gradient(circle at 50% 0%, rgba(242, 202, 80, 0.05) 0%, transparent 60%);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(242, 202, 80, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-[#061422] text-[#d6e4f7] font-body antialiased selection:bg-[#d4af37] selection:text-[#061422] min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+
+    <!-- SideNavBar (Remixed from Stitch 'dashboard-banking' sidebar with Meridian branding) -->
+    <aside class="w-full md:w-72 bg-[#061422] border-r border-[#1e3a5f] flex flex-col shrink-0 md:h-screen md:sticky md:top-0 z-40">
+        <!-- Logo -->
+        <div class="p-6 border-b border-[#1e3a5f] flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded bg-[#f2ca50] flex items-center justify-center font-bold text-[#061422] font-display text-lg group-hover:scale-105 transition-transform">
+                    MC
+                </div>
+                <div>
+                    <h1 class="font-display text-xl text-[#f2ca50] font-bold tracking-tight">Meridian Capital</h1>
+                    <p class="text-[10px] text-[#99907c] uppercase tracking-widest font-semibold">Fiduciary Console</p>
+                </div>
+            </a>
+            <button onclick="toggleMobileSidebar()" class="md:hidden text-[#d0c5af]">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <div id="sidebar-links" class="hidden md:flex flex-1 py-4 flex-col gap-1 overflow-y-auto">
+            <div class="px-6 py-2 text-[10px] font-semibold uppercase tracking-wider text-[#99907c]">Portfolio Management</div>
+            <a href="dashboard.html" class="text-[#f2ca50] font-semibold border-r-2 border-[#f2ca50] bg-[#1e2b39] flex items-center gap-3.5 px-6 py-3 transition-colors">
+                <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                <span class="text-sm">Overview</span>
+            </a>
+            <a href="#allocations-section" class="text-[#d0c5af] hover:text-white hover:bg-[#13212e] flex items-center gap-3.5 px-6 py-3 transition-colors">
+                <span class="material-symbols-outlined text-xl">pie_chart</span>
+                <span class="text-sm">Asset Allocations</span>
+            </a>
+            <a href="#performance-section" class="text-[#d0c5af] hover:text-white hover:bg-[#13212e] flex items-center gap-3.5 px-6 py-3 transition-colors">
+                <span class="material-symbols-outlined text-xl">analytics</span>
+                <span class="text-sm">Performance Analytics</span>
+            </a>
+            <a href="#ledger-section" class="text-[#d0c5af] hover:text-white hover:bg-[#13212e] flex items-center gap-3.5 px-6 py-3 transition-colors">
+                <span class="material-symbols-outlined text-xl">account_balance</span>
+                <span class="text-sm">Capital Dispatches</span>
+            </a>
+
+            <div class="px-6 pt-6 pb-2 text-[10px] font-semibold uppercase tracking-wider text-[#99907c]">Fiduciary Controls</div>
+            <a href="advisory.html" class="text-[#d0c5af] hover:text-white hover:bg-[#13212e] flex items-center gap-3.5 px-6 py-3 transition-colors">
+                <span class="material-symbols-outlined text-xl">price_change</span>
+                <span class="text-sm">Fee &amp; Hurdle Scale</span>
+            </a>
+            <button onclick="openModal('audit')" class="w-full text-left text-[#d0c5af] hover:text-white hover:bg-[#13212e] flex items-center gap-3.5 px-6 py-3 transition-colors">
+                <span class="material-symbols-outlined text-xl">gavel</span>
+                <span class="text-sm">Fiduciary Governance</span>
+            </button>
+            <button onclick="openModal('tax')" class="w-full text-left text-[#d0c5af] hover:text-white hover:bg-[#13212e] flex items-center gap-3.5 px-6 py-3 transition-colors">
+                <span class="material-symbols-outlined text-xl">description</span>
+                <span class="text-sm">Tax Vault (K-1s)</span>
+            </button>
+
+            <!-- Bottom Partner Card -->
+            <div class="mt-auto p-4 mx-4 rounded-lg bg-[#0f1d2a] border border-[#1e3a5f] flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-[#1e2b39] flex items-center justify-center text-primary font-bold">
+                    AB
+                </div>
+                <div class="overflow-hidden">
+                    <div class="text-xs font-bold text-white truncate">Alexander Bennett</div>
+                    <div class="text-[10px] text-[#99907c] truncate">Senior Managing Partner</div>
+                </div>
+                <button onclick="openModal('briefing')" title="Brief Partner" class="ml-auto text-primary hover:text-white">
+                    <span class="material-symbols-outlined text-base">chat</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+        <!-- TopNavBar Header (Remixed from Stitch 'dashboard-banking') -->
+        <header class="bg-[#0f1d2a] border-b border-[#1e3a5f] sticky top-0 z-30 px-6 md:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div>
+                    <div class="flex items-center gap-2.5">
+                        <h2 class="font-display text-lg md:text-xl font-bold text-white">Sovereign Family Trust #MC-88092</h2>
+                        <span class="px-2.5 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary text-[10px] font-semibold uppercase tracking-wider">
+                            Tier 1 Ultra HNW
+                        </span>
+                    </div>
+                    <p class="text-xs text-[#99907c] mt-0.5">Custody clearing: J.P. Morgan Private Bank Geneva • FINRA / SIPC Covered</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="toggleNotifications()" class="relative text-[#d0c5af] hover:text-white p-2">
+                    <span class="material-symbols-outlined text-xl">notifications</span>
+                    <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#f2ca50]"></span>
+                </button>
+                <div class="hidden sm:flex items-center gap-2">
+                    <button onclick="openModal('briefing')" class="bg-transparent border border-[#1e3a5f] text-[#d0c5af] hover:text-white text-xs px-3 py-2 rounded flex items-center gap-1.5 transition-colors">
+                        <span class="material-symbols-outlined text-sm">support_agent</span>
+                        <span>Direct Partner Line</span>
+                    </button>
+                </div>
+                <a href="index.html" class="text-xs text-[#99907c] hover:text-primary flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">logout</span>
+                    <span class="hidden md:inline">Exit Console</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- Notification Toast Dropdown -->
+        <div id="notifications-box" class="hidden absolute top-20 right-8 w-80 bg-[#0f1d2a] border border-[#1e3a5f] rounded-lg shadow-2xl p-4 z-50">
+            <div class="flex justify-between items-center pb-2 border-b border-[#1e3a5f] mb-3">
+                <span class="text-xs font-bold text-white uppercase tracking-wider">Fiduciary Alerts</span>
+                <span class="text-[10px] text-primary">2 Unread</span>
+            </div>
+            <div class="space-y-2.5 text-xs">
+                <div class="p-2.5 rounded bg-[#13212e] border border-[#1e3a5f]/50">
+                    <div class="font-semibold text-white">Settlement Verified: $4.5M PE Co-Invest</div>
+                    <div class="text-[11px] text-[#99907c] mt-0.5">Apollo Global Infrastructure Fund IV settled into escrow.</div>
+                </div>
+                <div class="p-2.5 rounded bg-[#13212e] border border-[#1e3a5f]/50">
+                    <div class="font-semibold text-white">Q3 Tax Alpha Summary Ready</div>
+                    <div class="text-[11px] text-[#99907c] mt-0.5">Harvested 140 bps of municipal yield benefit.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Body -->
+        <main class="p-6 md:p-8 space-y-8 spotlight-bg">
+            <!-- Title Bar & Fast Actions -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+                <div>
+                    <h2 class="font-display text-2xl md:text-3xl font-bold text-white tracking-tight">Institutional Portfolio Summary</h2>
+                    <p class="text-xs text-[#99907c] mt-1">Audited position snapshot as of market close • Valuations live in USD</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="openModal('deploy')" class="bg-[#d4af37] text-[#061422] font-semibold text-xs md:text-sm px-4 py-2.5 rounded hover:bg-[#ffe088] transition-all flex items-center gap-1.5 shadow-md">
+                        <span class="material-symbols-outlined text-base">add_circle</span>
+                        <span>Deploy Capital</span>
+                    </button>
+                    <button onclick="openModal('disburse')" class="bg-transparent border border-[#d4af37] text-primary hover:bg-primary/10 font-semibold text-xs md:text-sm px-4 py-2.5 rounded transition-all flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-base">payments</span>
+                        <span>Request Disburse</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bento Metrics Grid (Remixed from Stitch 'dashboard-banking') -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Primary AUM Card (Spans 8 cols) -->
+                <div class="lg:col-span-8 premium-card-bg border border-[#1e3a5f] rounded-xl p-6 md:p-8 relative overflow-hidden glow-hover transition-all">
+                    <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div class="relative z-10 flex flex-col justify-between h-full space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs font-semibold uppercase tracking-widest text-[#99907c]">Total Assets Under Stewardship</span>
+                                <div class="font-display text-3xl sm:text-5xl font-bold text-white tracking-tight mt-1" id="aum-display">
+                                    $148,500,000.00
+                                </div>
+                            </div>
+                            <div class="px-3 py-1 bg-[#13212e] border border-primary/40 rounded text-primary text-xs font-semibold flex items-center gap-1.5 shadow-inner">
+                                <span class="material-symbols-outlined text-sm">trending_up</span>
+                                <span>+14.2% YTD Yield</span>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Metrics Row -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#1e3a5f]">
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-[#99907c] block">Available Liquidity</span>
+                                <span class="text-xl font-bold font-display text-white mt-0.5 block" id="liquidity-display">$22,400,000.00</span>
+                                <span class="text-[10px] text-emerald-400">T+0 Clearing Ready</span>
+                            </div>
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-[#99907c] block">Private Equity Co-Invest</span>
+                                <span class="text-xl font-bold font-display text-white mt-0.5 block">$68,200,000.00</span>
+                                <span class="text-[10px] text-[#99907c]">4 Active Syndicates</span>
+                            </div>
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-[#99907c] block">Annualized Net IRR</span>
+                                <span class="text-xl font-bold font-display text-primary mt-0.5 block">18.4%</span>
+                                <span class="text-[10px] text-emerald-400">+560 bps over benchmark</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Executive Quick Actions (Spans 4 cols) -->
+                <div class="lg:col-span-4 bg-[#0f1d2a] border border-[#1e3a5f] rounded-xl p-6 flex flex-col justify-between">
+                    <h4 class="font-display text-base font-bold text-white pb-3 border-b border-[#1e3a5f] flex items-center justify-between">
+                        <span>Fiduciary Actions</span>
+                        <span class="text-xs text-primary font-normal">Encrypted HSM</span>
+                    </h4>
+                    <div class="space-y-3 my-4">
+                        <button onclick="openModal('deploy')" class="w-full flex items-center justify-between p-3 rounded bg-[#13212e] hover:bg-[#1e2b39] border border-[#1e3a5f] text-left transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">account_balance</span>
+                                <span class="text-xs font-semibold text-white">Deploy Discretionary Capital</span>
+                            </div>
+                            <span class="material-symbols-outlined text-gray-500 text-sm">chevron_right</span>
+                        </button>
+                        <button onclick="openModal('disburse')" class="w-full flex items-center justify-between p-3 rounded bg-[#13212e] hover:bg-[#1e2b39] border border-[#1e3a5f] text-left transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">payments</span>
+                                <span class="text-xs font-semibold text-white">Request Liquidity Disburse</span>
+                            </div>
+                            <span class="material-symbols-outlined text-gray-500 text-sm">chevron_right</span>
+                        </button>
+                        <button onclick="openModal('audit')" class="w-full flex items-center justify-between p-3 rounded bg-[#13212e] hover:bg-[#1e2b39] border border-[#1e3a5f] text-left transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">verified_user</span>
+                                <span class="text-xs font-semibold text-white">Generate Fiduciary Audit</span>
+                            </div>
+                            <span class="material-symbols-outlined text-gray-500 text-sm">chevron_right</span>
+                        </button>
+                        <button onclick="openModal('briefing')" class="w-full flex items-center justify-between p-3 rounded bg-[#13212e] hover:bg-[#1e2b39] border border-[#1e3a5f] text-left transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">calendar_month</span>
+                                <span class="text-xs font-semibold text-white">Schedule Senior Partner Call</span>
+                            </div>
+                            <span class="material-symbols-outlined text-gray-500 text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                    <div class="text-[11px] text-[#99907c] text-center pt-2 border-t border-[#1e3a5f]/60">
+                        Institutional multi-signature verification active
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Asset Allocation & Capital Dispatches (2-Column Layout) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6" id="allocations-section">
+                
+                <!-- Asset Allocation Donut Visualizer (Spans 5 cols) -->
+                <div class="lg:col-span-5 bg-[#0f1d2a] border border-[#1e3a5f] rounded-xl p-6 flex flex-col justify-between">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h4 class="font-display text-lg font-bold text-white">Asset Allocation Model</h4>
+                            <p class="text-xs text-[#99907c]">Target vs Actual Portfolio Weights</p>
+                        </div>
+                        <span class="text-xs px-2 py-0.5 rounded bg-[#13212e] text-primary border border-primary/30">Target Met</span>
+                    </div>
+
+                    <!-- Interactive Donut Visualizer -->
+                    <div class="flex flex-col items-center py-4">
+                        <div class="relative w-44 h-44 flex items-center justify-center">
+                            <!-- SVG Donut Chart with interactive segments -->
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                <!-- Background Circle -->
+                                <circle cx="50" cy="50" r="40" stroke="#13212e" stroke-width="12" fill="transparent"/>
+                                <!-- Segment 1: Private Equity (45%) -> stroke-dasharray = 251.2 * 0.45 = 113.04 -->
+                                <circle id="donut-pe" cx="50" cy="50" r="40" stroke="#f2ca50" stroke-width="12" fill="transparent"
+                                        stroke-dasharray="113 251.2" stroke-dashoffset="0" class="hover:stroke-white cursor-pointer transition-all duration-300"/>
+                                <!-- Segment 2: Sovereign Debt (25%) -> 251.2 * 0.25 = 62.8 -->
+                                <circle id="donut-debt" cx="50" cy="50" r="40" stroke="#bbc7e1" stroke-width="12" fill="transparent"
+                                        stroke-dasharray="62.8 251.2" stroke-dashoffset="-113" class="hover:stroke-white cursor-pointer transition-all duration-300"/>
+                                <!-- Segment 3: Real Assets (20%) -> 251.2 * 0.20 = 50.24 -->
+                                <circle id="donut-real" cx="50" cy="50" r="40" stroke="#3e495f" stroke-width="12" fill="transparent"
+                                        stroke-dasharray="50.2 251.2" stroke-dashoffset="-175.8" class="hover:stroke-white cursor-pointer transition-all duration-300"/>
+                                <!-- Segment 4: Treasury Cash (10%) -> 251.2 * 0.10 = 25.12 -->
+                                <circle id="donut-cash" cx="50" cy="50" r="40" stroke="#735c00" stroke-width="12" fill="transparent"
+                                        stroke-dasharray="25.2 251.2" stroke-dashoffset="-226" class="hover:stroke-white cursor-pointer transition-all duration-300"/>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+                                <span class="text-xs uppercase text-[#99907c] font-semibold">Total Value</span>
+                                <span id="donut-center-label" class="font-display text-lg font-bold text-white">$148.5M</span>
+                                <span class="text-[10px] text-primary">100% Deployed</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Allocation Details -->
+                    <div class="space-y-2 border-t border-[#1e3a5f] pt-4">
+                        <div class="flex items-center justify-between text-xs p-2 rounded hover:bg-[#13212e] transition-colors cursor-pointer" onclick="highlightSegment('Private Equity', '$66.82M', '45%')">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#f2ca50]"></span>
+                                <span class="text-white font-medium">Private Equity &amp; Growth</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-white font-bold">$66.82M</span>
+                                <span class="text-xs text-[#99907c] ml-1">(45%)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs p-2 rounded hover:bg-[#13212e] transition-colors cursor-pointer" onclick="highlightSegment('Sovereign Debt', '$37.12M', '25%')">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#bbc7e1]"></span>
+                                <span class="text-white font-medium">Sovereign Debt &amp; Fixed Income</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-white font-bold">$37.12M</span>
+                                <span class="text-xs text-[#99907c] ml-1">(25%)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs p-2 rounded hover:bg-[#13212e] transition-colors cursor-pointer" onclick="highlightSegment('Real Assets', '$29.70M', '20%')">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#3e495f]"></span>
+                                <span class="text-white font-medium">Real Assets &amp; Infrastructure</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-white font-bold">$29.70M</span>
+                                <span class="text-xs text-[#99907c] ml-1">(20%)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs p-2 rounded hover:bg-[#13212e] transition-colors cursor-pointer" onclick="highlightSegment('Treasury Cash', '$14.85M', '10%')">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-[#735c00]"></span>
+                                <span class="text-white font-medium">Treasury Cash Equivalents</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-white font-bold">$14.85M</span>
+                                <span class="text-xs text-[#99907c] ml-1">(10%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Capital Dispatches Ledger (Spans 7 cols) -->
+                <div class="lg:col-span-7 bg-[#0f1d2a] border border-[#1e3a5f] rounded-xl p-6 flex flex-col justify-between" id="ledger-section">
+                    <div>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                            <div>
+                                <h4 class="font-display text-lg font-bold text-white">Recent Capital Dispatches</h4>
+                                <p class="text-xs text-[#99907c]">Escrow clearance &amp; private market capital calls</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input id="ledger-search" oninput="filterLedger()" placeholder="Search counterparty or asset..." class="bg-[#13212e] border border-[#1e3a5f] rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-primary placeholder:text-gray-500"/>
+                            </div>
+                        </div>
+
+                        <!-- Ledger Table (Remixed from Stitch 'dashboard-banking' data table) -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead>
+                                    <tr class="border-b border-[#1e3a5f] text-[#99907c] uppercase tracking-wider">
+                                        <th class="py-3 px-2 font-semibold">Date</th>
+                                        <th class="py-3 px-2 font-semibold">Counterparty</th>
+                                        <th class="py-3 px-2 font-semibold">Asset Class</th>
+                                        <th class="py-3 px-2 font-semibold">Status</th>
+                                        <th class="py-3 px-2 font-semibold text-right">Amount (USD)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ledger-rows" class="divide-y divide-[#1e3a5f]/40">
+                                    <tr class="hover:bg-[#13212e] transition-colors">
+                                        <td class="py-3 px-2 text-[#99907c]">2024-09-22</td>
+                                        <td class="py-3 px-2 text-white font-medium">Apollo Global Management</td>
+                                        <td class="py-3 px-2 text-[#d0c5af]">Private Equity</td>
+                                        <td class="py-3 px-2">
+                                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-semibold">Settled</span>
+                                        </td>
+                                        <td class="py-3 px-2 text-right font-bold text-white">$4,500,000.00</td>
+                                    </tr>
+                                    <tr class="hover:bg-[#13212e] transition-colors">
+                                        <td class="py-3 px-2 text-[#99907c]">2024-09-18</td>
+                                        <td class="py-3 px-2 text-white font-medium">Blackstone Real Estate Fund X</td>
+                                        <td class="py-3 px-2 text-[#d0c5af]">Real Assets</td>
+                                        <td class="py-3 px-2">
+                                            <span class="px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] font-semibold">In Escrow</span>
+                                        </td>
+                                        <td class="py-3 px-2 text-right font-bold text-white">$12,000,000.00</td>
+                                    </tr>
+                                    <tr class="hover:bg-[#13212e] transition-colors">
+                                        <td class="py-3 px-2 text-[#99907c]">2024-09-10</td>
+                                        <td class="py-3 px-2 text-white font-medium">US Treasury Note 10-Yr Benchmark</td>
+                                        <td class="py-3 px-2 text-[#d0c5af]">Sovereign Debt</td>
+                                        <td class="py-3 px-2">
+                                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-semibold">Settled</span>
+                                        </td>
+                                        <td class="py-3 px-2 text-right font-bold text-white">$8,250,000.00</td>
+                                    </tr>
+                                    <tr class="hover:bg-[#13212e] transition-colors">
+                                        <td class="py-3 px-2 text-[#99907c]">2024-09-02</td>
+                                        <td class="py-3 px-2 text-white font-medium">KKR Asian Growth Syndicate IV</td>
+                                        <td class="py-3 px-2 text-[#d0c5af]">Private Equity</td>
+                                        <td class="py-3 px-2">
+                                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-semibold">Settled</span>
+                                        </td>
+                                        <td class="py-3 px-2 text-right font-bold text-white">$2,100,000.00</td>
+                                    </tr>
+                                    <tr class="hover:bg-[#13212e] transition-colors">
+                                        <td class="py-3 px-2 text-[#99907c]">2024-08-25</td>
+                                        <td class="py-3 px-2 text-white font-medium">Brookfield Renewable Infrastructure</td>
+                                        <td class="py-3 px-2 text-[#d0c5af]">Real Assets</td>
+                                        <td class="py-3 px-2">
+                                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-semibold">Settled</span>
+                                        </td>
+                                        <td class="py-3 px-2 text-right font-bold text-white">$6,400,000.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-4 border-t border-[#1e3a5f] text-xs text-[#99907c]">
+                        <span>Showing 5 of 48 dispatches</span>
+                        <a href="advisory.html" class="text-primary hover:underline font-medium">Review Custody Fee Schedule &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Performance Benchmark Bar (Remixed from Stitch 'dashboard-banking') -->
+            <div class="bg-[#0f1d2a] border border-[#1e3a5f] rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6" id="performance-section">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded bg-[#1e2b39] border border-[#1e3a5f] flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-2xl">monitoring</span>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-lg font-bold text-white">Quarterly Yield vs S&amp;P 500 Index</h4>
+                        <span class="text-xs text-[#99907c]">Risk-Adjusted Alpha Indicator (Sharpe Ratio: 2.14)</span>
+                    </div>
+                </div>
+
+                <div class="flex-1 max-w-xl w-full">
+                    <div class="flex justify-between text-xs mb-2">
+                        <span class="text-primary font-bold">Meridian Sovereign Mandate (+4.2% QTD)</span>
+                        <span class="text-[#99907c]">S&amp;P 500 Total Return (+2.8% QTD)</span>
+                    </div>
+                    <div class="w-full h-3 bg-[#13212e] rounded-full overflow-hidden relative border border-[#1e3a5f]">
+                        <div class="absolute top-0 bottom-0 left-0 bg-[#3e495f] w-[66%] z-0 rounded-l-full"></div>
+                        <div class="absolute top-0 bottom-0 left-0 bg-[#f2ca50] w-[86%] z-10 rounded-l-full shadow-lg"></div>
+                    </div>
+                    <div class="flex justify-between items-center text-[11px] mt-2">
+                        <span class="text-[#99907c]">Hurdle Rate Cleared</span>
+                        <span class="text-primary font-bold">+140 bps Net Generated Alpha</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Generic Operational Modal -->
+    <div id="op-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#0f1d2a] border border-[#1e3a5f] rounded-xl max-w-lg w-full p-6 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div id="op-modal-content">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Scripts -->
+    <script>
+        function toggleMobileSidebar() {
+            const links = document.getElementById('sidebar-links');
+            links.classList.toggle('hidden');
+        }
+
+        function toggleNotifications() {
+            const box = document.getElementById('notifications-box');
+            box.classList.toggle('hidden');
+        }
+
+        function highlightSegment(name, amount, pct) {
+            document.getElementById('donut-center-label').textContent = amount;
+        }
+
+        function filterLedger() {
+            const query = document.getElementById('ledger-search').value.toLowerCase();
+            const rows = document.getElementById('ledger-rows').getElementsByTagName('tr');
+            for (let row of rows) {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            }
+        }
+
+        function openModal(type) {
+            const modal = document.getElementById('op-modal');
+            const content = document.getElementById('op-modal-content');
+            
+            if (type === 'deploy') {
+                content.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">add_circle</span>
+                        <div>
+                            <h3 class="font-display text-xl text-white font-bold">Deploy Discretionary Capital</h3>
+                            <p class="text-xs text-[#99907c]">Authorized liquidity disbursement into designated syndicate</p>
+                        </div>
+                    </div>
+                    <form onsubmit="handleDeploy(event)" class="space-y-4 text-xs">
+                        <div>
+                            <label class="block text-[#d0c5af] font-semibold mb-1">Select Investment Vehicle</label>
+                            <select class="w-full bg-[#061422] border border-[#1e3a5f] rounded p-2 text-white">
+                                <option>Apollo Global Infrastructure Fund IV (Private Equity)</option>
+                                <option>Blackstone Core Real Estate Income (Real Assets)</option>
+                                <option>US Treasury 10-Yr Benchmark (Fixed Income)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[#d0c5af] font-semibold mb-1">Capital Amount (USD)</label>
+                            <input id="deploy-amount" type="number" step="500000" min="500000" max="22400000" value="2500000" class="w-full bg-[#061422] border border-[#1e3a5f] rounded p-2 text-white font-mono"/>
+                            <span class="text-[10px] text-[#99907c]">Max available liquidity: $22,400,000.00</span>
+                        </div>
+                        <button type="submit" class="w-full bg-[#d4af37] text-[#061422] font-semibold py-2.5 rounded hover:bg-[#ffe088] transition-all">
+                            Confirm Capital Dispatch Under HSM Protocol
+                        </button>
+                    </form>
+                `;
+            } else if (type === 'disburse') {
+                content.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+                        <div>
+                            <h3 class="font-display text-xl text-white font-bold">Request Liquidity Disburse</h3>
+                            <p class="text-xs text-[#99907c]">Same-day wire to verified custodian accounts</p>
+                        </div>
+                    </div>
+                    <form onsubmit="handleDisburse(event)" class="space-y-4 text-xs">
+                        <div>
+                            <label class="block text-[#d0c5af] font-semibold mb-1">Destination Custody Account</label>
+                            <select class="w-full bg-[#061422] border border-[#1e3a5f] rounded p-2 text-white">
+                                <option>J.P. Morgan Private Bank Geneva (CH-9948271049)</option>
+                                <option>BNY Mellon Escrow Account (US-8819203912)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[#d0c5af] font-semibold mb-1">Disbursement Amount (USD)</label>
+                            <input id="disburse-amount" type="number" step="100000" value="1000000" class="w-full bg-[#061422] border border-[#1e3a5f] rounded p-2 text-white font-mono"/>
+                        </div>
+                        <button type="submit" class="w-full bg-[#d4af37] text-[#061422] font-semibold py-2.5 rounded hover:bg-[#ffe088] transition-all">
+                            Authorize Wire Disburse
+                        </button>
+                    </form>
+                `;
+            } else if (type === 'audit') {
+                content.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+                        <div>
+                            <h3 class="font-display text-xl text-white font-bold">Fiduciary Governance Vault</h3>
+                            <p class="text-xs text-[#99907c]">Cryptographically signed compliance audit logs</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-3 bg-[#061422] rounded border border-[#1e3a5f]">
+                            <div class="font-semibold text-white">PwC Annual Fiduciary Examination</div>
+                            <div class="text-[#99907c] text-[11px]">Audit Period: 2023-2024 • Unqualified Opinion (Clean)</div>
+                            <a href="#" class="text-primary text-[11px] underline mt-1 inline-block">Download Signed Certificate (PDF)</a>
+                        </div>
+                        <div class="p-3 bg-[#061422] rounded border border-[#1e3a5f]">
+                            <div class="font-semibold text-white">SEC Form ADV &amp; Schedule DI</div>
+                            <div class="text-[#99907c] text-[11px]">Filed Sept 2024 • Discretionary Mandate Classification</div>
+                            <a href="#" class="text-primary text-[11px] underline mt-1 inline-block">Download Regulatory Filing</a>
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'tax') {
+                content.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">description</span>
+                        <div>
+                            <h3 class="font-display text-xl text-white font-bold">Encrypted Tax Vault</h3>
+                            <p class="text-xs text-[#99907c]">Schedule K-1 statements and multi-jurisdictional filings</p>
+                        </div>
+                    </div>
+                    <div class="space-y-2.5 text-xs">
+                        <div class="flex justify-between items-center p-3 bg-[#061422] rounded border border-[#1e3a5f]">
+                            <div>
+                                <div class="font-semibold text-white">2023 Consolidated Schedule K-1 Package</div>
+                                <div class="text-[10px] text-[#99907c]">4 Partner Syndicates • Form 1065</div>
+                            </div>
+                            <button class="px-2.5 py-1 bg-[#1e2b39] text-primary rounded text-[11px] hover:bg-[#293644]">Download</button>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-[#061422] rounded border border-[#1e3a5f]">
+                            <div>
+                                <div class="font-semibold text-white">Swiss Withholding Tax Reclaim (Form 85)</div>
+                                <div class="text-[10px] text-[#99907c]">Geneva Cantonal Tax Authority</div>
+                            </div>
+                            <button class="px-2.5 py-1 bg-[#1e2b39] text-primary rounded text-[11px] hover:bg-[#293644]">Download</button>
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'briefing') {
+                content.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-3xl">calendar_month</span>
+                        <div>
+                            <h3 class="font-display text-xl text-white font-bold">Direct Partner Briefing</h3>
+                            <p class="text-xs text-[#99907c]">Alexander Bennett, Senior Managing Director</p>
+                        </div>
+                    </div>
+                    <form onsubmit="handleBriefing(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block text-[#d0c5af] font-semibold mb-1">Agenda Priority</label>
+                            <select class="w-full bg-[#061422] border border-[#1e3a5f] rounded p-2 text-white">
+                                <option>Q4 Asset Allocation &amp; Hurdle Performance</option>
+                                <option>New Infrastructure Co-Investment Syndicate</option>
+                                <option>Cross-Border Trust Structuring</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[#d0c5af] font-semibold mb-1">Preferred Time Window</label>
+                            <select class="w-full bg-[#061422] border border-[#1e3a5f] rounded p-2 text-white">
+                                <option>Today, 15:00 CET (Geneva Office)</option>
+                                <option>Tomorrow, 10:00 EST (New York HQ)</option>
+                                <option>Tomorrow, 16:00 SGT (Singapore)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-[#d4af37] text-[#061422] font-semibold py-2.5 rounded hover:bg-[#ffe088] transition-all">
+                            Confirm Secure Video Conference
+                        </button>
+                    </form>
+                `;
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('op-modal').classList.add('hidden');
+        }
+
+        function handleDeploy(e) {
+            e.preventDefault();
+            const amt = parseFloat(document.getElementById('deploy-amount').value);
+            const curLiq = 22400000;
+            const newLiq = curLiq - amt;
+            document.getElementById('liquidity-display').textContent = '$' + newLiq.toLocaleString('en-US', {minimumFractionDigits: 2});
+            
+            // Add row to table
+            const tbody = document.getElementById('ledger-rows');
+            const newRow = document.createElement('tr');
+            newRow.className = "hover:bg-[#13212e] transition-colors bg-primary/5";
+            newRow.innerHTML = `
+                <td class="py-3 px-2 text-[#99907c]">Today</td>
+                <td class="py-3 px-2 text-white font-medium">Syndicate Allocation (HSM Verified)</td>
+                <td class="py-3 px-2 text-[#d0c5af]">Private Equity</td>
+                <td class="py-3 px-2">
+                    <span class="px-2 py-0.5 rounded bg-primary/10 border border-primary/30 text-primary text-[10px] font-semibold">Initiated</span>
+                </td>
+                <td class="py-3 px-2 text-right font-bold text-white">$` + amt.toLocaleString('en-US', {minimumFractionDigits: 2}) + `</td>
+            `;
+            tbody.insertBefore(newRow, tbody.firstChild);
+
+            document.getElementById('op-modal-content').innerHTML = `
+                <div class="text-center py-6 space-y-3">
+                    <span class="material-symbols-outlined text-emerald-400 text-5xl">task_alt</span>
+                    <h4 class="font-display text-xl text-white font-bold">Capital Dispatched</h4>
+                    <p class="text-xs text-[#d0c5af]">Allocation of $` + amt.toLocaleString('en-US') + ` has been queued for execution with custodian settlement.</p>
+                    <button onclick="closeModal()" class="bg-[#1e2b39] text-white text-xs px-4 py-2 rounded mt-2 hover:bg-[#293644]">Done</button>
+                </div>
+            `;
+        }
+
+        function handleDisburse(e) {
+            e.preventDefault();
+            document.getElementById('op-modal-content').innerHTML = `
+                <div class="text-center py-6 space-y-3">
+                    <span class="material-symbols-outlined text-emerald-400 text-5xl">verified</span>
+                    <h4 class="font-display text-xl text-white font-bold">Disbursement Authorized</h4>
+                    <p class="text-xs text-[#d0c5af]">Wire instruction routed to J.P. Morgan Private Bank with Tier-1 dual auth approval.</p>
+                    <button onclick="closeModal()" class="bg-[#1e2b39] text-white text-xs px-4 py-2 rounded mt-2 hover:bg-[#293644]">Close</button>
+                </div>
+            `;
+        }
+
+        function handleBriefing(e) {
+            e.preventDefault();
+            document.getElementById('op-modal-content').innerHTML = `
+                <div class="text-center py-6 space-y-3">
+                    <span class="material-symbols-outlined text-emerald-400 text-5xl">calendar_today</span>
+                    <h4 class="font-display text-xl text-white font-bold">Partner Briefing Booked</h4>
+                    <p class="text-xs text-[#d0c5af]">Alexander Bennett's executive team has placed the secure conference on your calendar.</p>
+                    <button onclick="closeModal()" class="bg-[#1e2b39] text-white text-xs px-4 py-2 rounded mt-2 hover:bg-[#293644]">Close</button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

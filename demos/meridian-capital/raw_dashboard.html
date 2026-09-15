@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meridian Capital - Financial Portfolio Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#101c2f",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#735c00",
+                        "primary-container": "#d4af37",
+                        "tertiary-fixed-dim": "#b6c7e8",
+                        "tertiary": "#becff0",
+                        "on-surface-variant": "#d0c5af",
+                        "on-primary-fixed": "#241a00",
+                        "primary-fixed-dim": "#e9c349",
+                        "on-secondary-fixed-variant": "#3c475c",
+                        "outline-variant": "#4d4635",
+                        "surface": "#061422",
+                        "secondary": "#bbc7e1",
+                        "inverse-surface": "#d6e4f7",
+                        "surface-container-high": "#1e2b39",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary": "#253145",
+                        "secondary-container": "#3e495f",
+                        "surface-container-highest": "#293644",
+                        "on-error": "#690005",
+                        "surface-tint": "#e9c349",
+                        "outline": "#99907c",
+                        "error-container": "#93000a",
+                        "on-surface": "#d6e4f7",
+                        "surface-container-low": "#0f1d2a",
+                        "on-background": "#d6e4f7",
+                        "on-tertiary-container": "#354661",
+                        "inverse-on-surface": "#243240",
+                        "on-tertiary-fixed-variant": "#374762",
+                        "primary": "#f2ca50",
+                        "on-tertiary": "#20314b",
+                        "on-secondary-container": "#adb9d2",
+                        "secondary-fixed-dim": "#bbc7e1",
+                        "secondary-fixed": "#d7e3fd",
+                        "surface-bright": "#2d3a49",
+                        "primary-fixed": "#ffe088",
+                        "surface-container-lowest": "#020f1c",
+                        "on-primary": "#3c2f00",
+                        "on-tertiary-fixed": "#091c35",
+                        "background": "#061422",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary-fixed": "#d5e3ff",
+                        "on-primary-container": "#554300",
+                        "surface-variant": "#293644",
+                        "surface-dim": "#061422",
+                        "tertiary-container": "#a3b4d4",
+                        "surface-container": "#13212e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "section-gap": "80px",
+                        "container-max": "1280px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Playfair Display"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["14px", { "lineHeight": "1.0", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Card gradient */
+        .premium-card-bg {
+            background: linear-gradient(135deg, #0d1f38 0%, #071326 100%);
+        }
+        /* Spotlight gradient for main display */
+        .spotlight-bg {
+            background: radial-gradient(circle at 50% 0%, rgba(242, 202, 80, 0.05) 0%, transparent 60%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased font-body-md overflow-hidden">
+<!-- SideNavBar Container -->
+<nav class="fixed docked full-height left-0 w-72 bg-surface dark:bg-surface border-r border-outline-variant flat no shadows flex flex-col h-screen overflow-y-auto z-40 hidden md:flex">
+<!-- Header / Logo -->
+<div class="p-8 border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center font-bold text-on-primary font-display-lg text-lg">MC</div>
+<div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tighter" style="font-size: 24px; line-height: 1;">Meridian Capital</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Elite Asset Management</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 py-4 flex flex-col gap-1">
+<!-- Active Tab -->
+<a class="text-primary font-bold border-r-2 border-primary bg-surface-container-high hover:bg-surface-container-highest transition-all duration-200 opacity-90 transition-opacity flex items-center gap-4 px-8 py-3" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-4 px-8 py-3" href="#">
+<span class="material-symbols-outlined">pie_chart</span>
+<span class="font-body-md text-body-md">Asset Allocations</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-4 px-8 py-3" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Performance Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-4 px-8 py-3" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<span class="font-body-md text-body-md">Capital Dispatches</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-4 px-8 py-3" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="font-body-md text-body-md">Fiduciary Governance</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-4 px-8 py-3" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-body-md text-body-md">Tax Documents</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-4 px-8 py-3 mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex flex-col ml-0 md:ml-72 h-screen overflow-hidden">
+<!-- TopNavBar Container -->
+<header class="bg-surface-container dark:bg-surface-container border-b border-outline-variant flat no shadows flex justify-between items-center h-20 px-margin-desktop w-full z-30 shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Sovereign Family Trust #MC-88092</h2>
+<span class="px-2 py-1 bg-surface-container-high border border-outline-variant rounded text-on-surface-variant font-label-caps text-label-caps ml-2">Tier 1 Ultra HNW</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Navigation links from JSON (if applicable to top nav layout, usually hidden on dashboard top navs if side nav is present, but rendering per instructions) -->
+<nav class="hidden lg:flex gap-6">
+<a class="text-primary hover:text-primary transition-colors text-body-sm font-body-sm" href="#">Tier 1 Ultra HNW</a>
+</nav>
+<div class="flex items-center gap-4 border-l border-outline-variant pl-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:scale-95 transition-transform w-8 h-8 flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors hover:scale-95 transition-transform w-8 h-8 flex items-center justify-center">
+<span class="material-symbols-outlined">support_agent</span>
+</button>
+<div class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden ml-2 cursor-pointer hover:border-primary transition-colors">
+<img alt="Partner Contact" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate financial partner in a dark grey suit, neutral dark background, dramatic but professional studio lighting, high resolution, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe0PZfzesaCwZEzw4zVaL9Ax4V7ai7K-4n1y2J6jovLEuKvvmiItAWx1-VPNixTB1Mx6Y1YthLF4EbJIY4bHf5l3pMQLzFSRc1Br7kIhZxeVeJZ2pFANADKtMDq0XjIuvld7a84r3HL3OxsRiJF6hYm0KaQBjJeKic0TlulMk6zjTr-f9SYbCJQLlcCQ8ENqqGlIp7gPCR8p_CqSqOy_4voJz2JZynUmueOA9wdpWL_2QRgit1J-VQGbB2H0fiH1vtn4540zNqhna0"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto spotlight-bg p-margin-mobile md:p-margin-desktop relative">
+<div class="max-w-[container-max] mx-auto pb-section-gap">
+<!-- Page Title -->
+<div class="mb-stack-lg flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">Portfolio Overview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Data updated as of market close, Sept 24, 2024</p>
+</div>
+<div class="hidden md:flex gap-4">
+<button class="bg-primary text-on-primary-fixed font-body-md font-medium px-6 py-2.5 rounded hover:brightness-110 transition-all">Deploy Capital</button>
+<button class="bg-transparent border border-primary text-primary font-body-md font-medium px-6 py-2.5 rounded hover:bg-primary/5 transition-all">Request Liquidity Disburse</button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Hero AUM Card (Spans 8 cols) -->
+<div class="col-span-1 md:col-span-8 premium-card-bg border border-outline-variant rounded-lg p-stack-lg relative overflow-hidden group">
+<!-- Decorative glow -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all duration-700"></div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div class="flex justify-between items-start mb-12">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Total Assets Under Management</span>
+<div class="px-3 py-1 bg-surface border border-primary/30 rounded text-primary font-data-mono text-data-mono flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                                    +14.2% YTD Yield
+                                </div>
+</div>
+<div>
+<h3 class="font-display-lg text-display-lg-mobile md:text-[64px] font-bold text-on-surface leading-none tracking-tighter mb-4">$148,500,000.00</h3>
+<div class="flex items-center gap-6 mt-6 pt-6 border-t border-outline-variant/50">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Available Liquidity</span>
+<span class="font-data-mono text-data-mono text-on-surface text-lg">$22,400,000.00</span>
+</div>
+<div class="w-px h-10 bg-outline-variant/50"></div>
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Private Equity Co-Invest</span>
+<span class="font-data-mono text-data-mono text-on-surface text-lg">$68,200,000.00</span>
+</div>
+<div class="w-px h-10 bg-outline-variant/50"></div>
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Net IRR</span>
+<span class="font-data-mono text-data-mono text-primary text-lg">18.4%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions (Spans 4 cols) -->
+<div class="col-span-1 md:col-span-4 bg-surface border border-outline-variant rounded-lg p-stack-lg flex flex-col">
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-6 border-b border-outline-variant pb-4">Executive Actions</h4>
+<div class="flex flex-col gap-3 flex-1 justify-center">
+<button class="w-full flex items-center justify-between p-4 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant rounded transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">account_balance</span>
+<span class="font-body-md text-on-surface">Deploy Capital</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant rounded transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">payments</span>
+<span class="font-body-md text-on-surface">Request Liquidity Disburse</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant rounded transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">verified_user</span>
+<span class="font-body-md text-on-surface">Generate Fiduciary Audit</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant rounded transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">calendar_month</span>
+<span class="font-body-md text-on-surface">Schedule Partner Briefing</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Asset Allocation (Spans 5 cols) -->
+<div class="col-span-1 md:col-span-5 bg-surface border border-outline-variant rounded-lg p-stack-lg">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Asset Allocation</h4>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<div class="flex flex-col h-[300px]">
+<!-- Simulated interactive chart area -->
+<div class="flex-1 flex items-center justify-center relative mb-6">
+<!-- Very basic CSS donut simulation for visual layout context without real charting lib -->
+<div class="w-40 h-40 rounded-full border-[16px] border-surface-container-highest relative">
+<div class="absolute inset-[-16px] rounded-full border-[16px] border-transparent border-t-primary border-r-primary rotate-45 opacity-80"></div>
+<div class="absolute inset-[-16px] rounded-full border-[16px] border-transparent border-l-secondary-fixed-dim rotate-12 opacity-60"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Total Value</span>
+<span class="font-data-mono text-data-mono text-on-surface font-bold">100%</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="grid grid-cols-2 gap-y-3 gap-x-4">
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2"><div class="w-2 h-2 bg-primary rounded-full"></div><span class="text-on-surface-variant font-body-sm truncate">Private Equity</span></div>
+<span class="font-data-mono text-on-surface">45%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2"><div class="w-2 h-2 bg-secondary-fixed-dim rounded-full"></div><span class="text-on-surface-variant font-body-sm truncate">Sovereign Debt</span></div>
+<span class="font-data-mono text-on-surface">25%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2"><div class="w-2 h-2 bg-tertiary-fixed-dim rounded-full"></div><span class="text-on-surface-variant font-body-sm truncate">Real Assets</span></div>
+<span class="font-data-mono text-on-surface">20%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2"><div class="w-2 h-2 bg-outline rounded-full"></div><span class="text-on-surface-variant font-body-sm truncate">Treasury Cash</span></div>
+<span class="font-data-mono text-on-surface">10%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ledger Table (Spans 7 cols) -->
+<div class="col-span-1 md:col-span-7 bg-surface border border-outline-variant rounded-lg p-stack-lg flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline-sm text-headline-sm text-on-surface">Recent Capital Dispatches</h4>
+<a class="font-label-caps text-label-caps text-primary hover:underline" href="#">View Ledger</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/50">
+<th class="py-3 font-label-caps text-label-caps text-on-surface-variant font-normal">Date</th>
+<th class="py-3 font-label-caps text-label-caps text-on-surface-variant font-normal">Counterparty</th>
+<th class="py-3 font-label-caps text-label-caps text-on-surface-variant font-normal">Asset Class</th>
+<th class="py-3 font-label-caps text-label-caps text-on-surface-variant font-normal">Status</th>
+<th class="py-3 font-label-caps text-label-caps text-on-surface-variant font-normal text-right">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-highest/50 transition-colors">
+<td class="py-4 font-data-mono text-data-mono text-on-surface">2024-09-22</td>
+<td class="py-4 font-body-sm text-on-surface">Apollo Global Management</td>
+<td class="py-4 font-body-sm text-on-surface-variant">Private Equity</td>
+<td class="py-4">
+<span class="inline-block px-2 py-1 bg-surface-container border border-outline-variant rounded text-on-surface font-label-caps text-[10px]">Settled</span>
+</td>
+<td class="py-4 font-data-mono text-data-mono text-on-surface text-right">$4,500,000.00</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-highest/50 transition-colors">
+<td class="py-4 font-data-mono text-data-mono text-on-surface">2024-09-18</td>
+<td class="py-4 font-body-sm text-on-surface">Blackstone Real Estate</td>
+<td class="py-4 font-body-sm text-on-surface-variant">Real Assets</td>
+<td class="py-4">
+<span class="inline-block px-2 py-1 bg-primary/10 border border-primary/30 rounded text-primary font-label-caps text-[10px]">Escrow</span>
+</td>
+<td class="py-4 font-data-mono text-data-mono text-on-surface text-right">$12,000,000.00</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-highest/50 transition-colors">
+<td class="py-4 font-data-mono text-data-mono text-on-surface">2024-09-10</td>
+<td class="py-4 font-body-sm text-on-surface">US Treasury Note 10Y</td>
+<td class="py-4 font-body-sm text-on-surface-variant">Sovereign Debt</td>
+<td class="py-4">
+<span class="inline-block px-2 py-1 bg-surface-container border border-outline-variant rounded text-on-surface font-label-caps text-[10px]">Settled</span>
+</td>
+<td class="py-4 font-data-mono text-data-mono text-on-surface text-right">$8,250,000.00</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/50 transition-colors">
+<td class="py-4 font-data-mono text-data-mono text-on-surface">2024-09-02</td>
+<td class="py-4 font-body-sm text-on-surface">KKR Asian Fund IV</td>
+<td class="py-4 font-body-sm text-on-surface-variant">Private Equity</td>
+<td class="py-4">
+<span class="inline-block px-2 py-1 bg-surface-container border border-outline-variant rounded text-on-surface font-label-caps text-[10px]">Settled</span>
+</td>
+<td class="py-4 font-data-mono text-data-mono text-on-surface text-right">$2,100,000.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Performance Benchmark (Spans 12 cols) -->
+<div class="col-span-1 md:col-span-12 bg-surface border border-outline-variant rounded-lg p-stack-lg flex items-center justify-between gap-8 flex-wrap">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[20px] text-on-surface m-0 leading-tight">Quarterly Yield vs S&amp;P 500</h4>
+<span class="font-body-sm text-on-surface-variant">Benchmark Progress</span>
+</div>
+</div>
+<div class="flex-1 max-w-2xl w-full">
+<div class="flex justify-between mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Meridian Portfolio (+4.2%)</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">S&amp;P 500 (+2.8%)</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden relative border border-outline-variant/30">
+<!-- Baseline marker -->
+<div class="absolute top-0 bottom-0 left-[60%] w-px bg-outline-variant z-20"></div>
+<!-- S&P Bar -->
+<div class="absolute top-0 bottom-0 left-0 bg-outline-variant/50 w-[65%] z-0 rounded-l-full"></div>
+<!-- Meridian Bar -->
+<div class="absolute top-0 bottom-0 left-0 bg-primary w-[82%] z-10 rounded-l-full shadow-[0_0_10px_rgba(242,202,80,0.5)]"></div>
+</div>
+<div class="flex justify-end mt-2">
+<span class="font-data-mono text-[12px] text-primary">Alpha Generated: +140 bps</span>
+</div>
+</div>
+</div>
+</div> <!-- End Grid -->
+</div>
+</main>
+</div>
+</body></html>

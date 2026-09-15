@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Meridian Capital | Institutional Asset Management &amp; Private Wealth</title>
+    <!-- Tailwind CSS with plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts & Material Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-dim": "#061422",
+                "on-surface": "#d6e4f7",
+                "inverse-primary": "#735c00",
+                "background": "#061422",
+                "surface-variant": "#293644",
+                "secondary-fixed-dim": "#bbc7e1",
+                "error-container": "#93000a",
+                "surface": "#061422",
+                "secondary-fixed": "#d7e3fd",
+                "on-tertiary-fixed-variant": "#374762",
+                "primary": "#f2ca50",
+                "on-primary-fixed": "#241a00",
+                "tertiary-fixed-dim": "#b6c7e8",
+                "tertiary-fixed": "#d5e3ff",
+                "surface-bright": "#2d3a49",
+                "inverse-surface": "#d6e4f7",
+                "surface-container-low": "#0f1d2a",
+                "surface-container": "#13212e",
+                "primary-fixed": "#ffe088",
+                "surface-container-high": "#1e2b39",
+                "on-tertiary-container": "#354661",
+                "on-primary": "#3c2f00",
+                "on-secondary-fixed-variant": "#3c475c",
+                "on-tertiary": "#20314b",
+                "on-secondary-container": "#adb9d2",
+                "on-secondary": "#253145",
+                "on-primary-fixed-variant": "#574500",
+                "primary-fixed-dim": "#e9c349",
+                "on-tertiary-fixed": "#091c35",
+                "surface-container-lowest": "#020f1c",
+                "outline-variant": "#4d4635",
+                "tertiary": "#becff0",
+                "surface-container-highest": "#293644",
+                "primary-container": "#d4af37",
+                "tertiary-container": "#a3b4d4",
+                "on-background": "#d6e4f7",
+                "on-error-container": "#ffdad6",
+                "error": "#ffb4ab",
+                "surface-tint": "#e9c349",
+                "inverse-on-surface": "#243240",
+                "on-secondary-fixed": "#101c2f",
+                "on-error": "#690005",
+                "secondary-container": "#3e495f",
+                "on-surface-variant": "#d0c5af",
+                "secondary": "#bbc7e1",
+                "on-primary-container": "#554300",
+                "outline": "#99907c"
+              },
+              borderRadius: {
+                "DEFAULT": "0.25rem",
+                "sm": "0.125rem",
+                "md": "0.375rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              spacing: {
+                "margin-desktop": "48px",
+                "container-max": "1280px",
+                "unit": "8px",
+                "stack-sm": "8px",
+                "stack-md": "16px",
+                "stack-lg": "32px",
+                "section-gap": "80px",
+                "gutter": "24px",
+                "margin-mobile": "16px"
+              },
+              fontFamily: {
+                "display": ["Playfair Display", "serif"],
+                "body": ["Inter", "sans-serif"]
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        .glow-effect:hover {
+            box-shadow: 0 0 20px 2px rgba(242, 202, 80, 0.18);
+        }
+        .bg-gradient-obsidian {
+            background: linear-gradient(135deg, #0f1d2a 0%, #061422 100%);
+        }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 40%, rgba(242, 202, 80, 0.08) 0%, rgba(6, 20, 34, 0) 65%);
+        }
+        .subtle-border {
+            border: 1px solid #1e3a5f;
+        }
+        .gold-shimmer {
+            background: linear-gradient(90deg, #d4af37 0%, #f7e089 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#061422] text-[#d6e4f7] font-body antialiased selection:bg-[#d4af37] selection:text-[#061422]">
+
+    <!-- TopNavBar (Stitch Inspired: 'landing-saas' TopNavBar) -->
+    <header class="bg-[#061422]/90 backdrop-blur-md sticky top-0 z-50 border-b border-[#1e3a5f] w-full transition-all duration-300">
+        <div class="flex justify-between items-center w-full px-6 md:px-12 py-4 max-w-7xl mx-auto">
+            <div class="flex items-center gap-8">
+                <a class="font-display text-2xl font-bold tracking-tight text-white hover:text-primary transition-colors flex items-center gap-2.5" href="index.html">
+                    <span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                    <span class="tracking-wider">MERIDIAN CAPITAL</span>
+                </a>
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                    <a class="text-primary font-semibold border-b-2 border-primary pb-1" href="index.html">Solutions</a>
+                    <a class="text-[#d0c5af] hover:text-primary transition-colors" href="advisory.html">Institutional Mandates</a>
+                    <a class="text-[#d0c5af] hover:text-primary transition-colors" href="advisory.html">Advisory Fees</a>
+                    <a class="text-[#d0c5af] hover:text-primary transition-colors" href="dashboard.html">Client Portfolio</a>
+                </nav>
+            </div>
+            <div class="hidden md:flex items-center gap-4">
+                <a class="text-sm font-medium text-[#d0c5af] hover:text-primary transition-colors px-3 py-2" href="dashboard.html">
+                    Client Portal
+                </a>
+                <button onclick="openConsultationModal()" class="bg-[#d4af37] text-[#061422] font-semibold text-sm px-5 py-2.5 rounded hover:bg-[#ffe088] transition-all duration-200 shadow-md flex items-center gap-2 hover:scale-[1.02]">
+                    <span>Request Briefing</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+            </div>
+            <button onclick="toggleMobileNav()" class="md:hidden text-[#d0c5af] p-2 hover:text-white">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-nav" class="hidden md:hidden bg-[#0a1829] border-b border-[#1e3a5f] px-6 py-4 space-y-3">
+            <a class="block text-primary font-semibold py-1" href="index.html">Solutions</a>
+            <a class="block text-[#d0c5af] hover:text-white py-1" href="advisory.html">Institutional Mandates</a>
+            <a class="block text-[#d0c5af] hover:text-white py-1" href="advisory.html">Advisory Fees</a>
+            <a class="block text-[#d0c5af] hover:text-white py-1" href="dashboard.html">Client Portfolio Dashboard</a>
+            <div class="pt-3 border-t border-[#1e3a5f]">
+                <button onclick="openConsultationModal()" class="w-full bg-[#d4af37] text-[#061422] font-semibold text-sm py-2.5 rounded text-center">
+                    Request Briefing
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (Remixed from Stitch 'landing-saas' hero with Institutional Excellence typography) -->
+    <section class="relative pt-20 pb-24 px-6 md:px-12 overflow-hidden">
+        <div class="hero-glow absolute inset-0 w-full h-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 flex flex-col gap-6">
+                <!-- Fiduciary Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#0f1d2a] border border-[#1e3a5f] rounded-full w-fit">
+                    <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-primary">Sovereign Fiduciary Standard</span>
+                    <span class="text-xs text-[#99907c]">• SEC &amp; FINRA Regulated</span>
+                </div>
+
+                <h1 class="font-display text-4xl md:text-6xl text-white font-bold tracking-tight leading-[1.15]">
+                    Preserve Capital.<br/>
+                    <span class="gold-shimmer">Compound Generations.</span>
+                </h1>
+
+                <p class="text-lg text-[#d0c5af] max-w-xl leading-relaxed">
+                    Institutional asset management, private equity direct allocations, and bespoke fiduciary governance engineered for single-family offices, endowments, and sovereign asset pools.
+                </p>
+
+                <!-- Quick Action Bar -->
+                <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md mt-2">
+                    <div class="relative flex-grow">
+                        <input id="hero-email" class="w-full bg-[#0f1d2a] border border-[#1e3a5f] rounded px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm placeholder:text-gray-500" placeholder="Enter institution or family office email" type="email"/>
+                    </div>
+                    <button onclick="handleHeroSubmit()" class="bg-[#d4af37] text-[#061422] font-semibold text-sm px-6 py-3 rounded hover:bg-[#ffe088] transition-all whitespace-nowrap shadow-lg flex items-center justify-center gap-2">
+                        <span>Request Review</span>
+                        <span class="material-symbols-outlined text-sm">trending_up</span>
+                    </button>
+                </div>
+                <p id="hero-confirmation" class="text-xs text-emerald-400 hidden flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                    Prospectus request dispatched. A Senior Principal will contact your office within 2 hours.
+                </p>
+
+                <!-- Key Metrics Summary -->
+                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-[#1e3a5f]/60 max-w-lg">
+                    <div>
+                        <div class="text-2xl font-bold font-display text-white">$4.8B+</div>
+                        <div class="text-xs text-[#99907c] uppercase tracking-wider mt-0.5">Discretionary AUM</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold font-display text-primary">+18.4%</div>
+                        <div class="text-xs text-[#99907c] uppercase tracking-wider mt-0.5">5-Yr Net IRR</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold font-display text-white">99.4%</div>
+                        <div class="text-xs text-[#99907c] uppercase tracking-wider mt-0.5">Fiduciary Retention</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Preview Mockup (Interactive Card remixed from Stitch) -->
+            <div class="lg:col-span-5 relative">
+                <div class="rounded-xl border border-[#1e3a5f] bg-[#0f1d2a] p-6 shadow-2xl glow-effect transition-all duration-300">
+                    <!-- Preview Header -->
+                    <div class="flex items-center justify-between pb-4 border-b border-[#1e3a5f]">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded bg-[#1e2b39] flex items-center justify-center text-primary font-display font-bold">MC</div>
+                            <div>
+                                <div class="text-sm font-semibold text-white">Sovereign Trust Account</div>
+                                <div class="text-[11px] text-[#99907c]">Tier 1 Ultra HNW • Custodied at J.P. Morgan</div>
+                            </div>
+                        </div>
+                        <span class="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[11px] font-medium flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Live Feed
+                        </span>
+                    </div>
+
+                    <!-- Portfolio Primary Stat -->
+                    <div class="py-6">
+                        <div class="text-xs text-[#99907c] uppercase tracking-wider mb-1">Total Assets Under Stewardship</div>
+                        <div class="text-3xl md:text-4xl font-display font-bold text-white tracking-tight">$148,500,000.00</div>
+                        <div class="mt-2 flex items-center gap-2 text-xs">
+                            <span class="text-emerald-400 font-semibold flex items-center">
+                                <span class="material-symbols-outlined text-sm">arrow_upward</span> +14.2% YTD Yield
+                            </span>
+                            <span class="text-[#99907c]">vs S&amp;P 500 (+2.8%)</span>
+                        </div>
+                    </div>
+
+                    <!-- Asset Distribution Bar -->
+                    <div class="space-y-2 py-4 border-t border-[#1e3a5f]">
+                        <div class="flex justify-between text-xs text-[#d0c5af]">
+                            <span>Asset Allocation Mix</span>
+                            <span class="text-primary font-medium">Balanced Growth Model</span>
+                        </div>
+                        <div class="h-2.5 w-full bg-[#13212e] rounded-full overflow-hidden flex">
+                            <div style="width: 45%" class="bg-[#f2ca50]" title="Private Equity 45%"></div>
+                            <div style="width: 25%" class="bg-[#bbc7e1]" title="Sovereign Debt 25%"></div>
+                            <div style="width: 20%" class="bg-[#3e495f]" title="Real Assets 20%"></div>
+                            <div style="width: 10%" class="bg-[#020f1c]" title="Treasury Cash 10%"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-[11px] text-[#99907c] pt-2">
+                            <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#f2ca50]"></span> Private Equity (45%)</div>
+                            <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#bbc7e1]"></span> Sovereign Debt (25%)</div>
+                            <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#3e495f]"></span> Real Assets (20%)</div>
+                            <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#020f1c]"></span> Treasury Cash (10%)</div>
+                        </div>
+                    </div>
+
+                    <!-- Callout to full Dashboard -->
+                    <div class="pt-4 border-t border-[#1e3a5f] flex justify-between items-center">
+                        <span class="text-xs text-[#d0c5af]">Want to explore the institutional console?</span>
+                        <a href="dashboard.html" class="text-xs font-semibold text-primary hover:text-[#ffe088] flex items-center gap-1 transition-colors">
+                            Launch Dashboard <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Custody Partners Trust Bar (Remixed from Stitch 'landing-saas' logo grid) -->
+    <section class="border-y border-[#1e3a5f] bg-[#0f1d2a]/60 py-8 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <h3 class="text-xs uppercase tracking-widest text-[#99907c] font-semibold whitespace-nowrap">
+                Tier-1 Institutional Custody &amp; Clearing
+            </h3>
+            <div class="flex flex-wrap justify-center md:justify-end items-center gap-8 md:gap-14 text-gray-400 font-display font-medium text-lg">
+                <span class="hover:text-white transition-colors">J.P. MORGAN</span>
+                <span class="hover:text-white transition-colors">BNY MELLON</span>
+                <span class="hover:text-white transition-colors">STATE STREET</span>
+                <span class="hover:text-white transition-colors">BLACKROCK</span>
+                <span class="hover:text-white transition-colors">GOLDMAN SACHS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bespoke Financial Architecture (Remixed 3-Card Grid from Stitch 'landing-saas') -->
+    <section class="py-24 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#0f1d2a] border border-[#1e3a5f] rounded-full text-xs font-semibold uppercase tracking-wider text-primary mb-3">
+                    Institutional Capabilities
+                </div>
+                <h2 class="font-display text-3xl md:text-5xl text-white font-bold mb-4">Bespoke Financial Architecture</h2>
+                <p class="text-[#d0c5af] max-w-2xl mx-auto text-base">
+                    Precision-engineered capital strategies tailored for generational preservation and non-correlated market alpha.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1: Private Wealth Management -->
+                <div class="bg-gradient-obsidian border border-[#1e3a5f] rounded-xl p-8 flex flex-col justify-between glow-effect transition-all duration-300 group">
+                    <div>
+                        <div class="w-12 h-12 rounded bg-[#1e2b39] border border-[#1e3a5f] flex items-center justify-center text-primary group-hover:bg-[#d4af37] group-hover:text-[#061422] transition-colors mb-6">
+                            <span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+                        </div>
+                        <h3 class="font-display text-2xl text-white font-semibold mb-3">Private Wealth Stewardship</h3>
+                        <p class="text-sm text-[#d0c5af] mb-6">
+                            Custom multi-asset allocation strategies constructed with strict capital preservation thresholds and algorithmic rebalancing.
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-[#d0c5af] border-t border-[#1e3a5f]/60 pt-4">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> $10M+ Dedicated Account Minimum</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Tax Alpha &amp; Harvest Optimization</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Direct Indexing &amp; ESG Customization</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-[#1e3a5f]">
+                        <a href="advisory.html" class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            View Mandate Terms <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Alternative Capital & PE -->
+                <div class="bg-gradient-obsidian border-2 border-primary/40 rounded-xl p-8 flex flex-col justify-between glow-effect transition-all duration-300 group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-primary text-[#061422] text-[10px] font-bold uppercase tracking-wider rounded-bl">
+                        Premier Flow
+                    </div>
+                    <div>
+                        <div class="w-12 h-12 rounded bg-[#1e2b39] border border-[#1e3a5f] flex items-center justify-center text-primary group-hover:bg-[#d4af37] group-hover:text-[#061422] transition-colors mb-6">
+                            <span class="material-symbols-outlined text-2xl">corporate_fare</span>
+                        </div>
+                        <h3 class="font-display text-2xl text-white font-semibold mb-3">Alternative Capital &amp; PE</h3>
+                        <p class="text-sm text-[#d0c5af] mb-6">
+                            Exclusive co-investment syndicates, direct infrastructure rights, and senior private credit pipelines shielded from public market volatility.
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-[#d0c5af] border-t border-[#1e3a5f]/60 pt-4">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Direct PE / Growth Syndicate Access</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Senior Secured Private Debt</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Global Renewable &amp; Real Infrastructure</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-[#1e3a5f]">
+                        <a href="advisory.html" class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Explore Alternative Allocations <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Sovereign & Fiduciary Governance -->
+                <div class="bg-gradient-obsidian border border-[#1e3a5f] rounded-xl p-8 flex flex-col justify-between glow-effect transition-all duration-300 group">
+                    <div>
+                        <div class="w-12 h-12 rounded bg-[#1e2b39] border border-[#1e3a5f] flex items-center justify-center text-primary group-hover:bg-[#d4af37] group-hover:text-[#061422] transition-colors mb-6">
+                            <span class="material-symbols-outlined text-2xl">gavel</span>
+                        </div>
+                        <h3 class="font-display text-2xl text-white font-semibold mb-3">Sovereign &amp; Fiduciary Governance</h3>
+                        <p class="text-sm text-[#d0c5af] mb-6">
+                            Cross-border entity structuring, multi-jurisdictional tax neutrality, and generational governance frameworks for ultra-high-net-worth families.
+                        </p>
+                        <ul class="space-y-2.5 text-sm text-[#d0c5af] border-t border-[#1e3a5f]/60 pt-4">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Sovereign Endowment Consultation</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Family Office Charter &amp; Succession</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check</span> Independent Fiduciary Audit Vault</li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-[#1e3a5f]">
+                        <a href="advisory.html" class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Fiduciary Guidelines <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fiduciary Performance & Capital Preservation Banner -->
+    <section class="border-y border-[#1e3a5f] bg-[#0f1d2a] py-16 px-6 md:px-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-[#1e3a5f]">
+            <div class="pt-4 md:pt-0">
+                <div class="font-display text-4xl text-primary font-bold mb-1">$4,850,000,000</div>
+                <div class="text-xs uppercase tracking-widest text-[#99907c]">Total Assets Under Management</div>
+            </div>
+            <div class="pt-4 md:pt-0">
+                <div class="font-display text-4xl text-white font-bold mb-1">18.4%</div>
+                <div class="text-xs uppercase tracking-widest text-[#99907c]">5-Year Annualized Net IRR</div>
+            </div>
+            <div class="pt-4 md:pt-0">
+                <div class="font-display text-4xl text-primary font-bold mb-1">Zero</div>
+                <div class="text-xs uppercase tracking-widest text-[#99907c]">Subordinated Debt Defaults</div>
+            </div>
+            <div class="pt-4 md:pt-0">
+                <div class="font-display text-4xl text-white font-bold mb-1">99.4%</div>
+                <div class="text-xs uppercase tracking-widest text-[#99907c]">Multi-Decade Client Retention</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Portfolio Console Demo CTA -->
+    <section class="py-24 px-6 md:px-12">
+        <div class="max-w-5xl mx-auto bg-gradient-obsidian border border-[#1e3a5f] rounded-2xl p-8 md:p-14 text-center shadow-2xl relative overflow-hidden glow-effect">
+            <div class="hero-glow absolute inset-0 w-full h-full pointer-events-none opacity-60"></div>
+            <div class="relative z-10 flex flex-col items-center">
+                <span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
+                    Sovereign Family Trust Infrastructure
+                </span>
+                <h2 class="font-display text-3xl md:text-5xl text-white font-bold mb-4">
+                    Experience Sovereign-Scale Stewardship
+                </h2>
+                <p class="text-[#d0c5af] max-w-2xl mx-auto mb-8 text-base leading-relaxed">
+                    View real-time capital dispatch status, drill down into alternative asset allocation models, or simulate advisory mandates tailored for your institution.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="dashboard.html" class="bg-[#d4af37] text-[#061422] font-semibold text-base px-8 py-3.5 rounded hover:bg-[#ffe088] transition-all flex items-center justify-center gap-2 shadow-lg">
+                        <span>Access Client Dashboard</span>
+                        <span class="material-symbols-outlined text-lg">dashboard</span>
+                    </a>
+                    <a href="advisory.html" class="bg-transparent border border-[#d4af37] text-primary font-semibold text-base px-8 py-3.5 rounded hover:bg-primary/10 transition-all flex items-center justify-center gap-2">
+                        <span>Review Advisory Fees</span>
+                        <span class="material-symbols-outlined text-lg">payments</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Remixed from Stitch 'landing-saas' + 'pricing-agency' Footers) -->
+    <footer class="bg-[#020f1c] border-t border-[#1e3a5f] py-16 px-6 md:px-12 text-sm">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="md:col-span-2 space-y-4">
+                <div class="flex items-center gap-2 text-primary font-display text-xl font-bold">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+                    MERIDIAN CAPITAL MANAGEMENT
+                </div>
+                <p class="text-[#99907c] max-w-md text-xs leading-relaxed">
+                    Meridian Capital is an independent, SEC-registered investment adviser and private fiduciary management firm. Custody and clearing executed through Tier-1 institutions including J.P. Morgan Chase &amp; Co. and BNY Mellon.
+                </p>
+                <div class="text-xs text-[#99907c]">
+                    © 2024 Meridian Capital Management LLC. All rights reserved. Member FINRA / SIPC.
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-semibold text-xs uppercase tracking-widest mb-4">Global Offices</h4>
+                <ul class="space-y-2 text-xs text-[#d0c5af]">
+                    <li><strong class="text-white">Geneva:</strong> Rue du Rhône 42, 1204 Genève</li>
+                    <li><strong class="text-white">New York:</strong> 767 Fifth Avenue, New York, NY 10153</li>
+                    <li><strong class="text-white">London:</strong> 1 Berkeley Square, Mayfair, London W1J 6EA</li>
+                    <li><strong class="text-white">Singapore:</strong> Marina Bay Financial Centre Tower 2</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-semibold text-xs uppercase tracking-widest mb-4">Governance &amp; Disclosures</h4>
+                <ul class="space-y-2 text-xs text-[#99907c]">
+                    <li><a href="#" class="hover:text-primary transition-colors">Form ADV Part 2A Brochure</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Client Relationship Summary (CRS)</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Fiduciary Code of Ethics</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Cybersecurity &amp; Encrypted Vault Policy</a></li>
+                    <li><a href="dashboard.html" class="text-primary hover:underline">Client Portal Access</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Consultation Request Modal -->
+    <div id="consultation-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#0f1d2a] border border-[#1e3a5f] rounded-xl max-w-lg w-full p-8 relative shadow-2xl glow-effect">
+            <button onclick="closeConsultationModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl">shield_person</span>
+                <div>
+                    <h3 class="font-display text-2xl text-white font-bold">Schedule Strategic Briefing</h3>
+                    <p class="text-xs text-[#99907c]">Confidential discussion with a Meridian Capital Managing Director</p>
+                </div>
+            </div>
+
+            <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-[#d0c5af] mb-1 uppercase">Institutional Entity / Principal Name</label>
+                    <input required class="w-full bg-[#061422] border border-[#1e3a5f] rounded px-3 py-2 text-sm text-white focus:border-primary focus:outline-none" placeholder="e.g. Sovereign Wealth Corp / The Vanderbilt Family Trust"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#d0c5af] mb-1 uppercase">Executive Email</label>
+                    <input required type="email" class="w-full bg-[#061422] border border-[#1e3a5f] rounded px-3 py-2 text-sm text-white focus:border-primary focus:outline-none" placeholder="principal@familyoffice.com"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#d0c5af] mb-1 uppercase">Target Asset Allocation Range</label>
+                    <select class="w-full bg-[#061422] border border-[#1e3a5f] rounded px-3 py-2 text-sm text-white focus:border-primary focus:outline-none">
+                        <option>$10M – $25M (Private Wealth Mandate)</option>
+                        <option selected>$25M – $100M (Sovereign Mandate)</option>
+                        <option>$100M – $500M (Endowment &amp; Multi-Family)</option>
+                        <option>$500M+ (Sovereign Wealth &amp; Central Pool)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-[#d0c5af] mb-1 uppercase">Fiduciary Focus</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs text-[#d0c5af]">
+                        <label class="flex items-center gap-1.5"><input type="checkbox" checked class="rounded text-primary focus:ring-0"/> Capital Preservation</label>
+                        <label class="flex items-center gap-1.5"><input type="checkbox" checked class="rounded text-primary focus:ring-0"/> PE Co-Investment</label>
+                        <label class="flex items-center gap-1.5"><input type="checkbox" class="rounded text-primary focus:ring-0"/> Infrastructure Debt</label>
+                        <label class="flex items-center gap-1.5"><input type="checkbox" class="rounded text-primary focus:ring-0"/> Tax Neutrality Structuring</label>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-[#d4af37] text-[#061422] font-semibold text-sm py-3 rounded hover:bg-[#ffe088] transition-all mt-4">
+                    Submit Fiduciary Diligence Request
+                </button>
+            </form>
+            <div id="modal-success" class="hidden text-center py-6 space-y-3">
+                <span class="material-symbols-outlined text-emerald-400 text-5xl">task_alt</span>
+                <h4 class="font-display text-xl text-white font-bold">Briefing Request Confirmed</h4>
+                <p class="text-xs text-[#d0c5af]">
+                    Your briefing inquiry has been routed to our Geneva and New York fiduciary partners. We will reach out within 2 hours under non-disclosure protocol.
+                </p>
+                <button onclick="closeConsultationModal()" class="bg-[#1e2b39] text-white text-xs px-4 py-2 rounded mt-2 hover:bg-[#293644]">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            nav.classList.toggle('hidden');
+        }
+        function openConsultationModal() {
+            document.getElementById('consultation-modal').classList.remove('hidden');
+        }
+        function closeConsultationModal() {
+            document.getElementById('consultation-modal').classList.add('hidden');
+        }
+        function handleHeroSubmit() {
+            const email = document.getElementById('hero-email').value;
+            if (email && email.includes('@')) {
+                document.getElementById('hero-confirmation').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('hero-confirmation').classList.add('hidden');
+                }, 6000);
+            } else {
+                alert('Please provide a valid institutional email address.');
+            }
+        }
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            e.target.classList.add('hidden');
+            document.getElementById('modal-success').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Merit Arts & Science College — Shaping Rural Talent in Idaikal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #111111;
+      --muted: #4a4a4a;
+      --card: rgba(248, 248, 246, 0.97);
+      --shell: 1120px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: #eef2ee;
+      color: var(--ink);
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════
+       1. HERO & FULLSCREEN VIDEO
+       ═══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      height: 100svh;
+      min-height: 640px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      animation: fade-in 1.15s var(--ease) both;
+    }
+
+    .hero__bg video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 62%;
+      transform: scale(1.14);
+      filter: contrast(1.05) saturate(1.1);
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    /* ═══════════════════════════════════════
+       2. TOP NAVIGATION
+       ═══════════════════════════════════════ */
+    .nav {
+      position: relative;
+      z-index: 70;
+      width: 100%;
+      max-width: var(--shell);
+      margin: 0 auto;
+      padding: 26px 24px 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: #141414;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__links a {
+      font-size: 15px;
+      font-weight: 400;
+      color: #1a1a1a;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: opacity 0.18s ease;
+    }
+
+    .nav__links a:hover {
+      opacity: 0.55;
+    }
+
+    .nav__cta {
+      justify-self: end;
+    }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 9px;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn-dark:hover {
+      background: #000;
+      transform: translateY(-1px);
+    }
+
+    .nav__toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-right: -10px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav__toggle-box {
+      position: relative;
+      display: block;
+      width: 22px;
+      height: 14px;
+    }
+
+    .nav__toggle .bar {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1.8px;
+      border-radius: 2px;
+      background: #141414;
+      transition: transform 0.55s var(--ease), width 0.45s var(--ease);
+    }
+
+    .bar--top { top: 0; }
+    .bar--bot { bottom: 0; width: 70%; }
+    .nav__toggle:hover .bar--bot { width: 100%; }
+    .nav__toggle[aria-expanded="true"] .bar--top { transform: translateY(6.1px) rotate(45deg); }
+    .nav__toggle[aria-expanded="true"] .bar--bot { width: 100%; transform: translateY(-6.1px) rotate(-45deg); }
+
+    .nav .menu__cta { display: none; }
+
+    /* ═══════════════════════════════════════
+       3. CENTRE STAGE
+       ═══════════════════════════════════════ */
+    .stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 10px 24px 24px;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: 999px;
+      padding: 6px 16px 6px 8px;
+      font-size: 13px;
+      color: #334155;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2px;
+    }
+
+    .badge__tag {
+      background: #141414;
+      border-radius: 999px;
+      padding: 3px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    h1.headline {
+      margin: 0;
+      font-size: clamp(30px, 4.6vw, 56px);
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      color: #0f172a;
+      max-width: 22ch;
+    }
+
+    p.sub {
+      margin: 0;
+      font-size: clamp(13.5px, 1.25vw, 16px);
+      line-height: 1.5;
+      font-weight: 500;
+      color: #334155;
+      max-width: 58ch;
+      margin-bottom: 8px;
+    }
+
+    .brk { display: none; }
+    @media (min-width: 900px) {
+      .brk { display: inline; }
+      .stage .headline { max-width: none; }
+      .stage .sub { max-width: none; }
+    }
+
+    /* ═══════════════════════════════════════
+       4. PROMPT CARD (SLEEK FROSTED GLASS CONSOLE)
+       ═══════════════════════════════════════ */
+    .prompt {
+      width: min(720px, 100%);
+      background: rgba(255, 255, 255, 0.65);
+      -webkit-backdrop-filter: blur(24px) saturate(1.2);
+      backdrop-filter: blur(24px) saturate(1.2);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 18px;
+      padding: 12px 18px 10px;
+      text-align: left;
+      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.15),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.9);
+      margin-top: auto;
+      margin-bottom: 12px;
+    }
+
+    .prompt__input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      resize: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #0f172a;
+      font-weight: 500;
+      min-height: 38px;
+      padding: 0;
+    }
+
+    .prompt__input::placeholder {
+      color: #475569;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .prompt__bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .prompt__chips {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .chip:hover {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .prompt__right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn--send {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      border: 0;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .icon-btn--send:hover {
+      background: #000;
+      transform: scale(1.03);
+    }
+
+    .icon-btn--send svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* ═══════════════════════════════════════
+       5. ENTRANCE ANIMATION CHOREOGRAPHY
+       ═══════════════════════════════════════ */
+    @keyframes rise {
+      from { opacity: 0; transform: translate3d(0, 18px, 0); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .rise {
+      animation: rise 0.9s var(--ease) both;
+      animation-delay: calc(var(--i, 0) * 70ms);
+    }
+
+    /* ═══════════════════════════════════════
+       6. MOBILE MENU OVERLAY
+       ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 20px 0;
+      }
+      .brand, .nav__toggle {
+        position: relative;
+        z-index: 80;
+      }
+      .brand { font-size: 20px; margin-right: auto; }
+      .nav__toggle { display: inline-flex; }
+
+      .nav__nav {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        padding: 92px 28px 46px;
+        background: #fafbf9;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-12px);
+        transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), visibility 0s linear 0.45s;
+      }
+
+      .nav__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), visibility 0s linear 0s;
+      }
+
+      .nav__links {
+        flex-direction: column;
+        gap: 2px;
+        width: 100%;
+        max-width: 340px;
+      }
+      .nav__links li { overflow: hidden; }
+      .nav__links a {
+        display: block;
+        padding: 9px 0;
+        text-align: center;
+        font-size: clamp(26px, 7.4vw, 34px);
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        opacity: 0;
+        transform: translateY(115%);
+        transition: opacity 0.5s var(--ease), transform 0.7s var(--ease);
+      }
+
+      .nav__nav.is-open .nav__links a { opacity: 1; transform: translateY(0); }
+      .nav__nav.is-open .nav__links li:nth-child(1) a { transition-delay: 0.12s; }
+      .nav__nav.is-open .nav__links li:nth-child(2) a { transition-delay: 0.18s; }
+      .nav__nav.is-open .nav__links li:nth-child(3) a { transition-delay: 0.24s; }
+      .nav__nav.is-open .nav__links li:nth-child(4) a { transition-delay: 0.30s; }
+
+      .nav__links .rise { animation: none; }
+      .menu__cta {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 0.5s var(--ease), transform 0.6s var(--ease), background 0.18s ease;
+      }
+      .nav__nav.is-open .menu__cta { opacity: 1; transform: translateY(0); transition-delay: 0.36s; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { min-height: 560px; }
+      .nav__cta { display: none; }
+      .nav .menu__cta {
+        display: inline-flex;
+        width: 100%;
+        max-width: 340px;
+        padding: 15px 22px;
+        font-size: 15px;
+        border-radius: 11px;
+      }
+      .stage { padding: 16px 18px 22px; gap: 16px; }
+      .headline { font-size: clamp(26px, 7.6vw, 36px); max-width: 13ch; }
+      .sub { font-size: 14px; line-height: 1.6; max-width: 40ch; }
+      .badge { font-size: 12px; padding: 6px 13px 6px 6px; gap: 10px; }
+      .badge__tag { font-size: 12px; padding: 3px 10px; }
+      .prompt { border-radius: 17px; padding: 16px 14px 12px; }
+      .prompt__input { font-size: 16px; min-height: 56px; }
+    }
+
+    /* ═══════════════════════════════════════
+       7. BELOW-FOLD SECTIONS (same tokens)
+       ═══════════════════════════════════════ */
+    .section {
+      max-width: var(--shell);
+      margin: 0 auto;
+      padding: 64px 24px 8px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .h2 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3.2vw, 36px);
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .lede {
+      margin: 0 0 24px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+    .grid-courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .course-card {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 30px -18px rgba(0,0,0,0.25);
+    }
+    .course-card.flag {
+      border-color: rgba(0,0,0,0.16);
+      background: #fff;
+    }
+    .course-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #141414;
+      color: #fff;
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+    }
+    .course-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .course-card p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+    }
+    .stat b { display: block; font-size: 24px; letter-spacing: -0.02em; }
+    .stat span { font-size: 12px; color: var(--muted); }
+    .fac-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .fac-list li {
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      color: var(--ink);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 18px;
+      padding: 22px;
+      margin: 18px 0 64px;
+    }
+    .contact-grid p { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0 0 12px; }
+    .contact-grid strong { color: var(--ink); }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <!-- Background Video (User-Generated Google Flow Aesthetic Campus Video, Slowed 50%) -->
+    <div class="hero__bg">
+      <video autoplay muted loop playsinline preload="auto" poster="assets/merit_flow_poster.jpg">
+        <source src="assets/merit_flow_slowed.mp4" type="video/mp4" />
+      </video>
+      <!-- Subtle Ethereal Wash (Clean, transparent, letting authentic campus colors pop) -->
+      <div style="position:absolute; inset:0; background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 40%, transparent 80%); pointer-events:none;"></div>
+    </div>
+
+    <div class="hero__inner">
+      <!-- Top Navigation -->
+      <header class="nav">
+        <a class="brand rise" style="--i:1" href="#">
+          <div class="brand-mark rise" style="--i:0">M</div>
+          <span>Merit College</span>
+        </a>
+
+        <nav class="nav__nav" id="site-menu">
+          <ul class="nav__links">
+            <li><a class="rise" style="--i:2" href="#degrees" onclick="selectChip('B.Sc. AI & Data Science')">Degrees</a></li>
+            <li><a class="rise" style="--i:3" href="#facilities" onclick="selectChip('Campus Transport & Labs')">Facilities</a></li>
+            <li><a class="rise" style="--i:4" href="#affiliation" onclick="selectChip('MSU University Affiliation')">Affiliation</a></li>
+            <li><a class="rise" style="--i:5" href="#admissions" onclick="selectChip('2026 Admissions Desk')">Admissions</a></li>
+          </ul>
+          <a class="btn-dark menu__cta" href="https://wa.me/919442100220?text=Hi%20Merit%20College,%20I%20am%20inquiring%20about%202026%20admissions">Apply for 2026</a>
+        </nav>
+
+        <div class="nav__cta">
+          <a class="btn-dark rise" style="--i:6" href="https://wa.me/919442100220?text=Hi%20Merit%20College,%20I%20am%20inquiring%20about%202026%20admissions" target="_blank">
+            Admissions Desk
+          </a>
+        </div>
+
+        <button class="nav__toggle rise" style="--i:6" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+          <span class="nav__toggle-box" aria-hidden="true">
+            <span class="bar bar--top"></span>
+            <span class="bar bar--bot"></span>
+          </span>
+        </button>
+      </header>
+
+      <!-- Main Stage -->
+      <div class="stage">
+        <!-- Staggered Pill Badge -->
+        <div class="badge rise" style="--i:8">
+          <span class="badge__tag">Now Enrolling</span>
+          <span>Admissions Open 2026–2027 • Affiliated to MSU</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="headline rise" style="--i:10">
+          The academic institution<br class="brk" /> shaped for what counts.
+        </h1>
+
+        <!-- Subcopy -->
+        <p class="sub rise" style="--i:12">
+          Merit Arts & Science College brings modern higher education to Idaikal.<br class="brk" />
+          Flagship B.Sc. in AI & Data Science, computing laboratories, and dedicated bus transport across Tenkasi & Tirunelveli.
+        </p>
+
+        <!-- Frosted Glass Prompt Console -->
+        <form class="prompt rise" style="--i:14" onsubmit="handleSend(event)">
+          <textarea id="prompt-input" class="prompt__input" rows="2" placeholder="Ask about B.Sc. Artificial Intelligence, degree courses, or campus buses..."></textarea>
+          
+          <div class="prompt__bar">
+            <!-- Fast Suggestion Chips -->
+            <div class="prompt__chips">
+              <span class="chip" onclick="selectChip('B.Sc. AI & Data Science')">AI & Data Science</span>
+              <span class="chip" onclick="selectChip('B.Sc. Computer Science')">Computer Science</span>
+              <span class="chip" onclick="selectChip('B.Com & Humanities')">B.Com</span>
+              <span class="chip" onclick="selectChip('Campus Bus Routes')">Bus Routes</span>
+            </div>
+
+            <!-- Send Action -->
+            <div class="prompt__right">
+              <button class="icon-btn--send" type="submit" aria-label="Send WhatsApp Inquiry">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="degrees">
+    <div class="eyebrow">Degrees</div>
+    <h2 class="h2">Flagship courses for 2026–2027</h2>
+    <p class="lede">Manonmaniam Sundaranar University affiliated programs. AI & Data Science leads, with Computer Science, Commerce, and core sciences alongside.</p>
+    <div class="grid-courses">
+      <div class="course-card flag">
+        <span class="course-tag">Flagship</span>
+        <h3>B.Sc. AI & Data Science</h3>
+        <p>Python, ML basics, labs, and project work for computing careers.</p>
+      </div>
+      <div class="course-card">
+        <h3>B.Sc. Computer Science</h3>
+        <p>Programming, databases, and web foundations with lab practice.</p>
+      </div>
+      <div class="course-card">
+        <h3>B.Com</h3>
+        <p>Accounting, business, and commerce pathways for Tenkasi region jobs.</p>
+      </div>
+      <div class="course-card">
+        <h3>B.A. English</h3>
+        <p>Language, literature, and communication skills for teaching and services.</p>
+      </div>
+      <div class="course-card">
+        <h3>B.Sc. Physics / Chemistry</h3>
+        <p>Core science with practicals for higher studies and lab roles.</p>
+      </div>
+      <div class="course-card">
+        <h3>B.Sc. Mathematics</h3>
+        <p>Maths foundation for analytics, teaching, and competitive exams.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="facilities">
+    <div class="eyebrow">Trust & Campus</div>
+    <h2 class="h2" id="affiliation">MSU affiliated, Idaikal campus</h2>
+    <p class="lede">Merit Arts & Science College, Idaikal — Ambasamudram, Tirunelveli. Buses across Tenkasi & Tirunelveli, labs, and admission helpdesk.</p>
+    <div class="stat-row">
+      <div class="stat"><b>2,400+</b><span>Students</span></div>
+      <div class="stat"><b>25+</b><span>Faculty</span></div>
+      <div class="stat"><b>MSU</b><span>Affiliated</span></div>
+      <div class="stat"><b>7</b><span>Degree programs</span></div>
+    </div>
+    <ul class="fac-list">
+      <li>Computing laboratories</li>
+      <li>Bus transport routes</li>
+      <li>Library & study hall</li>
+      <li>Sports & NSS activities</li>
+    </ul>
+  </section>
+
+  <section class="section" id="admissions">
+    <div class="eyebrow">Admissions</div>
+    <h2 class="h2">Talk to the admission desk</h2>
+    <div class="contact-grid">
+      <div>
+        <p><strong>Merit Arts & Science College</strong><br>Idaikal, Ambasamudram,<br>Tirunelveli, Tamil Nadu</p>
+        <p><strong>04634-210811</strong><br>+91 9442100220</p>
+      </div>
+      <div>
+        <p>Ask about fees, eligibility, bus routes, or seat availability for 2026–2027. Replies on WhatsApp during working hours.</p>
+        <div class="contact-actions">
+          <a class="btn-dark" href="https://wa.me/919442100220?text=Hi%20Merit%20College,%20I%20am%20inquiring%20about%202026%20admissions" target="_blank">WhatsApp Admissions</a>
+          <a class="btn-dark" style="background:#fff;color:#141414;border:1px solid rgba(0,0,0,0.12)" href="tel:+919442100220">Call Desk</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('site-menu');
+      if (!toggle || !menu) return;
+
+      function setMenu(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        menu.classList.toggle('is-open', open);
+        document.body.classList.toggle('menu-open', open);
+      }
+
+      function isOpen() {
+        return toggle.getAttribute('aria-expanded') === 'true';
+      }
+
+      toggle.addEventListener('click', () => setMenu(!isOpen()));
+
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) {
+          setMenu(false);
+          toggle.focus();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 900 && isOpen()) {
+          setMenu(false);
+        }
+      });
+    })();
+
+    function selectChip(text) {
+      const input = document.getElementById('prompt-input');
+      input.value = `I want to inquire about: ${text}`;
+      input.focus();
+    }
+
+    function handleSend(e) {
+      e.preventDefault();
+      const input = document.getElementById('prompt-input');
+      const query = input.value.trim() || 'Admissions for 2026-2027';
+      const msg = encodeURIComponent(`Hello Merit Arts & Science College Admissions, ${query}`);
+      window.open(`https://wa.me/919442100220?text=${msg}`, '_blank');
+    }
+  </script>
+</body>
+</html>

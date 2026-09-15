@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>JP College of Arts & Science — Grace Educational Trust, Tenkasi</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #111417;
+      --paper: #ececeb;
+      --muted: #525866;
+      --card: rgba(248, 248, 246, 0.96);
+      --shell: 1140px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --glass-line: rgba(255, 255, 255, 0.4);
+      --nature-img: url("assets/merit_flow_poster.jpg");
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: #eef2ee;
+      color: var(--ink);
+      font-family: "Poppins", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       1. SECTION 1: JUNGLEMIND HERO ENGINE (Full Viewport 100svh)
+       ═══════════════════════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 100vh;
+      height: 100svh;
+      min-height: 640px;
+      max-height: 940px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      animation: fade-in 1.15s var(--ease) both;
+    }
+
+    .hero__bg video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      transform: scale(1.08);
+      filter: contrast(1.04) saturate(1.08);
+    }
+
+    .hero__wash {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 42%, rgba(238, 242, 238, 0.85) 96%);
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    /* ── Global Top Navigation ── */
+    .nav {
+      position: relative;
+      z-index: 70;
+      width: 100%;
+      max-width: var(--shell);
+      margin: 0 auto;
+      padding: 24px 24px 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: #141414;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__links a {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: #1a1a1a;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: opacity 0.18s ease;
+    }
+
+    .nav__links a:hover {
+      opacity: 0.55;
+    }
+
+    .nav__cta {
+      justify-self: end;
+    }
+
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 11px 22px;
+      border: 0;
+      border-radius: 9px;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .btn-dark:hover {
+      background: #000;
+      transform: translateY(-1px);
+    }
+
+    .nav__toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-right: -10px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .nav__toggle-box {
+      position: relative;
+      display: block;
+      width: 22px;
+      height: 14px;
+    }
+
+    .nav__toggle .bar {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1.8px;
+      border-radius: 2px;
+      background: #141414;
+      transition: transform 0.55s var(--ease), width 0.45s var(--ease);
+    }
+
+    .bar--top { top: 0; }
+    .bar--bot { bottom: 0; width: 70%; }
+    .nav__toggle:hover .bar--bot { width: 100%; }
+    .nav__toggle[aria-expanded="true"] .bar--top { transform: translateY(6.1px) rotate(45deg); }
+    .nav__toggle[aria-expanded="true"] .bar--bot { width: 100%; transform: translateY(-6.1px) rotate(-45deg); }
+
+    .nav .menu__cta { display: none; }
+
+    /* ── Junglemind Centre Stage ── */
+    .stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      padding: 14px 24px 20px;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 999px;
+      padding: 6px 16px 6px 8px;
+      font-size: 13px;
+      color: #334155;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+
+    .badge__tag {
+      background: #141414;
+      border-radius: 999px;
+      padding: 3px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    h1.headline {
+      margin: 0;
+      font-size: clamp(32px, 4.8vw, 58px);
+      line-height: 1.08;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      color: #0f172a;
+      max-width: 22ch;
+    }
+
+    p.sub {
+      margin: 0;
+      font-size: clamp(14px, 1.2vw, 16px);
+      line-height: 1.55;
+      font-weight: 450;
+      color: #334155;
+      max-width: 62ch;
+      margin-bottom: 4px;
+    }
+
+    .brk { display: none; }
+    @media (min-width: 900px) {
+      .brk { display: inline; }
+      .stage .headline { max-width: none; }
+      .stage .sub { max-width: none; }
+    }
+
+    /* ── Frosted Glass Console ── */
+    .prompt {
+      width: min(740px, 100%);
+      background: rgba(255, 255, 255, 0.72);
+      -webkit-backdrop-filter: blur(24px) saturate(1.25);
+      backdrop-filter: blur(24px) saturate(1.25);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 14px 18px 12px;
+      text-align: left;
+      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.15),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.9);
+      margin-top: auto;
+      margin-bottom: 8px;
+    }
+
+    .prompt__input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      resize: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 1.4;
+      color: #0f172a;
+      font-weight: 500;
+      min-height: 38px;
+      padding: 0;
+    }
+
+    .prompt__input::placeholder {
+      color: #475569;
+      opacity: 0.9;
+    }
+
+    .prompt__bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .prompt__chips {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .chip:hover {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .prompt__right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn--send {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #141414;
+      border: 0;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .icon-btn--send:hover {
+      background: #000;
+      transform: scale(1.04);
+    }
+
+    .icon-btn--send svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       2. SECTION 2: INTELLIGENT PERFORMANCE (Academic Engine)
+       ═══════════════════════════════════════════════════════════ */
+    .section-perf {
+      position: relative;
+      background: #ececeb;
+      color: #222222;
+      padding: clamp(64px, 8vh, 100px) clamp(16px, 4vw, 54px);
+      overflow: hidden;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .perf-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      overflow: hidden;
+    }
+
+    .perf-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .perf-container {
+      position: relative;
+      z-index: 2;
+      max-width: var(--shell);
+      margin: 0 auto;
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, clamp(280px, 34vw, 480px));
+      gap: clamp(20px, 3vw, 40px);
+      align-items: start;
+      margin-bottom: clamp(32px, 5vh, 60px);
+    }
+
+    .perf-title {
+      margin: 0;
+      font-size: clamp(28px, 3.4vw, 44px);
+      line-height: 1.15;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: #1a1a1a;
+    }
+
+    .dot-word {
+      display: inline-block;
+      vertical-align: middle;
+      color: #ad314d;
+      margin-left: 0.25em;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .perf-intro {
+      margin: 0;
+      color: #555555;
+      font-size: clamp(14px, 1.15vw, 16.5px);
+      line-height: 1.62;
+      font-weight: 400;
+    }
+
+    /* ── Performance 3 Glass Cards Row ── */
+    .perf-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(14px, 2vw, 24px);
+      align-items: stretch;
+    }
+
+    .perf-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      padding: clamp(24px, 3.2vw, 36px) clamp(20px, 2.5vw, 28px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 480px;
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+
+    .perf-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .perf-card video.card-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .card--placement {
+      background: linear-gradient(175deg, #a7284b 0%, #8b1e38 48%, #660e22 100%);
+    }
+
+    .card--research {
+      background: linear-gradient(168deg, #7c4aa4 0%, #68307e 48%, #4a1c58 100%);
+    }
+
+    .card--network {
+      background: linear-gradient(172deg, #c4432b 0%, #a8321d 52%, #7a1f10 100%);
+    }
+
+    .card__header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .card__tag {
+      display: inline-block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.16);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card__title {
+      font-size: clamp(18px, 1.5vw, 22px);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .card__center {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .metric-number {
+      font-size: clamp(48px, 5.2vw, 72px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .metric-unit {
+      font-size: clamp(24px, 2.5vw, 36px);
+      font-weight: 500;
+      margin-left: 4px;
+      opacity: 0.9;
+    }
+
+    .card__caption {
+      margin-top: 14px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 28ch;
+    }
+
+    .card__footer {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn-glass {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      color: #141414;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      transition: all 0.18s ease;
+    }
+
+    .btn-glass:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .card__photo-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      opacity: 0.22;
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+      z-index: 1;
+      filter: contrast(1.15) saturate(0.85) blur(12px);
+      transform: scale(1.18);
+    }
+
+    /* ── MSU Rank Holders & Placements Auto-Rolling Marquee ── */
+    .rank-showcase {
+      margin-top: clamp(48px, 6vh, 64px);
+      padding-top: clamp(28px, 4vh, 42px);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .rank-showcase__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .rank-showcase__title {
+      font-size: clamp(16px, 1.4vw, 20px);
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rank-showcase__badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      background: #141414;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .rank-marquee-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+      padding: 8px 0;
+    }
+
+    .rank-marquee-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: rankScroll 32s linear infinite;
+    }
+
+    .rank-marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes rankScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .rank-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      padding: 12px 18px 12px 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
+      min-width: 290px;
+      flex-shrink: 0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .rank-card:hover {
+      transform: translateY(-2px);
+      background: #ffffff;
+      box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.14);
+    }
+
+    .rank-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      flex-shrink: 0;
+    }
+
+    .rank-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .rank-name {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .rank-award {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #9333ea;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .rank-award.tcs {
+      color: #059669;
+    }
+
+    .rank-award.gold {
+      color: #b45309;
+    }
+
+    .rank-dept {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       3. SECTION 3: TRUEEARTH SPLIT GRID (Campus & Heritage)
+       ═══════════════════════════════════════════════════════════ */
+    .section-trueearth {
+      position: relative;
+      background: #ffffff;
+      color: var(--ink);
+      padding: clamp(64px, 9vh, 110px) clamp(20px, 4vw, 54px);
+    }
+
+    .trueearth-container {
+      max-width: var(--shell);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.05fr);
+      gap: clamp(24px, 4vw, 56px);
+      align-items: center;
+    }
+
+    .te__left {
+      display: flex;
+      flex-direction: column;
+      padding-right: clamp(10px, 2vw, 30px);
+    }
+
+    .te__eyebrow {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .te__eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 2px;
+      background: #141414;
+    }
+
+    .te__title {
+      font-size: clamp(30px, 3.8vw, 48px);
+      line-height: 1.12;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+      margin-bottom: 22px;
+    }
+
+    .hl-box {
+      display: inline-block;
+      color: #ffffff;
+      padding: 0.05em 0.22em 0.12em;
+      margin: 0 0.04em;
+      border-radius: 12px;
+      background-image: var(--nature-img);
+      background-size: cover;
+      background-position: 50% 30%;
+      background-repeat: no-repeat;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .te__text {
+      font-size: clamp(15px, 1.15vw, 17px);
+      line-height: 1.75;
+      color: #475569;
+      margin-bottom: 32px;
+      max-width: 50ch;
+    }
+
+    .te__cta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .te__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: #0f172a;
+      font-size: 16px;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .te__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(15, 23, 42, 0.4);
+      display: grid;
+      place-items: center;
+      transition: all 0.22s ease;
+    }
+
+    .te__cta:hover .te__icon {
+      background: #141414;
+      color: #fff;
+      border-color: #141414;
+      transform: translateX(4px);
+    }
+
+    .te__icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* ── TrueEarth Media Card ── */
+    .te__media {
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3.4;
+      background: #0d1e17;
+      box-shadow: 0 20px 48px -16px rgba(0, 0, 0, 0.22);
+    }
+
+    .te__media video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+    }
+
+    .te__media-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+    }
+
+    /* ── Marker Pins on Media ── */
+    .marker {
+      position: absolute;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0f172a;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .marker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    .marker--campus {
+      left: 8%;
+      top: 18%;
+    }
+
+    .marker--labs {
+      right: 8%;
+      bottom: 22%;
+    }
+
+    .te__social-notch {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      background: #ffffff;
+      padding: 12px 24px;
+      border-top-left-radius: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .te__social-notch span {
+      display: inline-block;
+      color: #0f172a;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       4. SECTION 4: DEGREE PROGRAMS & ADMISSIONS DESK
+       ═══════════════════════════════════════════════════════════ */
+    .section-programs {
+      background: #f8faf8;
+      padding: clamp(64px, 8vh, 100px) clamp(20px, 4vw, 54px);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .programs-container {
+      max-width: var(--shell);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      margin-bottom: 36px;
+    }
+
+    .section-heading .eyebrow {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .section-heading .h2 {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .section-heading .lede {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #475569;
+      max-width: 64ch;
+    }
+
+    .grid-courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .course-card {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 0, 0, 0.16);
+      box-shadow: 0 14px 32px -12px rgba(0, 0, 0, 0.12);
+    }
+
+    .course-card.flag {
+      border-color: #141414;
+      background: #ffffff;
+    }
+
+    .course-tag {
+      align-self: flex-start;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: #141414;
+      color: #fff;
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
+
+    .course-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    .course-card p {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #525866;
+      margin-bottom: 16px;
+    }
+
+    .course-action {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0f172a;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .course-action:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Admissions Contact Grid ── */
+    .admissions-box {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 22px;
+      padding: clamp(24px, 4vw, 42px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 4vw, 40px);
+      box-shadow: 0 16px 40px -18px rgba(0, 0, 0, 0.08);
+    }
+
+    .admissions-box h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .admissions-box p {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+
+    .admissions-contact-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .admissions-contact-list li {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #1e293b;
+    }
+
+    .admissions-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-whatsapp {
+      background: #10b981;
+      color: #fff;
+    }
+
+    .btn-whatsapp:hover {
+      background: #059669;
+    }
+
+    /* ── Site Footer ── */
+    footer.site-footer {
+      background: #141414;
+      color: #94a3b8;
+      padding: 40px 24px;
+      font-size: 13.5px;
+      text-align: center;
+    }
+
+    footer.site-footer a {
+      color: #f1f5f9;
+      text-decoration: none;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       5. RESPONSIVE BREAKPOINTS
+       ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .perf-cards {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+      .masthead {
+        grid-template-columns: 1fr;
+      }
+      .trueearth-container {
+        grid-template-columns: 1fr;
+      }
+      .admissions-box {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+      }
+      .nav__links {
+        display: none;
+      }
+      .nav__toggle {
+        display: inline-flex;
+      }
+      .nav__nav {
+        position: fixed;
+        inset: 0;
+        z-index: 65;
+        background: #fbfcf9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      .nav__nav.is-open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .nav__nav.is-open .nav__links {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+      .nav__nav.is-open .nav__links a {
+        font-size: 22px;
+        font-weight: 600;
+      }
+      .nav .menu__cta {
+        display: inline-flex;
+        margin-top: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero { min-height: 580px; }
+      .nav__cta { display: none; }
+      .stage { padding: 14px 16px 20px; gap: 14px; }
+      .headline { font-size: clamp(28px, 7.8vw, 38px); }
+      .prompt { border-radius: 18px; padding: 14px 14px 10px; }
+      .chip { font-size: 11.5px; padding: 4px 10px; }
+      .perf-card { min-height: 420px; }
+      .marker--campus { left: 4%; top: 12%; font-size: 11px; }
+      .marker--labs { right: 4%; bottom: 18%; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 1: JUNGLEMIND HERO ENGINE (Full Viewport)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="hero" id="top">
+    <!-- Authentic Campus Video Loop -->
+    <div class="hero__bg">
+      <video autoplay muted loop playsinline preload="auto" poster="assets/merit_flow_poster.jpg">
+        <source src="assets/merit_flow_slowed.mp4" type="video/mp4">
+      </video>
+      <div class="hero__wash"></div>
+    </div>
+
+    <div class="hero__inner">
+      <!-- Global Navigation -->
+      <header class="nav">
+        <a class="brand" href="#top">
+          <div class="brand-mark">JP</div>
+          <span>JP Institutions</span>
+        </a>
+
+        <nav class="nav__nav" id="site-menu">
+          <ul class="nav__links">
+            <li><a href="#degrees" onclick="selectChip('B.Sc. AI & Data Science')">Degrees</a></li>
+            <li><a href="#performance" onclick="selectChip('MNC Placement Drives')">Performance</a></li>
+            <li><a href="#campus" onclick="selectChip('85-Acre Eco Campus')">Eco-Campus</a></li>
+            <li><a href="#admissions" onclick="selectChip('2026 Admissions Desk')">Admissions</a></li>
+          </ul>
+          <a class="btn-dark menu__cta" href="https://wa.me/919442228410?text=Hello%20JP%20College%20Admissions,%20I%20am%20inquiring%20about%202026-2027%20admissions" target="_blank">Admissions Desk</a>
+        </nav>
+
+        <div class="nav__cta">
+          <a class="btn-dark" href="https://wa.me/919442228410?text=Hello%20JP%20College%20Admissions,%20I%20am%20inquiring%20about%202026-2027%20admissions" target="_blank">
+            Admissions Desk
+          </a>
+        </div>
+
+        <button class="nav__toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+          <span class="nav__toggle-box">
+            <span class="bar bar--top"></span>
+            <span class="bar bar--bot"></span>
+          </span>
+        </button>
+      </header>
+
+      <!-- Main Stage -->
+      <div class="stage">
+        <!-- Trust Badge -->
+        <div class="badge">
+          <span class="badge__tag">Now Enrolling</span>
+          <span>Admissions Open 2026–2027 • MSU Affiliated • ISO 9001:2015</span>
+        </div>
+
+        <!-- Master Headline -->
+        <h1 class="headline">
+          The academic institution<br class="brk" /> shaped for what counts.
+        </h1>
+
+        <!-- Subcopy -->
+        <p class="sub">
+          JP College of Arts & Science brings modern university education to Tenkasi & Tirunelveli.<br class="brk" />
+          Featuring advanced computing labs, flagship AI & Data Science programs, and 35+ dedicated bus routes.
+        </p>
+
+        <!-- Interactive Frosted Glass Triage Console -->
+        <form class="prompt" onsubmit="handleSend(event)">
+          <textarea id="prompt-input" class="prompt__input" rows="2" placeholder="Ask about B.Sc. Artificial Intelligence, B.Com Professional Accounting, or bus routes..."></textarea>
+          
+          <div class="prompt__bar">
+            <!-- Fast Interactive Chips -->
+            <div class="prompt__chips">
+              <span class="chip" onclick="selectChip('B.Sc. AI & Data Science')">AI & Data Science</span>
+              <span class="chip" onclick="selectChip('B.Sc. Computer Science')">Computer Science</span>
+              <span class="chip" onclick="selectChip('B.Com Professional Accounting')">B.Com (CA & PA)</span>
+              <span class="chip" onclick="selectChip('B.B.A. Aviation & Logistics')">B.B.A. Aviation</span>
+              <span class="chip" onclick="selectChip('Tenkasi Bus Routes')">Campus Buses</span>
+            </div>
+
+            <!-- WhatsApp Direct Send Button -->
+            <div class="prompt__right">
+              <button class="icon-btn--send" type="submit" aria-label="Send WhatsApp Inquiry">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 12h14M13 6l6 6-6 6"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 2: INTELLIGENT PERFORMANCE ENGINE (Metric Cards)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section-perf" id="performance">
+    <!-- Looping Ambient Video Accent -->
+    <div class="perf-bg">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260826_125226_45cb4f38-aa7e-47e1-885d-ae0b69745369.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="perf-container">
+      <!-- Section Masthead -->
+      <div class="masthead">
+        <h2 class="perf-title">
+          Built for <span class="dot-word">Intelligent</span><br>Academic Performance
+        </h2>
+        <p class="perf-intro">
+          Every degree track is engineered for research rigor, computing depth, and corporate placement—giving Tenkasi & Tirunelveli youth the launchpad to compete globally.
+        </p>
+      </div>
+
+      <!-- 3 Glass Performance Cards with Photo Underlay Textures -->
+      <div class="perf-cards">
+        <!-- Card 1: Placement Speed / MNC Recruitment -->
+        <div class="perf-card card--placement">
+          <div class="card__photo-layer" style="background-image: url('assets/rank_jercy.jpg');"></div>
+          <video class="card-video" autoplay muted loop playsinline preload="auto">
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260826_130045_1a612b69-4854-4b34-8043-ccb91f2c60af.mp4" type="video/mp4">
+          </video>
+          <div class="card__header">
+            <span class="card__tag">Placement Engine</span>
+            <h3 class="card__title">Recruitment Velocity<br>& Corporate Drives</h3>
+          </div>
+          <div class="card__center">
+            <div class="metric-number">
+              92<span class="metric-unit">%</span>
+            </div>
+            <p class="card__caption">
+              Consistent placement track record with 45+ top tier recruiters including TCS, Infosys, Wipro, and CTS.
+            </p>
+          </div>
+          <div class="card__footer">
+            <a class="btn-glass" href="https://wa.me/919442228410?text=I%20want%20to%20know%20about%20JP%20College%20placements%20and%20recruitment%20partners" target="_blank">Placement Records</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Research & AI Computing Infrastructure -->
+        <div class="perf-card card--research">
+          <div class="card__photo-layer" style="background-image: url('assets/rank_anandha.jpg');"></div>
+          <video class="card-video" autoplay muted loop playsinline preload="auto">
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260826_130054_dd005674-d693-4d81-80a5-357f7f10b3a3.mp4" type="video/mp4">
+          </video>
+          <div class="card__header">
+            <span class="card__tag">Computing Depth</span>
+            <h3 class="card__title">Advanced AI Labs<br>& Scholar Network</h3>
+          </div>
+          <div class="card__center">
+            <div class="metric-number">
+              2.5<span class="metric-unit">K+</span>
+            </div>
+            <p class="card__caption">
+              Active scholars leveraging high-speed GPU computing terminals, cloud infrastructure, and central digital libraries.
+            </p>
+          </div>
+          <div class="card__footer">
+            <a class="btn-glass" href="https://wa.me/919442228410?text=I%20want%20to%20know%20about%20JP%20College%20computing%20labs%20and%20research%20facilities" target="_blank">Explore Labs</a>
+          </div>
+        </div>
+
+        <!-- Card 3: Regional Transit & Bus Connectivity -->
+        <div class="perf-card card--network">
+          <div class="card__photo-layer" style="background-image: url('assets/merit_flow_poster.jpg');"></div>
+          <video class="card-video" autoplay muted loop playsinline preload="auto">
+            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260826_130103_7550f407-f14b-40a6-9616-7a26d7a8bd9f.mp4" type="video/mp4">
+          </video>
+          <div class="card__header">
+            <span class="card__tag">Transit Grid</span>
+            <h3 class="card__title">Regional Transit Fleet<br>& Daily Coverage</h3>
+          </div>
+          <div class="card__center">
+            <div class="metric-number">
+              35<span class="metric-unit">+</span>
+            </div>
+            <p class="card__caption">
+              Dedicated college buses connecting Tenkasi, Tirunelveli, Sankarankovil, Alangulam, Surandai, and Shenkottai.
+            </p>
+          </div>
+          <div class="card__footer">
+            <a class="btn-glass" href="https://wa.me/919442228410?text=I%20want%20to%20check%20bus%20routes%20and%20timings%20for%20my%20town" target="_blank">Bus Routes</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auto-Rolling MSU Rank Holders & Placed Scholars Marquee -->
+      <div class="rank-showcase">
+        <div class="rank-showcase__head">
+          <div class="rank-showcase__title">
+            <span>University Rank Holders &amp; Star Placements</span>
+            <span class="rank-showcase__badge">Manonmaniam Sundaranar University</span>
+          </div>
+          <span style="font-size: 13px; color: #64748b; font-weight: 500;">Hover to inspect profile</span>
+        </div>
+
+        <div class="rank-marquee-container">
+          <div class="rank-marquee-track">
+            <!-- Scholar 1 -->
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_jercy.jpg" alt="Jercy M.">
+              <div class="rank-info">
+                <span class="rank-name">Jercy M.</span>
+                <span class="rank-award gold">🥇 1st Rank (Gold Medalist)</span>
+                <span class="rank-dept">B.Sc. Computer Science</span>
+              </div>
+            </div>
+
+            <!-- Scholar 2 -->
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_malini.jpg" alt="Malini S.">
+              <div class="rank-info">
+                <span class="rank-name">Malini S.</span>
+                <span class="rank-award gold">🥈 2nd Rank (University Medal)</span>
+                <span class="rank-dept">B.Com. Professional Accounting</span>
+              </div>
+            </div>
+
+            <!-- Scholar 3 -->
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_anandha.jpg" alt="Anandha Sudhan K.">
+              <div class="rank-info">
+                <span class="rank-name">Anandha Sudhan K.</span>
+                <span class="rank-award">🥉 3rd Rank (MSU Merit)</span>
+                <span class="rank-dept">B.Sc. Mathematics &amp; AI</span>
+              </div>
+            </div>
+
+            <!-- Scholar 4 -->
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_pushpakala.jpg" alt="Pushpakala R.">
+              <div class="rank-info">
+                <span class="rank-name">Pushpakala R.</span>
+                <span class="rank-award tcs">💼 Placed at TCS Digital</span>
+                <span class="rank-dept">B.Sc. Computer Science</span>
+              </div>
+            </div>
+
+            <!-- Scholar 5 -->
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_raihan.jpg" alt="Raihan M.">
+              <div class="rank-info">
+                <span class="rank-name">Raihan M.</span>
+                <span class="rank-award tcs">💼 Placed at Infosys BPM</span>
+                <span class="rank-dept">B.B.A. Aviation Management</span>
+              </div>
+            </div>
+
+            <!-- Repeated set for seamless infinite scroll loop -->
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_jercy.jpg" alt="Jercy M.">
+              <div class="rank-info">
+                <span class="rank-name">Jercy M.</span>
+                <span class="rank-award gold">🥇 1st Rank (Gold Medalist)</span>
+                <span class="rank-dept">B.Sc. Computer Science</span>
+              </div>
+            </div>
+
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_malini.jpg" alt="Malini S.">
+              <div class="rank-info">
+                <span class="rank-name">Malini S.</span>
+                <span class="rank-award gold">🥈 2nd Rank (University Medal)</span>
+                <span class="rank-dept">B.Com. Professional Accounting</span>
+              </div>
+            </div>
+
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_anandha.jpg" alt="Anandha Sudhan K.">
+              <div class="rank-info">
+                <span class="rank-name">Anandha Sudhan K.</span>
+                <span class="rank-award">🥉 3rd Rank (MSU Merit)</span>
+                <span class="rank-dept">B.Sc. Mathematics &amp; AI</span>
+              </div>
+            </div>
+
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_pushpakala.jpg" alt="Pushpakala R.">
+              <div class="rank-info">
+                <span class="rank-name">Pushpakala R.</span>
+                <span class="rank-award tcs">💼 Placed at TCS Digital</span>
+                <span class="rank-dept">B.Sc. Computer Science</span>
+              </div>
+            </div>
+
+            <div class="rank-card">
+              <img class="rank-avatar" src="assets/rank_raihan.jpg" alt="Raihan M.">
+              <div class="rank-info">
+                <span class="rank-name">Raihan M.</span>
+                <span class="rank-award tcs">💼 Placed at Infosys BPM</span>
+                <span class="rank-dept">B.B.A. Aviation Management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 3: TRUEEARTH 2-COLUMN SPLIT GRID (Eco-Campus)
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section-trueearth" id="campus">
+    <div class="trueearth-container">
+      <!-- Left Column: Editorial & Story -->
+      <div class="te__left">
+        <div class="te__eyebrow">Western Ghats Foothills • Tenkasi</div>
+        <h2 class="te__title">
+          Rooted in <span class="hl-box">Heritage,</span><br>
+          Pioneering Future Careers.
+        </h2>
+        <p class="te__text">
+          Established by the Grace Educational Trust under the visionary leadership of Rev. Fr. Dr. J.E. Arul Raj, JP College of Arts & Science is situated in a tranquil 85-acre eco-campus at Agarakattu, Ayikudi.
+          <br><br>
+          Here, lush mountain breeze and peaceful greenery create the ideal academic ecosystem where disciplined learning, sports excellence, and ethical values thrive together.
+        </p>
+
+        <div class="te__cta-row">
+          <a class="te__cta" href="https://wa.me/919442228410?text=I%20would%20like%20to%20schedule%20a%20campus%20visit%20at%20JP%20College,%20Tenkasi" target="_blank">
+            <span>Schedule Campus Tour</span>
+            <div class="te__icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Media Card with Interactive Markers -->
+      <div class="te__media">
+        <video autoplay muted loop playsinline preload="auto" poster="assets/merit_flow_poster.jpg">
+          <source src="assets/merit_flow_slowed.mp4" type="video/mp4">
+        </video>
+        <div class="te__media-scrim"></div>
+
+        <!-- Authentic Callout Markers -->
+        <div class="marker marker--campus">
+          <span class="marker-dot"></span>
+          <span>85-Acre Eco-Campus</span>
+        </div>
+
+        <div class="marker marker--labs">
+          <span class="marker-dot"></span>
+          <span>MSU Recognized Labs</span>
+        </div>
+
+        <!-- Notched Pill in Corner -->
+        <div class="te__social-notch">
+          <span>Grace Educational Trust</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 4: DEGREE CATALOG & ADMISSIONS DESK
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section-programs" id="degrees">
+    <div class="programs-container">
+      <div class="section-heading">
+        <div class="eyebrow">Academic Programs 2026–2027</div>
+        <h2 class="h2">Degrees Affiliated to Manonmaniam Sundaranar University</h2>
+        <p class="lede">Comprehensive undergraduate and postgraduate programs designed to meet current industrial and IT standards.</p>
+      </div>
+
+      <div class="grid-courses">
+        <div class="course-card flag">
+          <div>
+            <span class="course-tag">Flagship Track</span>
+            <h3>B.Sc. AI & Data Science</h3>
+            <p>Advanced Python programming, machine learning foundations, algorithms, and practical data labs.</p>
+          </div>
+          <a class="course-action" href="https://wa.me/919442228410?text=I%20am%20inquiring%20about%20B.Sc.%20AI%20and%20Data%20Science%20curriculum%20and%20fees" target="_blank">Inquire Syllabus &rarr;</a>
+        </div>
+
+        <div class="course-card">
+          <div>
+            <span class="course-tag" style="background:#2563eb;">Tech Core</span>
+            <h3>B.Sc. Computer Science</h3>
+            <p>Full-stack development, database architecture, network systems, and software engineering practicals.</p>
+          </div>
+          <a class="course-action" href="https://wa.me/919442228410?text=I%20am%20inquiring%20about%20B.Sc.%20Computer%20Science%20admissions" target="_blank">Inquire Syllabus &rarr;</a>
+        </div>
+
+        <div class="course-card">
+          <div>
+            <span class="course-tag" style="background:#059669;">Finance Track</span>
+            <h3>B.Com. (Professional Accounting)</h3>
+            <p>Corporate accounting, taxation, auditing laws, and financial analytics for banking and CA pathways.</p>
+          </div>
+          <a class="course-action" href="https://wa.me/919442228410?text=I%20am%20inquiring%20about%20B.Com%20Professional%20Accounting" target="_blank">Inquire Syllabus &rarr;</a>
+        </div>
+
+        <div class="course-card">
+          <div>
+            <span class="course-tag" style="background:#7c3aed;">Management</span>
+            <h3>B.B.A. (Aviation & Logistics)</h3>
+            <p>Air cargo operations, supply chain logistics, organizational behavior, and modern management strategy.</p>
+          </div>
+          <a class="course-action" href="https://wa.me/919442228410?text=I%20am%20inquiring%20about%20BBA%20Aviation%20Management" target="_blank">Inquire Syllabus &rarr;</a>
+        </div>
+
+        <div class="course-card">
+          <div>
+            <span class="course-tag" style="background:#475569;">Humanities</span>
+            <h3>B.A. English Literature</h3>
+            <p>World literature, professional business communication, linguistics, and journalism training.</p>
+          </div>
+          <a class="course-action" href="https://wa.me/919442228410?text=I%20am%20inquiring%20about%20BA%20English%20admissions" target="_blank">Inquire Syllabus &rarr;</a>
+        </div>
+
+        <div class="course-card">
+          <div>
+            <span class="course-tag" style="background:#ea580c;">Postgraduate</span>
+            <h3>M.Sc. Computer Science</h3>
+            <p>Advanced cloud computing, distributed systems, deep learning models, and university research projects.</p>
+          </div>
+          <a class="course-action" href="https://wa.me/919442228410?text=I%20am%20inquiring%20about%20M.Sc.%20Computer%20Science%20seats" target="_blank">Inquire Syllabus &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Admissions Desk Card -->
+      <div class="admissions-box" id="admissions">
+        <div>
+          <h3>JP College Admissions Desk</h3>
+          <p>
+            College Road, Grace Nagar, Agarakattu, Ayikudi P.O.,<br>
+            Tenkasi District, Tamil Nadu — 627 852.
+          </p>
+          <ul class="admissions-contact-list">
+            <li>
+              <strong>Admissions Hotline:</strong> +91 94422 28410
+            </li>
+            <li>
+              <strong>College Office:</strong> 04633 - 267310 / 267311
+            </li>
+            <li>
+              <strong>Email Desk:</strong> admissions@jpcollege.edu.in
+            </li>
+            <li>
+              <strong>Affiliation:</strong> Manonmaniam Sundaranar University (MSU)
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Instant WhatsApp Intake</h3>
+          <p>
+            Have questions regarding eligibility criteria, merit scholarships, hostel accommodations, or transport routes? Our admissions officers respond directly via WhatsApp during college hours.
+          </p>
+          <div class="admissions-actions">
+            <a class="btn-dark btn-whatsapp" href="https://wa.me/919442228410?text=Hi%20JP%20College%20Admissions,%20I%20am%20inquiring%20about%202026%20admissions%20and%20fees" target="_blank">
+              WhatsApp Admissions
+            </a>
+            <a class="btn-dark" style="background:#fff; color:#141414; border:1px solid rgba(0,0,0,0.15);" href="tel:+919442228410">
+              Call Hotline
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <p>© 2026 JP College of Arts & Science. Managed by Grace Educational Trust. Affiliated to Manonmaniam Sundaranar University, Tirunelveli.</p>
+    <p style="margin-top: 6px; font-size: 12px; opacity: 0.7;">Demo built autonomously via Sago Site Engine (v0.5.0)</p>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       INTERACTIVE LOGIC
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+    // Mobile navigation toggle
+    (function() {
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('site-menu');
+      if (!toggle || !menu) return;
+
+      function setMenu(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        menu.classList.toggle('is-open', open);
+        document.body.classList.toggle('menu-open', open);
+      }
+
+      function isOpen() {
+        return toggle.getAttribute('aria-expanded') === 'true';
+      }
+
+      toggle.addEventListener('click', () => setMenu(!isOpen()));
+
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setMenu(false));
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) {
+          setMenu(false);
+          toggle.focus();
+        }
+      });
+    })();
+
+    // Triage Console selection helper
+    function selectChip(text) {
+      const input = document.getElementById('prompt-input');
+      if (!input) return;
+      input.value = `I want to inquire about: ${text}`;
+      input.focus();
+    }
+
+    // Direct WhatsApp send handler
+    function handleSend(e) {
+      e.preventDefault();
+      const input = document.getElementById('prompt-input');
+      const query = input ? input.value.trim() : '';
+      const text = query || 'Admissions information for 2026–2027';
+      const msg = encodeURIComponent(`Hello JP College Admissions, ${text}`);
+      window.open(`https://wa.me/919442228410?text=${msg}`, '_blank');
+    }
+
+    // Auto-scroll handler for verification preview
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('scroll')) {
+      const target = document.getElementById(urlParams.get('scroll'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'instant' });
+      }
+    }
+  </script>
+</body>
+</html>

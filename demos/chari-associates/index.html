@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chari &amp; Associates — Chartered Accountants, KK Nagar Chennai</title>
+<meta name="description" content="Chari & Associates, chartered accountants in Nesapakkam / KK Nagar, Chennai since 2000. Audit, income tax, GST, company registration and compliance." />
+<link href="https://db.onlinewebfonts.com/c/9d4d074c9335825a23cce178ee03b498?family=P22+Mackinac+W01+Book" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','sans-serif'], serif: ['"P22 Mackinac W01 Book"','Georgia','serif'] } } } };
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+  .hero-video { object-position: 22% top; transform: scale(1.15); transform-origin: top left; }
+  @media (max-width: 768px) { .hero-video { object-position: 18% top; transform: scale(1.35); } }
+  @media (min-width: 768px) {
+    .hero-copy.hero-copy { align-items: flex-end; padding-right: 3rem; }
+    .hero-copy h1, .hero-copy .hero-sub { text-align: left; }
+  }
+  @media (min-width: 1024px) { .hero-copy.hero-copy { padding-right: 5rem; } }
+</style>
+</head>
+<body class="min-h-screen bg-white overflow-x-hidden text-[#191919]">
+
+<!-- Fixed navbar : transparent over video -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 sm:px-10 md:px-14 py-4 sm:py-5">
+  <div class="flex items-center">
+    <a href="#top" class="flex items-center gap-2.5">
+      <svg viewBox="0 0 256 256" fill="currentColor" class="w-6 h-6 text-[#191919]"><path d="M 144 256 L 27.598 256 L 144 139.598 Z"/><path d="M 256 207.5 L 200 256 L 200 56 L 0 56 L 48 0 L 256 0 Z"/><path d="M 0 204.402 L 0 112 L 92.402 112 Z"/></svg>
+      <span class="font-semibold text-base tracking-tight text-[#191919]">Chari &amp; Associates</span>
+    </a>
+    <div class="hidden md:flex items-center gap-10 mx-auto">
+      <a href="#services" class="text-sm text-[#191919]/70 hover:text-[#191919] transition-colors duration-200">Services</a>
+      <a href="#trust" class="text-sm text-[#191919]/70 hover:text-[#191919] transition-colors duration-200">Why us</a>
+      <a href="#contact" class="text-sm text-[#191919]/70 hover:text-[#191919] transition-colors duration-200">Contact</a>
+    </div>
+    <a href="https://wa.me/919003254592?text=Hello%20Chari%20%26%20Associates%2C%20I%20need%20help%20with%20audit%20%2F%20tax%20%2F%20GST." class="ml-auto md:ml-0 px-5 py-2.5 bg-[#191919] text-white text-sm font-medium rounded-lg hover:bg-[#191919]/90 transition-colors duration-200">WhatsApp us</a>
+  </div>
+</nav>
+
+<!-- Hero : full first viewport -->
+<header id="top" class="relative flex flex-col items-center overflow-hidden min-h-screen">
+  <div class="absolute inset-0 z-0 overflow-hidden scale-[1.15] origin-top">
+    <video class="hero-video w-full h-full object-cover" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg">
+      <source src="media/hero-slow.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <div class="hero-copy relative z-10 flex flex-col items-center px-4 sm:px-6 pt-24 sm:pt-26 md:pt-32 w-full">
+    <span class="text-[11px] uppercase tracking-[0.2em] text-[#191919]/50 font-medium border border-gray-200 bg-white/90 backdrop-blur-sm rounded-full px-4 py-1.5">KK Nagar, Chennai · Since 2000</span>
+    <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.1] tracking-tighter text-[#191919] font-normal text-center md:text-left mt-5">Clean books,<br />honest advice.</h1>
+    <p class="hero-sub max-w-sm sm:max-w-md mt-5 sm:mt-6 md:mt-8 text-sm md:text-base text-[#191919]/70 leading-relaxed text-center md:text-left">Chartered accounting firm for Chennai&rsquo;s growing businesses — partners who handle the full audit-to-filing lifecycle across income tax, GST, and ROC.</p>
+    <div class="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row items-center gap-3">
+      <a href="https://wa.me/919003254592?text=Hello%20Chari%20%26%20Associates%2C%20I%20need%20help%20with%20audit%20%2F%20tax%20%2F%20GST." class="px-6 sm:px-8 py-3 sm:py-3.5 bg-[#191919] text-white text-sm font-medium rounded-lg hover:bg-[#191919]/90 transition-colors duration-200">Book a consultation</a>
+      <a href="tel:+919003254592" class="px-6 sm:px-8 py-3 sm:py-3.5 text-sm font-medium rounded-lg border border-gray-200 bg-white/90 backdrop-blur-sm hover:bg-[#eaeaea] transition-colors duration-200">Call 90032 54592</a>
+    </div>
+    <!-- prompt console -->
+    <form id="ask" class="mt-5 w-full max-w-sm sm:max-w-md flex items-center gap-2 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-lg px-4 py-3 shadow-sm">
+      <input id="askInput" type="text" placeholder="Ask: GST filing, audit, company registration…" class="flex-1 bg-transparent outline-none text-sm placeholder:text-[#191919]/40" />
+      <button type="submit" class="text-sm font-medium px-4 py-2 bg-[#191919] text-white rounded-lg hover:bg-[#191919]/90 transition-colors duration-200">Ask →</button>
+    </form>
+  </div>
+
+  <!-- Bottom info panel flush to viewport bottom -->
+  <div class="relative z-10 mt-auto w-full max-w-5xl px-4 sm:px-6">
+    <div class="bg-white/90 backdrop-blur-sm border border-gray-200 border-b-0 pt-8 sm:pt-12 md:pt-16 px-5 sm:px-8 md:px-12 pb-0 shadow-sm">
+      <div class="md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-16">
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.2em] text-[#191919]/50 font-medium">What do we do?</p>
+          <h2 class="mt-3 text-2xl sm:text-3xl md:text-4xl font-serif font-normal leading-tight tracking-tight">Guidance that<br class="hidden sm:block" /> builds momentum</h2>
+        </div>
+        <p class="mt-4 md:mt-0 md:self-end text-sm md:text-[15px] text-[#191919]/70 leading-relaxed">Chartered expertise built for growing Indian businesses. Partners who answer the phone, plug into the books you run, and show their work.</p>
+      </div>
+      <div class="h-px bg-gray-200 w-full mt-6 sm:mt-8 md:mt-10"></div>
+      <div class="grid sm:grid-cols-3 gap-2 sm:gap-3 py-4 sm:py-5">
+        <a href="#services" class="group flex items-center justify-between bg-[#F4F3F3] hover:bg-[#eaeaea] transition-all duration-200 cursor-pointer px-4 sm:px-6 py-3.5 sm:py-4 rounded-md"><span><span class="text-[#191919]/40">01</span><span class="mx-2 text-[#191919]/30">/</span><span class="font-medium">Audit &amp; Assurance</span></span><span class="text-gray-400 group-hover:text-gray-700 group-hover:translate-x-0.5 transition-all duration-200">→</span></a>
+        <a href="#services" class="group flex items-center justify-between bg-[#F4F3F3] hover:bg-[#eaeaea] transition-all duration-200 cursor-pointer px-4 sm:px-6 py-3.5 sm:py-4 rounded-md"><span><span class="text-[#191919]/40">02</span><span class="mx-2 text-[#191919]/30">/</span><span class="font-medium">Tax &amp; GST</span></span><span class="text-gray-400 group-hover:text-gray-700 group-hover:translate-x-0.5 transition-all duration-200">→</span></a>
+        <a href="#services" class="group flex items-center justify-between bg-[#F4F3F3] hover:bg-[#eaeaea] transition-all duration-200 cursor-pointer px-4 sm:px-6 py-3.5 sm:py-4 rounded-md"><span><span class="text-[#191919]/40">03</span><span class="mx-2 text-[#191919]/30">/</span><span class="font-medium">Company &amp; Compliance</span></span><span class="text-gray-400 group-hover:text-gray-700 group-hover:translate-x-0.5 transition-all duration-200">→</span></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Section 1 : services -->
+<section id="services" class="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 pt-16 md:pt-24 pb-4">
+  <p class="text-[11px] uppercase tracking-[0.2em] text-[#191919]/50 font-medium">Services</p>
+  <h2 class="mt-3 text-2xl sm:text-3xl md:text-4xl font-serif font-normal leading-tight tracking-tight">Everything the books demand,<br class="hidden sm:block" /> under one roof</h2>
+  <div class="mt-8 grid sm:grid-cols-3 gap-2 sm:gap-3">
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md"><p class="text-[#191919]/40 text-sm">01 / Audit</p><h3 class="font-medium mt-2">Audit &amp; assurance</h3><p class="text-sm text-[#191919]/70 leading-relaxed mt-2">Statutory, internal and bank audits with clear reports you can act on.</p></div>
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md"><p class="text-[#191919]/40 text-sm">02 / Tax</p><h3 class="font-medium mt-2">Income tax &amp; GST</h3><p class="text-sm text-[#191919]/70 leading-relaxed mt-2">Returns, assessments, registrations and filings — on time, every time.</p></div>
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md"><p class="text-[#191919]/40 text-sm">03 / Corporate</p><h3 class="font-medium mt-2">Formation &amp; compliance</h3><p class="text-sm text-[#191919]/70 leading-relaxed mt-2">Company registration, ROC, valuation, payroll and advisory support.</p></div>
+  </div>
+</section>
+
+<!-- Section 2 : trust stats -->
+<section id="trust" class="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 pt-12 md:pt-16 pb-4">
+  <p class="text-[11px] uppercase tracking-[0.2em] text-[#191919]/50 font-medium">Why Chari &amp; Associates</p>
+  <h2 class="mt-3 text-2xl sm:text-3xl md:text-4xl font-serif font-normal leading-tight tracking-tight">Twenty-five years of<br class="hidden sm:block" /> answered calls</h2>
+  <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md"><p class="font-serif text-3xl md:text-4xl">25+</p><p class="text-sm text-[#191919]/70 mt-1">years since 2000</p></div>
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md"><p class="font-serif text-3xl md:text-4xl">10</p><p class="text-sm text-[#191919]/70 mt-1">member caring team</p></div>
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md"><p class="font-serif text-3xl md:text-4xl">5.0</p><p class="text-sm text-[#191919]/70 mt-1">rating, 9 client reviews</p></div>
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md"><p class="font-serif text-3xl md:text-4xl">15<span class="text-xl">min</span></p><p class="text-sm text-[#191919]/70 mt-1">typical response time</p></div>
+  </div>
+  <p class="mt-6 text-sm md:text-[15px] text-[#191919]/70 leading-relaxed max-w-2xl">Phone and online consultations available. One branch in KK Nagar serving all of Chennai — clients stay because the advice is practical and the support is quick.</p>
+</section>
+
+<!-- Section 3 : contact -->
+<section id="contact" class="max-w-5xl mx-auto px-4 sm:px-6 md:px-12 pt-12 md:pt-16 pb-20">
+  <p class="text-[11px] uppercase tracking-[0.2em] text-[#191919]/50 font-medium">Visit or call</p>
+  <h2 class="mt-3 text-2xl sm:text-3xl md:text-4xl font-serif font-normal leading-tight tracking-tight">Talk to Prabha&rsquo;s team<br class="hidden sm:block" /> this week</h2>
+  <div class="mt-8 grid md:grid-cols-2 gap-2 sm:gap-3">
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md">
+      <p class="text-[#191919]/40 text-sm">Address</p>
+      <p class="text-sm leading-relaxed mt-2">No. 169, F2, Vijay Vishnu Apts,<br />15th Sector, 94th Street, Nesapakkam,<br />KK Nagar, Chennai – 600078</p>
+      <p class="text-[#191919]/40 text-sm mt-5">Hours</p>
+      <p class="text-sm leading-relaxed mt-2">Monday – Saturday · 09:30 – 18:00<br />Sunday · Closed</p>
+    </div>
+    <div class="bg-[#F4F3F3] px-6 py-6 rounded-md flex flex-col justify-center">
+      <p class="text-[#191919]/40 text-sm">Direct line</p>
+      <a href="tel:+919003254592" class="font-serif text-3xl mt-2 hover:opacity-70 transition-opacity">90032 54592</a>
+      <div class="mt-5 flex flex-col sm:flex-row gap-3">
+        <a href="https://wa.me/919003254592?text=Hello%20Chari%20%26%20Associates%2C%20I%20need%20help%20with%20audit%20%2F%20tax%20%2F%20GST." class="px-6 py-3 bg-[#191919] text-white text-sm font-medium rounded-lg hover:bg-[#191919]/90 transition-colors duration-200 text-center">WhatsApp the firm</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Chari+%26+Associates+94th+Street+15th+Sector+KK+Nagar+Chennai+600078" class="px-6 py-3 text-sm font-medium rounded-lg border border-gray-200 bg-white hover:bg-[#eaeaea] transition-colors duration-200 text-center">Get directions →</a>
+      </div>
+      <p class="text-sm text-[#191919]/50 mt-4">Prefer to talk first? Phone and online consultations available.</p>
+    </div>
+  </div>
+  <footer class="mt-12 pt-6 border-t border-gray-200 flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
+    <p class="text-sm text-[#191919]/50">Chari &amp; Associates · Chartered Accountants · KK Nagar, Chennai</p>
+    <p class="text-sm text-[#191919]/40">Demo concept — facts from public listings, August 2026</p>
+  </footer>
+</section>
+
+<script>
+document.getElementById('ask').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var q = document.getElementById('askInput').value.trim() || 'I need help with audit / tax / GST.';
+  window.open('https://wa.me/919003254592?text=' + encodeURIComponent('Hello Chari & Associates, ' + q), '_blank');
+});
+</script>
+</body>
+</html>

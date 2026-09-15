@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Advisory Fees - Meridian Capital</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#d6e4f7",
+                        "on-tertiary": "#20314b",
+                        "on-primary": "#3c2f00",
+                        "surface-tint": "#e9c349",
+                        "inverse-on-surface": "#243240",
+                        "on-error": "#690005",
+                        "outline-variant": "#4d4635",
+                        "on-tertiary-fixed": "#091c35",
+                        "surface-bright": "#2d3a49",
+                        "background": "#061422",
+                        "on-tertiary-fixed-variant": "#374762",
+                        "inverse-surface": "#d6e4f7",
+                        "surface": "#061422",
+                        "on-secondary-fixed-variant": "#3c475c",
+                        "on-secondary-container": "#adb9d2",
+                        "outline": "#99907c",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed": "#d7e3fd",
+                        "primary-fixed": "#ffe088",
+                        "surface-container-lowest": "#020f1c",
+                        "on-secondary-fixed": "#101c2f",
+                        "surface-dim": "#061422",
+                        "on-surface-variant": "#d0c5af",
+                        "inverse-primary": "#735c00",
+                        "on-background": "#d6e4f7",
+                        "on-primary-fixed-variant": "#574500",
+                        "surface-container-high": "#1e2b39",
+                        "primary-container": "#d4af37",
+                        "on-tertiary-container": "#354661",
+                        "secondary-container": "#3e495f",
+                        "error-container": "#93000a",
+                        "tertiary-fixed-dim": "#b6c7e8",
+                        "tertiary-fixed": "#d5e3ff",
+                        "surface-variant": "#293644",
+                        "secondary-fixed-dim": "#bbc7e1",
+                        "primary": "#f2ca50",
+                        "on-secondary": "#253145",
+                        "surface-container-low": "#0f1d2a",
+                        "on-primary-fixed": "#241a00",
+                        "secondary": "#bbc7e1",
+                        "tertiary": "#becff0",
+                        "surface-container-highest": "#293644",
+                        "surface-container": "#13212e",
+                        "on-primary-container": "#554300",
+                        "tertiary-container": "#a3b4d4",
+                        "error": "#ffb4ab",
+                        "primary-fixed-dim": "#e9c349"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "48px",
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "section-gap": "80px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "data-mono": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "data-mono": ["14px", { "lineHeight": "1.0", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #061422; /* background */
+            color: #d6e4f7; /* on-background */
+        }
+        .glow-accent {
+            box-shadow: 0 0 40px -10px rgba(242, 202, 80, 0.15);
+        }
+        .subtle-border {
+            border: 1px solid #1e3a5f;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface text-primary dark:text-primary docked full-width top-0 border-b border-outline-variant flat no shadows flex justify-between items-center h-20 px-margin-desktop w-full max-w-container-max mx-auto z-50 sticky">
+<div class="flex items-center gap-gutter">
+<div class="flex items-center gap-stack-sm cursor-pointer hover:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined text-[32px] text-primary" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-headline-md text-headline-md text-primary dark:text-primary tracking-tight">Meridian Capital</span>
+</div>
+<div class="hidden md:flex gap-gutter ml-margin-desktop">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Institutional Mandates</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Private Wealth</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Portfolio Dashboard</a>
+<a class="font-label-caps text-label-caps text-primary dark:text-primary border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-300" href="#">Advisory Fees</a>
+</div>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="hidden md:flex items-center gap-stack-sm">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-300 hover:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-stack-md py-stack-sm rounded hover:brightness-110 transition-all hover:scale-95 duration-150 ease-in-out">
+                Client Portal
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pb-section-gap">
+<!-- Hero Section -->
+<section class="w-full max-w-container-max mx-auto px-margin-desktop pt-section-gap pb-stack-lg flex flex-col items-center text-center relative">
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-low to-transparent opacity-50 -z-10 rounded-full blur-3xl w-1/2 h-full mx-auto"></div>
+<div class="inline-flex items-center gap-stack-sm px-stack-md py-unit bg-surface-container border border-outline rounded-full mb-stack-lg">
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+<span class="font-label-caps text-label-caps text-primary uppercase">Fiduciary Mandate &amp; Pricing</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-stack-md max-w-4xl tracking-tight">
+                Transparent Fiduciary Governance.<br/>
+<span class="text-primary">Sovereign-Scale Alignment.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-section-gap">
+                Institutional pricing tiers engineered for single family offices, sovereign endowments, and accredited asset pools.
+            </p>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant flat no shadows full-width">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="flex flex-col gap-stack-md">
+<span class="font-headline-sm text-headline-sm text-on-surface">Meridian Capital</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    © 2024 Meridian Capital Management. All rights reserved. Member FINRA/SIPC.
+                </p>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-unit">Offices</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors Opacity shift on hover" href="#">Geneva Registry</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors Opacity shift on hover" href="#">London Office</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors Opacity shift on hover" href="#">New York HQ</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors Opacity shift on hover" href="#">Singapore Office</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-unit">Legal</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors Opacity shift on hover" href="#">Legal Disclosures</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors Opacity shift on hover" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-unit">Access</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors Opacity shift on hover flex items-center gap-unit" href="#">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                    Encrypted Portal
+                </a>
+</div>
+</div>
+</footer>
+</body></html>

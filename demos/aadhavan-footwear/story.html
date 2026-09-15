@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>The Artisan Story & Craftsmanship | Aadhavan Handcrafted Chappals</title>
+  <meta name="description" content="Explore the Gandhipuram leather workshop heritage, vegetable-tanning process, and double-welt stitching tradition of Aadhavan chappals."/>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#6f331a",
+            "primary-container": "#8c4a2f",
+            "primary-fixed": "#ffdbce",
+            "on-primary": "#ffffff",
+            "secondary": "#835426",
+            "secondary-container": "#ffbf88",
+            "background": "#fff8f5",
+            "surface": "#fff8f5",
+            "surface-container-low": "#fbf2ed",
+            "surface-container": "#f5ece7",
+            "surface-container-high": "#efe6e2",
+            "on-background": "#1e1b18",
+            "on-surface": "#1e1b18",
+            "on-surface-variant": "#53433d",
+            "outline": "#86736c",
+            "outline-variant": "#d9c2ba"
+          },
+          fontFamily: {
+            serif: ["Libre Caslon Text", "Georgia", "serif"],
+            sans: ["Work Sans", "system-ui", "sans-serif"]
+          },
+          spacing: {
+            "container-max": "1280px",
+            "gutter": "24px",
+            "section-gap": "96px"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .ledger-border { border: 1px dashed rgba(134, 115, 108, 0.35); }
+  </style>
+</head>
+<body class="bg-background text-on-background font-sans antialiased selection:bg-primary selection:text-white">
+
+  <!-- Top Navigation Bar -->
+  <nav class="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-300">
+    <div class="max-w-container-max mx-auto px-6 md:px-12 h-20 flex justify-between items-center">
+      
+      <a class="flex items-center gap-3 group" href="index.html">
+        <img alt="Aadhavan Monogram" class="h-10 md:h-12 w-auto mix-blend-multiply group-hover:scale-105 transition-transform" src="images/logo.png"/>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl font-bold tracking-tight text-primary">AADHAVAN</span>
+          <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-secondary -mt-1">Handcrafted Chappals</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+        <a class="hover:text-primary transition-colors" href="catalog.html">Catalog Ledger</a>
+        <a class="hover:text-primary transition-colors" href="product.html">Classic Kolhapuri</a>
+        <a class="text-primary border-b-2 border-primary pb-1" href="story.html">Artisan Story</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/919842215500?text=Hello%20Aadhavan%20Atelier,%20I%20would%20like%20to%20visit%20your%20Gandhipuram%20workshop." target="_blank" class="inline-flex items-center gap-2 bg-primary text-on-primary px-4 py-2.5 rounded text-xs font-semibold uppercase tracking-wider hover:bg-primary-container transition-all">
+          <span class="material-symbols-outlined text-sm">store</span>
+          <span class="hidden sm:inline">Visit Workshop</span>
+        </a>
+        <button id="menu-btn" class="md:hidden p-2 text-primary hover:bg-surface-container-low rounded focus:outline-none" aria-label="Toggle Navigation">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant/30 bg-surface-container-low px-6 py-6 space-y-4">
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="index.html">Home Storefront</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="index.html#ledger">The Footwear Ledger</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="product.html">Classic Kolhapuri</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-primary" href="story.html">Artisan Story & Craft</a>
+      <div class="pt-4 border-t border-outline-variant/30">
+        <a href="https://wa.me/919842215500?text=Hello%20Aadhavan%20Atelier,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-3 rounded text-xs font-semibold uppercase tracking-wider">
+          <span class="material-symbols-outlined text-sm">forum</span> WhatsApp Order: +91 98422 15500
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Story Hero -->
+  <header class="max-w-container-max mx-auto px-6 md:px-12 py-16 md:py-24 text-center">
+    <span class="text-xs font-semibold uppercase tracking-widest text-secondary">The Gandhipuram Chronicle</span>
+    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary font-normal mt-3 max-w-3xl mx-auto leading-tight">
+      Slow Luxury Rooted in the Mark of the Hand.
+    </h1>
+    <p class="text-base sm:text-lg text-on-surface-variant max-w-2xl mx-auto mt-6 leading-relaxed">
+      In an era dominated by synthetic injection-molded footwear destined for landfills, our workshop preserves the sacred patience of indigenous Tamil leathercraft.
+    </p>
+  </header>
+
+  <!-- Visual Feature Image -->
+  <div class="max-w-5xl mx-auto px-6 mb-20">
+    <div class="p-3 bg-surface-container-low rounded-lg ledger-border">
+      <img src="images/workshop.jpg" alt="Master artisan stitching leather chappal in workshop" class="w-full rounded shadow-xl aspect-[16/9] object-cover"/>
+    </div>
+    <p class="text-center text-xs text-on-surface-variant mt-3 italic">
+      Master cobbler Palaniswamy at the Gandhipuram bench, hand-piercing an outsole with an awl and beeswaxed linen cord.
+    </p>
+  </div>
+
+  <!-- Narrative & Core Pillars -->
+  <main class="max-w-4xl mx-auto px-6 space-y-16 pb-24">
+    
+    <!-- Section 1: The Raw Material -->
+    <section class="space-y-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-secondary">Pillar 01</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary">Bark, Water, and 40 Days of Patience.</h2>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+        Commercial fast-fashion footwear relies heavily on chromium tanning—a toxic chemical process that forces leather to tan in 24 hours at great environmental cost. We adamantly refuse chromium.
+      </p>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+        Every hide used in an Aadhavan chappal is immersed in earthen pits filled with water and extracts of <strong class="text-on-surface">Babul (Acacia nilotica)</strong> and <strong class="text-on-surface">Avaram Senna</strong> flower pods. Over 40 slow days, the plant tannins bind naturally to the collagen fibers, yielding leather that breathes, ages like antique timber, and smells purely of earth.
+      </p>
+    </section>
+
+    <!-- Section 2: The Double-Welt Hand Stitch -->
+    <section class="space-y-4 border-t border-outline-variant/30 pt-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-secondary">Pillar 02</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary">The Stitch That Never Unravels.</h2>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+        Modern shoes are held together by polyurethane cement. When heat or rain strikes, the glue delaminates and the sole detaches.
+      </p>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+        Our master cobblers use high-tensile Irish linen thread, spun and drawn through blocks of pure beeswax for water repellency. Each stitch is pierced through both the upper welt and the thick sole with an awl, creating a mechanical lock. Even if an external thread is severed on rocky terrain, the internal hand lock preserves the welt intact.
+      </p>
+    </section>
+
+    <!-- Section 3: The Lifetime Resoling Pledge -->
+    <section class="space-y-4 border-t border-outline-variant/30 pt-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-secondary">Pillar 03</span>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold text-primary">Built to be Repaired, Never Replaced.</h2>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+        Full-grain vegetable leather develops a stunning patina over the years, molding into an anatomical negative of your foot. It would be a crime to discard footwear once the outer heel rubber wears down.
+      </p>
+      <div class="p-6 bg-surface-container-low rounded border border-outline-variant/40 space-y-3">
+        <h3 class="font-serif text-lg font-bold text-primary">The Aadhavan Resoling Protocol:</h3>
+        <ul class="text-xs sm:text-sm text-on-surface-variant space-y-2 list-disc list-inside">
+          <li>Ship your worn pair to our Gandhipuram atelier or drop by in person.</li>
+          <li>Our cobblers unpick the bottom welt stitching while keeping your custom-molded insole untouched.</li>
+          <li>A fresh compressed leather outsole and traction heel are hand-stitched into place.</li>
+          <li>The uppers are nourished with natural castor and neem oil, and returned ready for another 5 years of walking.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Workshop Visit Section -->
+    <section class="border-t border-outline-variant/30 pt-12">
+      <div class="p-8 bg-surface-container rounded-lg ledger-border space-y-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-secondary">Open Atelier Policy</span>
+        <h2 class="font-serif text-2xl font-bold text-primary">Visit Us in Gandhipuram, Coimbatore</h2>
+        <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+          We invite patrons, travelers, and design lovers to sit at our workshop, watch hides being hand-cut, try our archives, and have your feet traced in person by master cobbler Palaniswamy.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
+          <div>
+            <strong class="text-on-surface block">Atelier Address:</strong>
+            <span class="text-on-surface-variant">142 Cross Cut Road, Gandhipuram, Coimbatore, TN 641012</span>
+          </div>
+          <div>
+            <strong class="text-on-surface block">Visiting Hours:</strong>
+            <span class="text-on-surface-variant">Monday to Saturday: 9:30 AM – 8:00 PM</span>
+          </div>
+        </div>
+        <div class="pt-2">
+          <a href="https://wa.me/919842215500?text=Hello%20Aadhavan,%20I%20would%20like%20to%20schedule%20a%20visit%20to%20the%20workshop." target="_blank" class="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded text-xs font-semibold uppercase tracking-wider">
+            <span class="material-symbols-outlined text-sm">chat</span> Schedule Workshop Visit
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-high border-t border-outline-variant/30 py-16">
+    <div class="max-w-container-max mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div class="md:col-span-6 space-y-4">
+        <div class="flex items-center gap-3">
+          <img src="images/logo.png" alt="Aadhavan Monogram" class="h-8 w-auto mix-blend-multiply"/>
+          <span class="font-serif text-xl font-bold tracking-wider text-primary">AADHAVAN</span>
+        </div>
+        <p class="text-xs text-on-surface-variant leading-relaxed max-w-sm">
+          A traditional leather atelier preserving the indigenous craft of Tamil footwear. Every chappal tells a story of ethical hide tanning, patient hand stitching, and lifelong durability.
+        </p>
+      </div>
+
+      <div class="md:col-span-6 flex md:justify-end items-center gap-6 text-xs uppercase font-semibold text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Storefront Home</a>
+        <a href="product.html" class="hover:text-primary transition-colors">Classic Kolhapuri</a>
+        <a href="https://wa.me/919842215500" target="_blank" class="text-primary font-bold">WhatsApp: +91 98422 15500</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

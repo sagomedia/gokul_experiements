@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Aadhavan Handcrafted Chappals | Gandhipuram Atelier</title>
+  <meta name="description" content="Slow luxury Tamil handcrafted leather chappals and sandals from Gandhipuram, Coimbatore. 100% vegetable-tanned, double-welt stitched."/>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#6f331a",
+            "primary-container": "#8c4a2f",
+            "primary-fixed": "#ffdbce",
+            "primary-fixed-dim": "#ffb599",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#ffc9b5",
+            
+            "secondary": "#835426",
+            "secondary-container": "#ffbf88",
+            "secondary-fixed": "#ffdcc1",
+            "secondary-fixed-dim": "#f9ba82",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#7a4b1e",
+            
+            "background": "#fff8f5",
+            "surface": "#fff8f5",
+            "surface-bright": "#fff8f5",
+            "surface-dim": "#e1d8d4",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#fbf2ed",
+            "surface-container": "#f5ece7",
+            "surface-container-high": "#efe6e2",
+            "surface-container-highest": "#e9e1dc",
+            "surface-variant": "#e9e1dc",
+            "surface-tint": "#8f4c31",
+            
+            "on-background": "#1e1b18",
+            "on-surface": "#1e1b18",
+            "on-surface-variant": "#53433d",
+            "outline": "#86736c",
+            "outline-variant": "#d9c2ba",
+            
+            "tertiary": "#444542",
+            "tertiary-container": "#5c5c59"
+          },
+          fontFamily: {
+            serif: ["Libre Caslon Text", "Georgia", "serif"],
+            sans: ["Work Sans", "system-ui", "sans-serif"]
+          },
+          spacing: {
+            "container-max": "1280px",
+            "gutter": "24px",
+            "section-gap": "96px"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .ledger-border { border: 1px dashed rgba(134, 115, 108, 0.35); }
+    .stitch-line { border-top: 1px dashed rgba(140, 74, 47, 0.3); }
+    .ambient-shadow { box-shadow: 0 20px 40px -10px rgba(111, 51, 26, 0.08); }
+  </style>
+</head>
+<body class="bg-background text-on-background font-sans antialiased selection:bg-primary selection:text-white">
+
+  <!-- Announcement Bar -->
+  <div class="bg-primary text-on-primary py-2 px-4 text-center text-xs tracking-widest uppercase font-semibold">
+    Gandhipuram Workshop Open Mon–Sat • Free Pan-India Delivery on WhatsApp Orders • Lifetime Resoling Service
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <nav class="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-300">
+    <div class="max-w-container-max mx-auto px-6 md:px-12 h-20 flex justify-between items-center">
+      
+      <!-- Brand Monogram & Name -->
+      <a class="flex items-center gap-3 group" href="index.html">
+        <img alt="Aadhavan Chappals Monogram" class="h-10 md:h-12 w-auto mix-blend-multiply group-hover:scale-105 transition-transform" src="images/logo.png"/>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl font-bold tracking-tight text-primary">AADHAVAN</span>
+          <span class="text-[10px] tracking-[0.2em] uppercase font-semibold text-secondary -mt-1">Handcrafted Chappals</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
+        <a class="text-primary border-b-2 border-primary pb-1" href="index.html">Home</a>
+        <a class="hover:text-primary transition-colors" href="catalog.html">Catalog Ledger</a>
+        <a class="hover:text-primary transition-colors" href="product.html">Classic Kolhapuri</a>
+        <a class="hover:text-primary transition-colors" href="story.html">Artisan Story</a>
+        <a class="hover:text-primary transition-colors" href="#workshop">Visit Atelier</a>
+      </div>
+
+      <!-- Action CTAs -->
+      <div class="flex items-center gap-4">
+        <a href="https://wa.me/919842215500?text=Hello%20Aadhavan%20Atelier,%20I%20would%20like%20to%20inquire%20about%20ordering%20handcrafted%20chappals." target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-primary text-on-primary px-4 py-2.5 rounded text-xs font-semibold uppercase tracking-wider hover:bg-primary-container transition-all">
+          <span class="material-symbols-outlined text-sm">forum</span>
+          <span>WhatsApp Order</span>
+        </a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button id="menu-btn" class="md:hidden p-2 text-primary hover:bg-surface-container-low rounded focus:outline-none" aria-label="Toggle Navigation">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant/30 bg-surface-container-low px-6 py-6 space-y-4">
+      <a class="block font-semibold uppercase text-xs tracking-wider text-primary" href="index.html">Home</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="catalog.html">Catalog Ledger (Filters & Cart)</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="product.html">Classic Kolhapuri (Product Page)</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="story.html">Artisan Story & Craft</a>
+      <a class="block font-semibold uppercase text-xs tracking-wider text-on-surface hover:text-primary" href="#workshop">Workshop Location</a>
+      <div class="pt-4 border-t border-outline-variant/30">
+        <a href="https://wa.me/919842215500?text=Hello%20Aadhavan%20Atelier,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-3 rounded text-xs font-semibold uppercase tracking-wider">
+          <span class="material-symbols-outlined text-sm">forum</span> WhatsApp Order: +91 98422 15500
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="max-w-container-max mx-auto px-6 md:px-12 py-12 md:py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Headline & Philosophy -->
+      <div class="lg:col-span-6 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full">
+          <span class="material-symbols-outlined text-secondary text-sm">verified</span>
+          <span class="text-xs font-semibold uppercase tracking-widest text-secondary">பாரம்பரிய கைவினை தோல் செருப்புகள்</span>
+        </div>
+        
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-primary font-normal leading-[1.15]">
+          Handcrafted Tamil Leather Chappals.
+          <span class="block italic text-secondary font-normal text-3xl sm:text-4xl mt-2">Built for a Lifetime of Walking.</span>
+        </h1>
+        
+        <p class="text-lg text-on-surface-variant max-w-lg leading-relaxed border-l-2 border-outline-variant pl-4">
+          Slow luxury born in Gandhipuram. Every pair is cut from 100% vegetable-tanned full-grain hide, hand-welted with waxed linen thread, and designed to mold uniquely to your arch.
+        </p>
+
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="#ledger" class="inline-flex items-center gap-3 bg-primary text-on-primary px-8 py-4 rounded text-xs font-semibold uppercase tracking-widest hover:bg-primary-container transition-all ambient-shadow">
+            Explore The Ledger
+            <span class="material-symbols-outlined text-base">arrow_downward</span>
+          </a>
+          <a href="story.html" class="inline-flex items-center gap-2 border border-outline px-6 py-4 rounded text-xs font-semibold uppercase tracking-widest text-primary hover:bg-surface-container transition-all">
+            Our Atelier Craft
+          </a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-outline-variant/30 text-center sm:text-left">
+          <div>
+            <p class="font-serif text-2xl font-bold text-primary">100%</p>
+            <p class="text-[11px] uppercase tracking-wider text-on-surface-variant">Veg-Tanned Hide</p>
+          </div>
+          <div>
+            <p class="font-serif text-2xl font-bold text-primary">48 Hrs</p>
+            <p class="text-[11px] uppercase tracking-wider text-on-surface-variant">Handcrafted Labor</p>
+          </div>
+          <div>
+            <p class="font-serif text-2xl font-bold text-primary">Lifetime</p>
+            <p class="text-[11px] uppercase tracking-wider text-on-surface-variant">Resoling Support</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual (Workshop & Cobbler Hands) -->
+      <div class="lg:col-span-6 relative">
+        <div class="p-3 bg-surface-container-low rounded-lg ledger-border">
+          <div class="relative overflow-hidden rounded aspect-[4/3] bg-surface-container-high">
+            <img alt="Artisan hands stitching leather chappals in Gandhipuram workshop" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="images/workshop.jpg"/>
+            <div class="absolute bottom-4 left-4 bg-background/90 backdrop-blur-md px-4 py-2 rounded text-xs border border-outline-variant/40">
+              <span class="font-semibold text-primary">Gandhipuram Atelier</span> • Hand-welting leather soles
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- The Artisan Standard Feature Strip -->
+  <section class="border-y border-outline-variant/30 bg-surface-container-low py-12">
+    <div class="max-w-container-max mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-background rounded-full border border-outline-variant/40 text-primary">
+            <span class="material-symbols-outlined text-2xl">eco</span>
+          </div>
+          <div>
+            <h2 class="font-serif text-lg font-bold text-on-surface mb-1">Vegetable-Tanned Buff Hide</h2>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Infused with natural bark and myrobalan extracts. Zero harsh chromium. Smells of pure leather and breathes with every step.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-background rounded-full border border-outline-variant/40 text-primary">
+            <span class="material-symbols-outlined text-2xl">handyman</span>
+          </div>
+          <div>
+            <h2 class="font-serif text-lg font-bold text-on-surface mb-1">Double-Welt Hand Stitching</h2>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Each sole is pierced by hand awl and fastened with double-twisted waxed linen thread that never unravels under stress.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-background rounded-full border border-outline-variant/40 text-primary">
+            <span class="material-symbols-outlined text-2xl">autorenew</span>
+          </div>
+          <div>
+            <h2 class="font-serif text-lg font-bold text-on-surface mb-1">Heirloom Resoling Guarantee</h2>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Leather uppers outlive ordinary rubber soles. When worn down, ship them back to our Gandhipuram shop for full sole renewal.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- The Footwear Ledger (Catalog Grid) -->
+  <section id="ledger" class="max-w-container-max mx-auto px-6 md:px-12 py-16 md:py-24">
+    
+    <div class="flex flex-col md:flex-row justify-between items-baseline border-b border-outline-variant/30 pb-6 mb-12">
+      <div>
+        <span class="text-xs font-semibold uppercase tracking-widest text-secondary">Current Archive • Volume IV</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-primary font-bold mt-1">The Footwear Ledger</h2>
+      </div>
+      <p class="text-sm text-on-surface-variant mt-2 md:mt-0 font-medium">
+        Showing 4 master silhouettes • Available in EU Sizes 40–45
+      </p>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Product 1: Classic Kolhapuri -->
+      <article class="flex flex-col group bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+        <div class="relative aspect-square mb-6 overflow-hidden rounded bg-surface-container-low flex items-center justify-center p-4">
+          <img alt="Classic Kolhapuri Chappal" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/kolhapuri.png"/>
+          <span class="absolute top-3 left-3 bg-secondary/10 border border-secondary/30 text-secondary text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
+            Heritage Icon
+          </span>
+        </div>
+
+        <div class="flex-grow space-y-2">
+          <div class="flex justify-between items-start">
+            <h3 class="font-serif text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+              <a href="product.html">Classic Kolhapuri</a>
+            </h3>
+            <span class="font-serif text-lg font-bold text-primary">₹1,299</span>
+          </div>
+          <p class="text-xs text-on-surface-variant">Braided toe loop with vegetable-tanned sole and double-welt stitch.</p>
+
+          <!-- Specs Mini-Ledger -->
+          <div class="pt-3 border-t border-outline-variant/20 space-y-1 text-[11px] text-on-surface-variant">
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Upper:</span>
+              <span class="font-medium text-on-surface">Full-grain Calfskin</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Sole:</span>
+              <span class="font-medium text-on-surface">Compressed Leather + Heel Grip</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Fit:</span>
+              <span class="font-medium text-on-surface">Molds to Arch in 3 Days</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-outline-variant/30 space-y-2">
+          <a href="product.html" class="block text-center w-full bg-primary text-on-primary py-2.5 rounded text-xs font-semibold uppercase tracking-wider hover:bg-primary-container transition-colors">
+            View Ledger & Sizing
+          </a>
+          <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20the%20Classic%20Kolhapuri%20Chappal%20(₹1,299)." target="_blank" class="flex items-center justify-center gap-1.5 w-full border border-outline py-2 rounded text-xs font-semibold uppercase tracking-wider text-primary hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-sm">forum</span> Quick WhatsApp
+          </a>
+        </div>
+      </article>
+
+      <!-- Product 2: Ergonomic Slip-ons -->
+      <article class="flex flex-col group bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+        <div class="relative aspect-square mb-6 overflow-hidden rounded bg-surface-container-low flex items-center justify-center p-4">
+          <img alt="Ergonomic Slip-ons" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/slipons.png"/>
+          <span class="absolute top-3 left-3 bg-secondary/10 border border-secondary/30 text-secondary text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
+            Daily Cushion
+          </span>
+        </div>
+
+        <div class="flex-grow space-y-2">
+          <div class="flex justify-between items-start">
+            <h3 class="font-serif text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+              Ergonomic Slip-ons
+            </h3>
+            <span class="font-serif text-lg font-bold text-primary">₹999</span>
+          </div>
+          <p class="text-xs text-on-surface-variant">Plush high-density memory foam inner bed for all-day city walking.</p>
+
+          <div class="pt-3 border-t border-outline-variant/20 space-y-1 text-[11px] text-on-surface-variant">
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Core:</span>
+              <span class="font-medium text-on-surface">Dual Memory Layer</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Outsole:</span>
+              <span class="font-medium text-on-surface">Treaded TPR Rubber</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Profile:</span>
+              <span class="font-medium text-on-surface">Active All-Weather</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-outline-variant/30 space-y-2">
+          <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20the%20Ergonomic%20Slip-ons%20(₹999)." target="_blank" class="flex items-center justify-center gap-1.5 w-full bg-primary text-on-primary py-2.5 rounded text-xs font-semibold uppercase tracking-wider hover:bg-primary-container transition-colors">
+            <span class="material-symbols-outlined text-sm">forum</span> Order on WhatsApp
+          </a>
+          <button onclick="openQuickModal('Ergonomic Daily Slip-ons', '₹999', 'images/slipons.png', 'Dual Memory Foam Cushion with flexible oiled cowhide straps.')" class="w-full border border-outline py-2 rounded text-xs font-semibold uppercase tracking-wider text-primary hover:bg-surface-container transition-colors">
+            Quick Preview
+          </button>
+        </div>
+      </article>
+
+      <!-- Product 3: Heritage Wedding Mojaris -->
+      <article class="flex flex-col group bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+        <div class="relative aspect-square mb-6 overflow-hidden rounded bg-surface-container-low flex items-center justify-center p-4">
+          <img alt="Heritage Wedding Mojaris" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/mojaris.png"/>
+          <span class="absolute top-3 left-3 bg-secondary/10 border border-secondary/30 text-secondary text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
+            Bespoke Wedding
+          </span>
+        </div>
+
+        <div class="flex-grow space-y-2">
+          <div class="flex justify-between items-start">
+            <h3 class="font-serif text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+              Heritage Mojaris
+            </h3>
+            <span class="font-serif text-lg font-bold text-primary">₹1,799</span>
+          </div>
+          <p class="text-xs text-on-surface-variant">Brass-accented ceremonial footwear with gold brocade thread trim.</p>
+
+          <div class="pt-3 border-t border-outline-variant/20 space-y-1 text-[11px] text-on-surface-variant">
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Hardware:</span>
+              <span class="font-medium text-on-surface">Antique Brass Rivets</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Insole:</span>
+              <span class="font-medium text-on-surface">Cushioned Silk Velvet</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Occasion:</span>
+              <span class="font-medium text-on-surface">Veshti & Sherwani Formal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-outline-variant/30 space-y-2">
+          <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20the%20Heritage%20Wedding%20Mojaris%20(₹1,799)." target="_blank" class="flex items-center justify-center gap-1.5 w-full bg-primary text-on-primary py-2.5 rounded text-xs font-semibold uppercase tracking-wider hover:bg-primary-container transition-colors">
+            <span class="material-symbols-outlined text-sm">forum</span> Order on WhatsApp
+          </a>
+          <button onclick="openQuickModal('Heritage Wedding Mojaris', '₹1,799', 'images/mojaris.png', 'Ceremonial footwear adorned with solid brass rivets and velvet lining.')" class="w-full border border-outline py-2 rounded text-xs font-semibold uppercase tracking-wider text-primary hover:bg-surface-container transition-colors">
+            Quick Preview
+          </button>
+        </div>
+      </article>
+
+      <!-- Product 4: Orthopedic Soft-Walk -->
+      <article class="flex flex-col group bg-surface-container-low/40 rounded-lg p-5 border border-outline-variant/20 hover:border-primary/40 transition-all">
+        <div class="relative aspect-square mb-6 overflow-hidden rounded bg-surface-container-low flex items-center justify-center p-4">
+          <img alt="Orthopedic Soft-Walk Sandals" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" src="images/orthopedic.png"/>
+          <span class="absolute top-3 left-3 bg-secondary/10 border border-secondary/30 text-secondary text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full">
+            Doctor Approved
+          </span>
+        </div>
+
+        <div class="flex-grow space-y-2">
+          <div class="flex justify-between items-start">
+            <h3 class="font-serif text-xl font-bold text-on-surface group-hover:text-primary transition-colors">
+              Orthopedic Soft-Walk
+            </h3>
+            <span class="font-serif text-lg font-bold text-primary">₹1,199</span>
+          </div>
+          <p class="text-xs text-on-surface-variant">Engineered arch support and heel shock pad for plantar relief.</p>
+
+          <div class="pt-3 border-t border-outline-variant/20 space-y-1 text-[11px] text-on-surface-variant">
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Arch:</span>
+              <span class="font-medium text-on-surface">Medial Longitudinal Support</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Heel Pad:</span>
+              <span class="font-medium text-on-surface">12mm Shock Absorber</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-outline uppercase">Target:</span>
+              <span class="font-medium text-on-surface">Flat Foot & Plantar Relief</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-5 mt-4 border-t border-outline-variant/30 space-y-2">
+          <a href="https://wa.me/919842215500?text=I%20would%20like%20to%20order%20the%20Orthopedic%20Soft-Walk%20Sandals%20(₹1,199)." target="_blank" class="flex items-center justify-center gap-1.5 w-full bg-primary text-on-primary py-2.5 rounded text-xs font-semibold uppercase tracking-wider hover:bg-primary-container transition-colors">
+            <span class="material-symbols-outlined text-sm">forum</span> Order on WhatsApp
+          </a>
+          <button onclick="openQuickModal('Orthopedic Soft-Walk Sandals', '₹1,199', 'images/orthopedic.png', 'Doctor-recommended orthopedic sandals for plantar and diabetic foot relief.')" class="w-full border border-outline py-2 rounded text-xs font-semibold uppercase tracking-wider text-primary hover:bg-surface-container transition-colors">
+            Quick Preview
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+
+  <!-- Gandhipuram Workshop & Story Section -->
+  <section id="workshop" class="bg-surface-container-low py-16 md:py-24 border-y border-outline-variant/30">
+    <div class="max-w-container-max mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-semibold uppercase tracking-widest text-secondary">The Gandhipuram Atelier</span>
+          <h2 class="font-serif text-3xl md:text-4xl text-primary font-bold leading-tight">
+            Rooted in Four Decades of Cobbling Tradition.
+          </h2>
+          <blockquote class="font-serif italic text-lg text-on-surface border-l-2 border-primary pl-4">
+            "We do not assemble shoes with toxic glues that break down in one monsoon. We sew each sole into the leather welt by hand, stitch by stitch."
+          </blockquote>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            Located right off Cross Cut Road in Gandhipuram, Coimbatore, our workshop welcomes guests to witness full-grain leather cutting, edge skiving, vegetable tanning, and custom foot mold shaping.
+          </p>
+          <div class="pt-2 flex gap-4">
+            <a href="story.html" class="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded text-xs font-semibold uppercase tracking-wider hover:bg-primary-container transition-all">
+              Read Our Full Story
+            </a>
+            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 border border-outline px-5 py-3 rounded text-xs font-semibold uppercase tracking-wider text-primary hover:bg-surface-container transition-all">
+              <span class="material-symbols-outlined text-sm">pin_drop</span> Directions
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-6 bg-background rounded border border-outline-variant/30 space-y-2">
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider">Step 01</span>
+            <h3 class="font-serif text-lg font-bold text-on-surface">Parchment Foot Trace</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">Customers trace their foot contours onto archival parchment. We tailor the bridge and strap height to your exact bone structure.</p>
+          </div>
+
+          <div class="p-6 bg-background rounded border border-outline-variant/30 space-y-2">
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider">Step 02</span>
+            <h3 class="font-serif text-lg font-bold text-on-surface">Natural Bark Immersion</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">Raw hides soak in extracts of acacia and babul bark for 40 days to yield our signature terracotta and saddle hues.</p>
+          </div>
+
+          <div class="p-6 bg-background rounded border border-outline-variant/30 space-y-2">
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider">Step 03</span>
+            <h3 class="font-serif text-lg font-bold text-on-surface">Twisted Linen Hand Welt</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">Heavy-gauge linen thread is run through pure beeswax before being hand-stitched into the thick outer welt.</p>
+          </div>
+
+          <div class="p-6 bg-background rounded border border-outline-variant/30 space-y-2">
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider">Step 04</span>
+            <h3 class="font-serif text-lg font-bold text-on-surface">Neem Oil Conditioning</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">Before boxing, every chappal receives an organic herbal oil massage to nourish the grain and resist tropical moisture.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Direct Order Banner -->
+  <section class="max-w-container-max mx-auto px-6 md:px-12 py-16">
+    <div class="p-8 md:p-12 bg-primary text-on-primary rounded-xl ambient-shadow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-8 space-y-3">
+        <span class="text-xs uppercase font-bold tracking-widest text-secondary-fixed">Bespoke Fit Service</span>
+        <h2 class="font-serif text-2xl md:text-3xl font-bold">Unsure about your exact chappal size?</h2>
+        <p class="text-sm text-on-primary/80 max-w-xl">
+          Trace your feet on a sheet of A4 paper, snap a top-down photo with a ruler beside it, and WhatsApp it to our master cobbler. We will recommend your precise size or craft a custom pair.
+        </p>
+      </div>
+      <div class="lg:col-span-4 flex lg:justify-end">
+        <a href="https://wa.me/919842215500?text=Hi%20Aadhavan,%20I%20would%20like%20a%20custom%20sizing%20consultation." target="_blank" class="inline-flex items-center gap-3 bg-secondary-container text-on-secondary-container px-8 py-4 rounded text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity">
+          <span class="material-symbols-outlined text-lg">chat</span>
+          <span>WhatsApp Sizing Chat</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick View Modal -->
+  <div id="quick-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-background rounded-lg max-w-lg w-full p-6 relative border border-outline-variant/40 shadow-2xl">
+      <button onclick="closeQuickModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-primary">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+      <div class="text-center space-y-4">
+        <div class="h-48 bg-surface-container-low rounded flex items-center justify-center p-4">
+          <img id="modal-img" src="" alt="Chappal Preview" class="h-full object-contain mix-blend-multiply"/>
+        </div>
+        <h3 id="modal-title" class="font-serif text-2xl font-bold text-primary"></h3>
+        <p id="modal-price" class="font-serif text-xl font-semibold text-secondary"></p>
+        <p id="modal-desc" class="text-xs text-on-surface-variant leading-relaxed"></p>
+        <div class="pt-4 flex gap-3">
+          <a id="modal-wa" href="#" target="_blank" class="flex-1 bg-primary text-on-primary py-3 rounded text-xs font-semibold uppercase tracking-wider">
+            Order on WhatsApp
+          </a>
+          <button onclick="closeQuickModal()" class="px-5 border border-outline text-xs uppercase font-semibold rounded">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-high border-t border-outline-variant/30 py-16">
+    <div class="max-w-container-max mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-12">
+      
+      <div class="md:col-span-4 space-y-4">
+        <div class="flex items-center gap-3">
+          <img src="images/logo.png" alt="Aadhavan Monogram" class="h-8 w-auto mix-blend-multiply"/>
+          <span class="font-serif text-xl font-bold tracking-wider text-primary">AADHAVAN</span>
+        </div>
+        <p class="text-xs text-on-surface-variant leading-relaxed max-w-sm">
+          A traditional leather atelier preserving the indigenous craft of Tamil footwear. Every chappal tells a story of ethical hide tanning, patient hand stitching, and lifelong durability.
+        </p>
+        <p class="text-[11px] uppercase tracking-widest text-secondary font-semibold">
+          © 2026 Aadhavan Handcrafted Chappals. All rights reserved.
+        </p>
+      </div>
+
+      <div class="md:col-span-4 space-y-3">
+        <h4 class="font-serif text-sm font-bold uppercase tracking-wider text-on-surface">The Atelier & Workshop</h4>
+        <address class="not-italic text-xs text-on-surface-variant leading-relaxed space-y-1">
+          <p class="font-medium text-on-surface">Aadhavan Footwear Atelier</p>
+          <p>142 Cross Cut Road, Gandhipuram</p>
+          <p>Coimbatore, Tamil Nadu 641012</p>
+          <p class="pt-2">Hours: Mon – Sat, 9:30 AM – 8:00 PM</p>
+          <p>Direct WhatsApp: +91 98422 15500</p>
+        </address>
+      </div>
+
+      <div class="md:col-span-4 space-y-3">
+        <h4 class="font-serif text-sm font-bold uppercase tracking-wider text-on-surface">Quick Directory</h4>
+        <ul class="text-xs space-y-2 text-on-surface-variant font-medium">
+          <li><a href="index.html" class="hover:text-primary transition-colors">Home Storefront</a></li>
+          <li><a href="product.html" class="hover:text-primary transition-colors">Classic Kolhapuri Product Ledger</a></li>
+          <li><a href="story.html" class="hover:text-primary transition-colors">Atelier Story & Handcrafting Steps</a></li>
+          <li><a href="https://wa.me/919842215500?text=I%20have%20a%20resoling%20inquiry." target="_blank" class="hover:text-primary transition-colors">Resoling & Repair Request</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
+</body>
+</html>
