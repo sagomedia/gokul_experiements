@@ -1208,6 +1208,35 @@
       .marker--campus { left: 4%; top: 12%; font-size: 11px; }
       .marker--labs { right: 4%; bottom: 18%; font-size: 11px; }
     }
+
+    @media print, (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .rise {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+      .hero__bg {
+        opacity: 1 !important;
+      }
+      .hero__bg video {
+        display: none !important;
+      }
+      .hero {
+        background-image: url('assets/jp_flow_poster.jpg') !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
+      }
+      .badge, .headline, .sub, .prompt {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body>
