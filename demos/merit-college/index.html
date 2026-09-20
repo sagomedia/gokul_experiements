@@ -609,35 +609,6 @@
     .contact-grid p { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0 0 12px; }
     .contact-grid strong { color: var(--ink); }
     .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; }
-
-    @media print, (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-      }
-      .rise {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-      }
-      .hero__bg {
-        opacity: 1 !important;
-      }
-      .hero__bg video {
-        display: none !important;
-      }
-      .hero {
-        background-image: url('assets/merit_flow_poster.jpg') !important;
-        background-size: cover !important;
-        background-position: center bottom !important;
-      }
-      .badge, .headline, .sub, .prompt {
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    }
   </style>
 </head>
 <body>
