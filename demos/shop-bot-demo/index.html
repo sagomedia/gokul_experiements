@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>WhatsApp Business Shop Demo — Sago Automations</title>
+  <style>
+    :root {
+      --wa-bg: #0b141a;
+      --wa-header: #202c33;
+      --wa-chat-bg: #0b141a;
+      --wa-bubble-in: #202c33;
+      --wa-bubble-out: #005c4b;
+      --wa-text-primary: #e9edef;
+      --wa-text-secondary: #8696a0;
+      --wa-check-blue: #53bdeb;
+      --wa-green: #00a884;
+      --wa-accent: #25d366;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #060a0d;
+      color: var(--wa-text-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 0;
+    }
+
+    /* Top Floating Controls for Screen Recording */
+    .controls-banner {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(390px, 94%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: rgba(32, 44, 51, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .controls-banner.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -20px);
+    }
+
+    .btn-action {
+      background: var(--wa-green);
+      color: #fff;
+      border: 0;
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-action:hover {
+      background: #029474;
+    }
+
+    .btn-secondary {
+      background: #374248;
+      color: #d1d7db;
+    }
+
+    /* Mobile Container Frame */
+    .phone-frame {
+      width: 100vw;
+      max-width: 412px;
+      height: 100vh;
+      max-height: 890px;
+      background-color: var(--wa-chat-bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 450px) {
+      .phone-frame {
+        border-radius: 28px;
+        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        height: 840px;
+      }
+    }
+
+    /* WhatsApp Native Header */
+    .wa-header {
+      background-color: var(--wa-header);
+      height: 60px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .wa-back-btn {
+      color: #aebac1;
+      display: flex;
+      align-items: center;
+      padding-right: 2px;
+      cursor: pointer;
+    }
+
+    .wa-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #2a3942;
+    }
+
+    .wa-contact-info {
+      flex: 1;
+      min-width: 0;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .wa-contact-name {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--wa-text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .wa-verified-badge {
+      color: var(--wa-accent);
+      display: inline-flex;
+    }
+
+    .wa-contact-status {
+      font-size: 12.5px;
+      color: var(--wa-text-secondary);
+      transition: color 0.15s ease;
+      line-height: 1.2;
+    }
+
+    .wa-contact-status.typing {
+      color: var(--wa-accent);
+      font-weight: 500;
+    }
+
+    .wa-header-icons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #aebac1;
+    }
+
+    /* WhatsApp Chat Canvas */
+    .wa-canvas {
+      flex: 1;
+      padding: 12px 10px 8px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background-color: #0b141a;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 18px 18px;
+      scroll-behavior: smooth;
+    }
+
+    /* Date Pill */
+    .date-pill {
+      align-self: center;
+      background: #182229;
+      color: #8696a0;
+      font-size: 11.5px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+    }
+
+    /* Encryption Notice */
+    .security-notice {
+      align-self: center;
+      background: rgba(254, 239, 179, 0.1);
+      border: 1px solid rgba(254, 239, 179, 0.15);
+      color: #ffd279;
+      font-size: 11px;
+      line-height: 1.35;
+      text-align: center;
+      padding: 6px 12px;
+      border-radius: 8px;
+      max-width: 90%;
+      margin-bottom: 8px;
+    }
+
+    /* Chat Bubbles */
+    .bubble {
+      max-width: 82%;
+      border-radius: 8px;
+      font-size: 14.5px;
+      line-height: 1.4;
+      position: relative;
+      opacity: 0;
+      transform: translateY(8px) scale(0.98);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      display: none;
+    }
+
+    .bubble.show {
+      display: flex;
+      flex-direction: column;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Customer Outgoing Bubble */
+    .bubble.out {
+      align-self: flex-end;
+      background-color: var(--wa-bubble-out);
+      color: #e9edef;
+      border-top-right-radius: 2px;
+      padding: 6px 10px 5px;
+    }
+
+    /* Bot Incoming Bubble */
+    .bubble.in {
+      align-self: flex-start;
+      background-color: var(--wa-bubble-in);
+      color: #e9edef;
+      border-top-left-radius: 2px;
+      padding: 6px 10px 5px;
+    }
+
+    /* Photo Message specific styling */
+    .bubble.has-media {
+      padding: 4px 4px 5px;
+      width: 275px;
+      max-width: 85%;
+    }
+
+    .bubble-img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      border-radius: 6px 6px 0 0;
+      display: block;
+    }
+
+    .bubble-caption {
+      padding: 6px 8px 2px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .bubble-caption b {
+      color: #ffffff;
+    }
+
+    /* Native WhatsApp Monospace block */
+    .mono-quote {
+      font-family: Consolas, Monaco, "Courier New", Courier, monospace;
+      font-size: 12.5px;
+      color: #d1d7db;
+      background: rgba(0, 0, 0, 0.22);
+      padding: 5px 8px;
+      border-radius: 4px;
+      margin: 4px 0;
+      white-space: pre-line;
+      line-height: 1.35;
+    }
+
+    /* Meta Time & Status */
+    .bubble-meta {
+      align-self: flex-end;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 2px;
+      padding-right: 4px;
+    }
+
+    .checks {
+      display: inline-flex;
+      font-size: 13.5px;
+      letter-spacing: -3px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .checks.read {
+      color: var(--wa-check-blue);
+    }
+
+    /* WhatsApp Bottom Bar */
+    .wa-input-bar {
+      background-color: var(--wa-header);
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .wa-input-pill {
+      flex: 1;
+      background: #2a3942;
+      height: 42px;
+      border-radius: 21px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 10px;
+      color: var(--wa-text-secondary);
+      font-size: 15px;
+    }
+
+    .wa-input-text {
+      flex: 1;
+      color: #8696a0;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .wa-mic-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--wa-green);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Optional Bottom Pitch Ribbon (Toggled on/off) */
+    .pitch-ribbon {
+      position: absolute;
+      bottom: 64px;
+      left: 12px;
+      right: 12px;
+      background: rgba(0, 92, 75, 0.95);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(37, 211, 102, 0.35);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 50;
+      pointer-events: none;
+    }
+
+    .pitch-ribbon.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Countdown Overlay */
+    .countdown-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 20, 26, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .countdown-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .count-num {
+      font-size: 72px;
+      font-weight: 800;
+      color: var(--wa-green);
+    }
+    .count-label {
+      font-size: 13.5px;
+      color: #8696a0;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls for Video Screen Recording -->
+  <div class="controls-banner" id="controls">
+    <div style="font-size: 12px; color: #8696a0;">
+      <strong style="color: #fff;">15s Pitch</strong> • Screen Record
+    </div>
+    <div style="display: flex; gap: 6px;">
+      <button class="btn-action" onclick="startCountdown()">▶ Start</button>
+      <button class="btn-action btn-secondary" onclick="resetSim()">🔄</button>
+      <button class="btn-action btn-secondary" onclick="toggleRibbon()">🏷️ Pitch</button>
+      <button class="btn-action btn-secondary" onclick="toggleControls()">Hide Bar</button>
+    </div>
+  </div>
+
+  <!-- Mobile Frame -->
+  <div class="phone-frame" id="phone-container">
+    
+    <!-- WhatsApp Native App Header -->
+    <div class="wa-header">
+      <div class="wa-back-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+      </div>
+
+      <img src="assets/shop_profile.jpg" alt="Shop Profile" class="wa-avatar">
+
+      <div class="wa-contact-info">
+        <div class="wa-contact-name">
+          Sri Murugan Electricals
+          <span class="wa-verified-badge" title="Verified Business">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </span>
+        </div>
+        <div class="wa-contact-status" id="header-status">online</div>
+      </div>
+
+      <div class="wa-header-icons">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+        </svg>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Chat Messages Canvas -->
+    <div class="wa-canvas" id="chat-canvas">
+      <div class="date-pill">TODAY</div>
+
+      <div class="security-notice">
+        🔒 Messages and calls are end-to-end encrypted. No one outside of this chat can read them.
+      </div>
+
+      <!-- Message 1: Customer asks wire price -->
+      <div class="bubble out" id="msg-1">
+        <div>Finolex 1.5 wire bundle rate enna anna?</div>
+        <div class="bubble-meta">
+          <span>03:28 PM</span>
+          <span class="checks read">✓✓</span>
+        </div>
+      </div>
+
+      <!-- Message 2: Bot instantly replies with attached Photo + Price -->
+      <div class="bubble in has-media" id="msg-2">
+        <img src="assets/finolex_wire.jpg" alt="Finolex 1.5mm" class="bubble-img">
+        <div class="bubble-caption">
+          <b>Finolex 1.5 sq mm FR (90m coil)</b><br>
+          💰 Today Rate: <b>₹1,850</b> (MRP: ₹2,350)<br>
+          <span style="color:#25d366;">✓ In Stock (14 coils ready)</span><br>
+          <span style="font-size:12px; color:#8696a0;">Red, Blue, Yellow colors available.</span>
+        </div>
+        <div class="bubble-meta">
+          <span>03:28 PM</span>
+        </div>
+      </div>
+
+      <!-- Message 3: Customer asks PVC pipes -->
+      <div class="bubble out" id="msg-3">
+        <div>1 inch PVC pipe 10 piece venum, rate?</div>
+        <div class="bubble-meta">
+          <span>03:29 PM</span>
+          <span class="checks read">✓✓</span>
+        </div>
+      </div>
+
+      <!-- Message 4: Bot sends Pipe photo + instant bill estimate -->
+      <div class="bubble in has-media" id="msg-4">
+        <img src="assets/pvc_pipes.jpg" alt="Supreme PVC" class="bubble-img">
+        <div class="bubble-caption">
+          <b>Supreme 1" Heavy PVC Pipe (6 Metre)</b>
+          <div class="mono-quote">10 pcs × ₹240 = ₹2,400
+Cash Discount  = -₹50
+--------------------
+Total Estimate = ₹2,350</div>
+          <span style="color:#25d366;">✓ 42 Pipes in stock</span><br>
+          <span style="font-size:12px; color:#8696a0;">Local auto delivery 30 mins available.</span>
+        </div>
+        <div class="bubble-meta">
+          <span>03:29 PM</span>
+        </div>
+      </div>
+
+      <!-- Message 5: Customer confirms order -->
+      <div class="bubble out" id="msg-5">
+        <div>Super anna! 15 minutes-la varen bill ready pannunga.</div>
+        <div class="bubble-meta">
+          <span>03:30 PM</span>
+          <span class="checks read">✓✓</span>
+        </div>
+      </div>
+
+      <!-- Message 6: Bot gives instant token ID -->
+      <div class="bubble in" id="msg-6">
+        <div>
+          <b>Order Token #884 Confirmed!</b><br>
+          Bill counter-la ready panni vechurukom anna. Neenga direct-ah pick pannikalam 🙏
+        </div>
+        <div class="bubble-meta">
+          <span>03:30 PM</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Optional Pitch Ribbon for Clients -->
+    <div class="pitch-ribbon" id="pitch-ribbon">
+      <div>
+        <h4 style="font-size: 13px; font-weight: 700;">⚡ 15 Seconds Order Lock</h4>
+        <p style="font-size: 11.5px; opacity: 0.9;">Customer waiting illa. Zero missed sales.</p>
+      </div>
+      <span style="font-size: 20px;">✅</span>
+    </div>
+
+    <!-- WhatsApp Bottom Input Bar -->
+    <div class="wa-input-bar">
+      <div class="wa-input-pill">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+        </svg>
+        <div class="wa-input-text" id="fake-input-text">Type a message</div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5a2.5 2.5 0 0 1 5 0v10.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V6H9v9.5a3 3 0 0 0 6 0V5a4 4 0 0 0-8 0v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/>
+        </svg>
+      </div>
+      <div class="wa-mic-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zM17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Countdown Overlay for Recorder -->
+    <div class="countdown-overlay" id="countdown-box">
+      <div class="count-num" id="countdown-num">3</div>
+      <div class="count-label">Get Screen Recorder Ready</div>
+    </div>
+
+  </div>
+
+  <script>
+    const statusEl = document.getElementById('header-status');
+    const canvas = document.getElementById('chat-canvas');
+    const ribbon = document.getElementById('pitch-ribbon');
+    const countdownBox = document.getElementById('countdown-box');
+    const countdownNum = document.getElementById('countdown-num');
+
+    let timers = [];
+    let showPitchRibbon = false;
+
+    function clearAllTimers() {
+      timers.forEach(t => clearTimeout(t));
+      timers = [];
+    }
+
+    function resetSim() {
+      clearAllTimers();
+      for (let i = 1; i <= 6; i++) {
+        const el = document.getElementById(`msg-${i}`);
+        if (el) el.classList.remove('show');
+      }
+      ribbon.classList.remove('show');
+      statusEl.textContent = 'online';
+      statusEl.classList.remove('typing');
+      canvas.scrollTop = 0;
+    }
+
+    function startCountdown() {
+      resetSim();
+      countdownBox.classList.add('active');
+      let count = 3;
+      countdownNum.textContent = count;
+
+      const intId = setInterval(() => {
+        count--;
+        if (count > 0) {
+          countdownNum.textContent = count;
+        } else {
+          clearInterval(intId);
+          countdownBox.classList.remove('active');
+          runTimeline();
+        }
+      }, 1000);
+    }
+
+    function showMsg(id) {
+      const el = document.getElementById(`msg-${id}`);
+      if (el) {
+        el.classList.add('show');
+        canvas.scrollTo({ top: canvas.scrollHeight, behavior: 'smooth' });
+      }
+    }
+
+    function runTimeline() {
+      statusEl.textContent = 'online';
+      statusEl.classList.remove('typing');
+
+      // 1.0s: Customer sends wire inquiry
+      timers.push(setTimeout(() => {
+        showMsg(1);
+      }, 1000));
+
+      // 1.8s: Bot typing...
+      timers.push(setTimeout(() => {
+        statusEl.textContent = 'typing...';
+        statusEl.classList.add('typing');
+      }, 1800));
+
+      // 2.8s: Bot sends Wire photo + rate card
+      timers.push(setTimeout(() => {
+        statusEl.textContent = 'online';
+        statusEl.classList.remove('typing');
+        showMsg(2);
+      }, 2800));
+
+      // 5.8s: Customer asks PVC pipes
+      timers.push(setTimeout(() => {
+        showMsg(3);
+      }, 5800));
+
+      // 6.6s: Bot typing...
+      timers.push(setTimeout(() => {
+        statusEl.textContent = 'typing...';
+        statusEl.classList.add('typing');
+      }, 6600));
+
+      // 7.8s: Bot sends Pipe photo + automated calculation bill
+      timers.push(setTimeout(() => {
+        statusEl.textContent = 'online';
+        statusEl.classList.remove('typing');
+        showMsg(4);
+      }, 7800));
+
+      // 10.8s: Customer confirms
+      timers.push(setTimeout(() => {
+        showMsg(5);
+      }, 10800));
+
+      // 11.6s: Bot confirms order token
+      timers.push(setTimeout(() => {
+        statusEl.textContent = 'online';
+        showMsg(6);
+      }, 11600));
+
+      // 13.5s: Optional ribbon (if enabled)
+      timers.push(setTimeout(() => {
+        if (showPitchRibbon) {
+          ribbon.classList.add('show');
+        }
+      }, 13500));
+    }
+
+    function toggleRibbon() {
+      showPitchRibbon = !showPitchRibbon;
+      if (!showPitchRibbon) ribbon.classList.remove('show');
+      else ribbon.classList.add('show');
+    }
+
+    function toggleControls() {
+      document.getElementById('controls').classList.toggle('hidden');
+    }
+
+    // Hotkey: press 'Space' or tap screen to toggle bar
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'h' || e.key === 'H') toggleControls();
+      if (e.key === 'r' || e.key === 'R') startCountdown();
+    });
+
+    window.addEventListener('load', () => {
+      setTimeout(runTimeline, 600);
+    });
+  </script>
+</body>
+</html>
